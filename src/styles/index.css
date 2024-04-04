@@ -6,9 +6,18 @@
   font-family: "Pretendard";
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   min-width: 320px;
   min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
 }
 
 /* @media (prefers-color-scheme: light) {
