@@ -12,6 +12,7 @@
       "@components/*": ["src/components/*"],
       "@containers/*": ["src/containers/*"],
       "@hooks/*": ["src/hooks/*"],
+      "@layouts/*": ["src/layouts/*"],
       "@models/*": ["src/models/*"],
       "@pages/*": ["src/pages/*"],
       "@recoil/*": ["src/recoil/*"],
