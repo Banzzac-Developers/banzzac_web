@@ -8,4 +8,19 @@ export default defineConfig({
       jsxImportSource: "@emotion/react",
     }),
   ],
+  resolve: {
+    alias: [
+      { find: "@api", replacement: "/src/api" },
+      { find: "@components", replacement: "/src/components" },
+      { find: "@containers", replacement: "/src/containers" },
+      { find: "@hooks", replacement: "/src/hooks" },
+      { find: "@layouts", replacement: "/src/layouts" },
+      { find: "@models", replacement: "/src/models" },
+      { find: "@pages", replacement: "/src/pages" },
+      { find: "@recoil", replacement: "/src/recoil" },
+      { find: "@styles", replacement: "/src/styles" },
+      { find: "@utils", replacement: "/src/utils" },
+      { find: "@", replacement: "/src" },
+    ],
+  },
 });
