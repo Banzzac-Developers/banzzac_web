@@ -21,9 +21,9 @@ const router = createBrowserRouter(
       <Route path="/" element={<div>splash</div>} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+      <Route path="/friends" element={<Friends />} />
       <Route path="/chat" element={<Chat />} />
       <Route path="/chat/:id" element={<ChatRoom />} />
-      <Route path="/friends" element={<Friends />} />
       <Route path="/search" element={<Search />} />
       <Route path="/matching" element={<Matching />} />
       <Route path="/profile" element={<Profile />} />
