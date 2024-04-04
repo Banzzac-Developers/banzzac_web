@@ -1,3 +1,9 @@
+import Navigator from "@layouts/Navigator";
+
 export default function Chat() {
-  return <>chatting</>;
+  return (
+    <>
+      <Navigator>chat</Navigator>
+    </>
+  );
 }

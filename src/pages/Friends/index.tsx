@@ -1,3 +1,9 @@
+import Navigator from "@layouts/Navigator";
+
 export default function Friends() {
-  return <>friends</>;
+  return (
+    <>
+      <Navigator>friends</Navigator>
+    </>
+  );
 }

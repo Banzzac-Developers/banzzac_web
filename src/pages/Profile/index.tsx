@@ -1,3 +1,9 @@
+import Navigator from "@layouts/Navigator";
+
 export default function Profile() {
-  return <>profile</>;
+  return (
+    <>
+      <Navigator>profile</Navigator>
+    </>
+  );
 }

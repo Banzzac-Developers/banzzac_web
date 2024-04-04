@@ -1,3 +1,9 @@
+import Navigator from "@layouts/Navigator";
+
 export default function Matching() {
-  return <>matching</>;
+  return (
+    <>
+      <Navigator>matching</Navigator>
+    </>
+  );
 }
