@@ -1,27 +1,29 @@
 export const navList = [
   {
     route: "/friends",
-    icon: "",
+    icon: "friends",
     name: "친구",
   },
   {
     route: "/chat",
-    icon: "",
+    icon: "chat",
     name: "채팅",
   },
   {
     route: "/search",
-    icon: "",
+    icon: "search",
     name: "탐색",
   },
   {
     route: "/matching",
-    icon: "",
+    icon: "matching",
     name: "매칭",
   },
   {
     route: "/profile",
-    icon: "",
+    icon: "profile",
     name: "내 프로필",
   },
 ];
+
+export type HeaderIcon = "search" | "friendAdd" | "setting";
