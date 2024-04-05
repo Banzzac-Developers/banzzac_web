@@ -13,7 +13,7 @@ export const navList: NavItem[] = [
   },
   {
     route: "/search",
-    icon: "search",
+    icon: "twinkle",
     name: "탐색",
   },
   {
