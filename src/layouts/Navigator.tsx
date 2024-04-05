@@ -1,5 +1,6 @@
+import { navList } from "@constants/index";
 import styled from "@emotion/styled";
-import { navList } from "@models/index";
+
 import { Link, useLocation } from "react-router-dom";
 
 type Props = {
