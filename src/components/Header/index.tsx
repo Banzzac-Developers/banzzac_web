@@ -1,13 +1,36 @@
+import SvgSelector from "@components/Svg/SvgSelector";
 import { HeaderIcon } from "@models/index";
 
 const IconButton = ({ icon }: { icon: HeaderIcon }) => {
   switch (icon) {
     case "search":
-      return <button>검색</button>;
+      return (
+        <button>
+          <SvgSelector width={24} height={24} stroke="#212121" svg={"search"} />
+        </button>
+      );
     case "friendAdd":
-      return <button>친구추가</button>;
+      return (
+        <button>
+          <SvgSelector
+            width={24}
+            height={24}
+            stroke="#212121"
+            svg={"userAdd"}
+          />
+        </button>
+      );
     case "setting":
-      return <button>설정</button>;
+      return (
+        <button>
+          <SvgSelector
+            width={24}
+            height={24}
+            stroke="#212121"
+            svg={"setting"}
+          />
+        </button>
+      );
     default:
       return <div />;
   }
