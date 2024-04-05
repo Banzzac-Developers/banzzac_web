@@ -1,4 +1,5 @@
-import { navList } from "@constants/index";
+import { navList } from "@models/index";
+import SvgSelector from "@components/Svg/SvgSelector";
 import styled from "@emotion/styled";
 
 import { Link, useLocation } from "react-router-dom";
@@ -9,6 +10,7 @@ type Props = {
 
 export default function Navigator({ children }: Props) {
   const { pathname } = useLocation();
+
   return (
     <>
       {children}
@@ -16,7 +18,15 @@ export default function Navigator({ children }: Props) {
         <ul>
           {navList.map((navItem) => (
             <NavItem key={navItem.name} active={navItem.route === pathname}>
-              <Link to={navItem.route}>{navItem.name}</Link>
+              <Link to={navItem.route}>
+                <SvgSelector
+                  svg={navItem.icon}
+                  width={24}
+                  height={24}
+                  stroke={navItem.route === pathname ? "#A86EFA" : "#212121"}
+                />
+                <div>{navItem.name}</div>
+              </Link>
             </NavItem>
           ))}
         </ul>
@@ -54,4 +64,11 @@ const NavItem = styled.li<{ active: boolean }>`
   font-size: 10px;
   font-weight: 600;
   color: ${({ active }) => (active ? "#A86EFA" : "#212121")};
+
+  a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 `;
