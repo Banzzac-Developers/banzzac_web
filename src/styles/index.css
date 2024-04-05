@@ -4,6 +4,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; */
   font-family: "Pretendard";
+  -webkit-tap-highlight-color: transparent;
 }
 
 * {
@@ -18,6 +19,16 @@ body {
 a {
   color: inherit;
   text-decoration: inherit;
+  cursor: pointer;
+}
+
+button {
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
 }
 
 /* @media (prefers-color-scheme: light) {

@@ -1,9 +1,13 @@
 import Navigator from "@layouts/Navigator";
+import RoundHeader from "@layouts/RoundHeader";
 
 export default function Search() {
   return (
     <>
-      <Navigator>search</Navigator>
+      <Navigator>
+        <RoundHeader />
+        search
+      </Navigator>
     </>
   );
 }
