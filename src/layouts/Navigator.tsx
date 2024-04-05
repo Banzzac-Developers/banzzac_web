@@ -45,7 +45,10 @@ const Container = styled.nav`
   position: absolute;
   width: calc(100% - (24px * 2));
   left: 24px;
-  bottom: 7px;
+  bottom: 15px;
+  box-shadow: 0px 1px 3px 0px #0000004d;
+
+  box-shadow: 0px 4px 8px 3px #00000026;
 
   ul {
     width: 100%;
