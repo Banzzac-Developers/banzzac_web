@@ -1,4 +1,6 @@
-export const navList = [
+import { NavItem } from "@models/index";
+
+export const navList: NavItem[] = [
   {
     route: "/friends",
     icon: "friends",
@@ -16,7 +18,7 @@ export const navList = [
   },
   {
     route: "/matching",
-    icon: "matching",
+    icon: "feed",
     name: "매칭",
   },
   {

@@ -6,19 +6,10 @@ import Search from "@assets/svg/Search.svg?react";
 import Setting from "@assets/svg/Setting.svg?react";
 import Twinkle from "@assets/svg/Twinkle.svg?react";
 import UserAdd from "@assets/svg/User_Add.svg?react";
-
-export type Svg =
-  | "chat"
-  | "feed"
-  | "friends"
-  | "profile"
-  | "search"
-  | "setting"
-  | "twinkle"
-  | "userAdd";
+import { SvgIcon } from "@models/index";
 
 type Props = {
-  svg: Svg;
+  svg: SvgIcon;
   width: number;
   height: number;
   stroke: string;

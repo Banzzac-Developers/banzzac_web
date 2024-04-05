@@ -1,4 +1,4 @@
-import { navList } from "@models/index";
+import { navList } from "@constants/index";
 import SvgSelector from "@components/Svg/SvgSelector";
 import styled from "@emotion/styled";
 
