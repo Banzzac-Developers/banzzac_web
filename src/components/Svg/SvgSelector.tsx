@@ -7,7 +7,7 @@ import Setting from "@assets/svg/Setting.svg?react";
 import Twinkle from "@assets/svg/Twinkle.svg?react";
 import UserAdd from "@assets/svg/User_Add.svg?react";
 
-type Svg =
+export type Svg =
   | "chat"
   | "feed"
   | "friends"
