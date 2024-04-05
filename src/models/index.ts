@@ -8,6 +8,8 @@ export type SvgIcon =
   | "search"
   | "setting"
   | "twinkle"
-  | "userAdd";
+  | "userAdd"
+  | "dogFace"
+  | "face";
 
 export type NavItem = { route: string; name: string; icon: SvgIcon };
