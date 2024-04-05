@@ -12,6 +12,7 @@ export default defineConfig({
     alias: [
       { find: "@api", replacement: "/src/api" },
       { find: "@components", replacement: "/src/components" },
+      { find: "@constants", replacement: "/src/constants" },
       { find: "@containers", replacement: "/src/containers" },
       { find: "@hooks", replacement: "/src/hooks" },
       { find: "@layouts", replacement: "/src/layouts" },
