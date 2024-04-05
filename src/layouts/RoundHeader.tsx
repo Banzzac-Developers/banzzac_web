@@ -36,4 +36,6 @@ const Header = styled.header`
 const Wrapper = styled.div`
   display: flex;
   gap: 4px;
+  justify-content: flex-start;
+  align-items: center;
 `;
