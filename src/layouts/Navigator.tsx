@@ -47,8 +47,8 @@ const Container = styled.nav`
   left: 24px;
   bottom: 15px;
   box-shadow: 0px 1px 3px 0px #0000004d;
-
   box-shadow: 0px 4px 8px 3px #00000026;
+  background-color: #fff;
 
   ul {
     width: 100%;
