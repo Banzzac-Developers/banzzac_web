@@ -8,12 +8,11 @@ function valuetext(value: number) {
 const minDistance = 10;
 
 type Props ={
-    width : number,
     min?:number,
     max?:number
 }
+export default function MultiSlider( {max=100, min=0} :Props ){
 
-export default function MultiSlider( {width, max=100, min=0} :Props ){
     const [value, setValue] = useState<number[]>([min, max]);
 
     const handleChange = (
@@ -41,9 +40,10 @@ export default function MultiSlider( {width, max=100, min=0} :Props ){
                     onChange={handleChange}
                     valueLabelDisplay="off"
                     getAriaValueText={valuetext}
-                    color = "#000"
                     step={10}
                     disableSwap
+                    style={{color : "#000"}}
+
                 />
             </Box>
         </Container>
@@ -54,8 +54,9 @@ export default function MultiSlider( {width, max=100, min=0} :Props ){
 const Container = styled.div`
     box-sizing : border-box;
     display: flex; 
-    align-items: center;
-    justify-content: center;
+    align-items:center;
+    justify-content:center;
+
 `;
 const Box = styled.div`
     width: 90%;
