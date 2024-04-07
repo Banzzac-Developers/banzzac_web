@@ -40,6 +40,7 @@ const Container = styled.div`
   padding: 0px 30px;
 `;
 
+
 const InputItem = styled.input<{ width: string }>`
   border: none;
   border-bottom: 2px solid #e0e0e0;
