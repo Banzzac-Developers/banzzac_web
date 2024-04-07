@@ -8,17 +8,21 @@ export default function TemperatureBar({point=36.5}:Props){
 
 
     return(
-        <>
+        <Container>
             <Background>
                 <Temperature point={point} />
                 <VerticalDivider point={point} />
                 <TemperatureText point={point}>{point}˚</TemperatureText>
             </Background>
-        </>
+        </Container>
     )
 }
 
-
+const Container = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
 
 const Background = styled.div`
     position: relative;
@@ -31,7 +35,8 @@ const Background = styled.div`
 const Temperature = styled.div<{point:number;}>`
     position: absolute;
     width: ${({point})=> point+"%"};
-    background-color: #000;
+    background: rgb(164,99,255);
+    background: linear-gradient(146deg, rgba(164,99,255,1) 0%, rgba(164,99,255,1) 35%, rgba(38,198,218,1) 100%);
     border-radius: 5px;
     height: 10px;
     z-index: 2;
