@@ -1,4 +1,4 @@
-import InputDefault from "@components/Input/input";
+import InputDefault from "@components/Input";
 
 import Navigator from "@layouts/Navigator";
 import SquareHeader from "@layouts/SquareHeader";
