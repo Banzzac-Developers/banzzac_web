@@ -14,6 +14,8 @@ export type SvgIcon =
   | "dogFace"
   | "face"
   | "close"
-  | "fillTwinkle";
+  | "fillTwinkle"
+  | "payment"
+  | "paymentHistory";
 
 export type NavItem = { route: string; name: string; icon: SvgIcon };

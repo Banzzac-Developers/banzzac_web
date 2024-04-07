@@ -8,7 +8,7 @@ export default function Profile() {
   return (
     <>
     <MyProfile/>
-    <DividerDefault width={"100%"}/>
+    <DividerDefault width={"90%"}/>
     <WalkingHistory/>
     <Navigator/>
       

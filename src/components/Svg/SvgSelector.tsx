@@ -10,6 +10,8 @@ import UserAdd from "@assets/svg/User_Add.svg?react";
 import Dogface from "@assets/svg/Dogface.svg?react";
 import Face from "@assets/svg/Face.svg?react";
 import Close from "@assets/svg/Close.svg?react";
+import Payment from "@assets/svg/Payment.svg?react"
+import PaymentHistory from "@assets/svg/PaymentHistory.svg?react"
 import { SvgIcon } from "@models/index";
 
 type Props = {
@@ -39,6 +41,10 @@ export default function SvgSelector({ svg, width, height, stroke }: Props) {
       return <UserAdd width={width} height={height} stroke={stroke} />;
     case "fillTwinkle":
       return <FillTwinkle width={width} height={height} stroke={stroke} />;
+    case "payment" :
+      return <Payment width={width} height={height} stroke={stroke} fill={stroke}/>;
+    case "paymentHistory" :
+      return <PaymentHistory width={width} height={height} stroke={stroke}/>;
     case "dogFace":
       return (
         <Dogface width={width} height={height} stroke={stroke} fill={stroke} />
