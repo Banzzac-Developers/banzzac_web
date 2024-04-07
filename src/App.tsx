@@ -1,3 +1,4 @@
+import ModalRenderer from "@components/Modal/ModalRenderer";
 import Chat from "@pages/Chat";
 import ChatRoom from "@pages/Chat/ChatRoom";
 import NotFound from "@pages/Error/NotFound";
@@ -14,6 +15,8 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { modalState } from "./recoil";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -33,8 +36,11 @@ const router = createBrowserRouter(
 );
 
 function App() {
+  const modals = useRecoilValue(modalState);
+
   return (
     <>
+      {modals.length !== 0 && <ModalRenderer />}
       <RouterProvider router={router} />
     </>
   );
