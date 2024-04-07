@@ -12,8 +12,7 @@ export default function Matching() {
       <MultiSlider />
       <Twinkle avg={30} isClick={true}/>
       <TemperatureBar point={35.6}/>
-      <Navigator>matching</Navigator>
+      <Navigator/>
     </>
   );
 }
- 
