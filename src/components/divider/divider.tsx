@@ -1,14 +1,15 @@
 import styled from "@emotion/styled";
 
 type Props = {
-    width?: number;    
+    width?: number;
+    type? : string;    
 };
 
-export default function DividerDefault( { width=342 } : Props){
-    return <Container width={width} ></Container>;
+export default function DividerDefault( { width=342, type="px" } : Props){
+    return <Container width={width} type={type}></Container>;
 };
 
-const Container = styled.div<{width :number}>`
- width : ${({width})=>{return width+"px"}};
+const Container = styled.div<{width :number, type :string}>`
+ width : ${({width,type})=>{return width+type}};
  border : 1px solid #E0E0E0 ;
 `;

@@ -10,8 +10,8 @@ export default function Friends() {
           title="친구"
           headerIcons={["search", "friendAdd", "setting"]}
         />
-        friend
-        <DividerDefault />
+        friends
+       
       </Navigator>
     </>
   );
