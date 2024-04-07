@@ -1,16 +1,16 @@
 
 import Navigator from "@layouts/Navigator";
-import RoundHeader from "@layouts/RoundHeader";
+import MultiSlider from "@components/Slider/Slider";
+import Twinkle from "@components/Twinkle/Twinkle";
 
 
 export default function Matching() {
 
   return (
     <>
-      <Navigator>
-        <RoundHeader />
-        
-      </Navigator>
+      <MultiSlider />
+      <Twinkle avg={30} isClick={true}/>
+      <Navigator>matching</Navigator>
     </>
   );
 }
