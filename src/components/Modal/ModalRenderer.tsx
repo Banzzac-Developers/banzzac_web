@@ -6,7 +6,6 @@ import useModal from "@hooks/common/useModal";
 import FullScreenModal from "./FullScreenModal";
 // import TailModal from "./TailModal";
 import Popup from "./Popup";
-// import MenuPopup from "./MenuPopup";
 import { isFullScreen, isPopup } from "@models/common";
 
 export default function ModalRenderer() {

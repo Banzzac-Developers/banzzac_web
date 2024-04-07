@@ -1,10 +1,10 @@
 import { CSSObject } from "@emotion/react";
 
-interface DefaultModal {
+export interface DefaultModal {
   contents: React.ReactNode;
 }
 
-interface Popup extends DefaultModal {
+export interface Popup extends DefaultModal {
   buttonProps: {
     handleClick: () => void;
     text: string;
@@ -12,11 +12,19 @@ interface Popup extends DefaultModal {
   }[];
 }
 
+export interface IMenuPopup {
+  menuList: {
+    handleClick: () => void;
+    menu: React.ReactNode | string;
+  }[];
+}
+
 export type ModalType = "fullscreen" | "tailModal" | "popup" | "menuPopup";
+export type ModalProps = DefaultModal | Popup | IMenuPopup;
 
 export interface Modal {
   type: ModalType;
-  props: DefaultModal | Popup;
+  props: ModalProps;
 }
 
 export const isPopup = (
@@ -35,10 +43,4 @@ export const isTailModal = (
   modal: Modal,
 ): modal is { type: ModalType; props: DefaultModal } => {
   return modal.type === "tailModal";
-};
-
-export const isMenuPopup = (
-  modal: Modal,
-): modal is { type: ModalType; props: DefaultModal } => {
-  return modal.type === "menuPopup";
 };

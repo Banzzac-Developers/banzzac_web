@@ -1,16 +1,8 @@
 import styled, { CSSObject } from "@emotion/styled";
+import { Popup } from "@models/common";
 import React from "react";
 
-type Props = {
-  contents: React.ReactNode;
-  buttonProps: {
-    text: string;
-    style: CSSObject;
-    handleClick: () => void;
-  }[];
-};
-
-export default function Popup({ contents, buttonProps }: Props) {
+export default function Popup({ contents, buttonProps }: Popup) {
   return (
     <Container>
       <div>{contents}</div>

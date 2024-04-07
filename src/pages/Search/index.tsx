@@ -6,7 +6,6 @@ export default function Search() {
     <>
       <Navigator>
         <RoundHeader />
-        search
       </Navigator>
     </>
   );
