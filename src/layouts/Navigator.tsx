@@ -4,34 +4,27 @@ import styled from "@emotion/styled";
 
 import { Link, useLocation } from "react-router-dom";
 
-type Props = {
-  children: React.ReactNode;
-};
-
-export default function Navigator({ children }: Props) {
+export default function Navigator() {
   const { pathname } = useLocation();
 
   return (
-    <>
-      {children}
-      <Container>
-        <ul>
-          {navList.map((navItem) => (
-            <NavItem key={navItem.name} active={navItem.route === pathname}>
-              <Link to={navItem.route}>
-                <SvgSelector
-                  svg={navItem.icon}
-                  width={24}
-                  height={24}
-                  stroke={navItem.route === pathname ? "#A86EFA" : "#212121"}
-                />
-                <div>{navItem.name}</div>
-              </Link>
-            </NavItem>
-          ))}
-        </ul>
-      </Container>
-    </>
+    <Container>
+      <ul>
+        {navList.map((navItem) => (
+          <NavItem key={navItem.name} active={navItem.route === pathname}>
+            <Link to={navItem.route}>
+              <SvgSelector
+                svg={navItem.icon}
+                width={24}
+                height={24}
+                stroke={navItem.route === pathname ? "#A86EFA" : "#212121"}
+              />
+              <div>{navItem.name}</div>
+            </Link>
+          </NavItem>
+        ))}
+      </ul>
+    </Container>
   );
 }
 
