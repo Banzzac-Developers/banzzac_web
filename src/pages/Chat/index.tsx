@@ -9,8 +9,8 @@ export default function Chat() {
       <Navigator>
         <SquareHeader title="채팅" headerIcons={["search", "setting"]} />
         chat
-        <SquareButton title="버튼" fill={false} state={2} />
-        <RoundButton title="버튼" fill={true} state={0} />
+        <SquareButton title="버튼" fill={false} backgroundColor="#212121" />
+        <RoundButton title="버튼" fill={true} backgroundColor="#757575" />
       </Navigator>
     </>
   );
