@@ -5,13 +5,29 @@ type Props = {
   placeholder: string;
   id: string;
   width: string;
+  value: string | number | readonly string[];
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
 };
 
-export default function InputDefault({ title, id, placeholder, width }: Props) {
+export default function InputDefault({
+  title,
+  id,
+  placeholder,
+  width,
+  value,
+  onChange,
+}: Props) {
   return (
     <Container>
       <label htmlFor={id}>{title}</label>
-      <InputItem type="text" id={id} placeholder={placeholder} width={width} />
+      <InputItem
+        value={value}
+        onChange={onChange}
+        type="text"
+        id={id}
+        placeholder={placeholder}
+        width={width}
+      />
     </Container>
   );
 }
