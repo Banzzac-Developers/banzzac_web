@@ -1,5 +1,9 @@
+
 import MultiSlider from "@components/Slider/Slider";
+
 import Navigator from "@layouts/Navigator";
+
+
 
 
 export default function Matching() {
@@ -10,3 +14,4 @@ export default function Matching() {
     </>
   );
 }
+ 
