@@ -10,7 +10,7 @@ type Props = {
 export default function InputDefault({ title, id, placeholder, width }: Props) {
   return (
     <Container>
-      <label>{title}</label>
+      <label htmlFor={id}>{title}</label>
       <InputItem type="text" id={id} placeholder={placeholder} width={width} />
     </Container>
   );
