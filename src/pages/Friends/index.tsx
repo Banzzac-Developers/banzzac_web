@@ -1,3 +1,5 @@
+import DividerDefault from "@components/divider/divider";
+import InputDefault from "@components/input/input";
 import Navigator from "@layouts/Navigator";
 import SquareHeader from "@layouts/SquareHeader";
 
@@ -9,7 +11,9 @@ export default function Friends() {
           title="친구"
           headerIcons={["search", "friendAdd", "setting"]}
         />
-        friends
+        
+        
+        <InputDefault title={"아이디"} id={"name"} placeholder="8~30자리 영문" width="100%"/>
       </Navigator>
     </>
   );
