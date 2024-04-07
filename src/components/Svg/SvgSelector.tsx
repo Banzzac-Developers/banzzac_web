@@ -5,6 +5,7 @@ import Profile from "@assets/svg/Profile.svg?react";
 import Search from "@assets/svg/Search.svg?react";
 import Setting from "@assets/svg/Setting.svg?react";
 import Twinkle from "@assets/svg/Twinkle.svg?react";
+import FillTwinkle from "@assets/svg/FillTwinkle.svg?react"
 import UserAdd from "@assets/svg/User_Add.svg?react";
 import Dogface from "@assets/svg/Dogface.svg?react";
 import Face from "@assets/svg/Face.svg?react";
@@ -36,6 +37,8 @@ export default function SvgSelector({ svg, width, height, stroke }: Props) {
       return <Twinkle width={width} height={height} stroke={stroke} />;
     case "userAdd":
       return <UserAdd width={width} height={height} stroke={stroke} />;
+    case "fillTwinkle":
+      return <FillTwinkle width={width} height={height} stroke={stroke} />;
     case "dogFace":
       return (
         <Dogface width={width} height={height} stroke={stroke} fill={stroke} />
