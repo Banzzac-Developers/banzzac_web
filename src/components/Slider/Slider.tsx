@@ -11,8 +11,8 @@ type Props ={
     min?:number,
     max?:number
 }
-
 export default function MultiSlider( {max=100, min=0} :Props ){
+
     const [value, setValue] = useState<number[]>([min, max]);
 
     const handleChange = (
@@ -43,6 +43,7 @@ export default function MultiSlider( {max=100, min=0} :Props ){
                     step={10}
                     disableSwap
                     style={{color : "#000"}}
+
                 />
             </Box>
         </Container>
@@ -55,6 +56,7 @@ const Container = styled.div`
     display: flex; 
     align-items:center;
     justify-content:center;
+
 `;
 const Box = styled.div`
     width: 90%;
