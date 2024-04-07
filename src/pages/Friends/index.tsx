@@ -1,3 +1,4 @@
+import DividerDefault from "@components/divider/divider";
 import Navigator from "@layouts/Navigator";
 import SquareHeader from "@layouts/SquareHeader";
 
@@ -9,7 +10,8 @@ export default function Friends() {
           title="친구"
           headerIcons={["search", "friendAdd", "setting"]}
         />
-        friends
+        friend
+        <DividerDefault />
       </Navigator>
     </>
   );
