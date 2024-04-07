@@ -1,3 +1,5 @@
+export * from "./common";
+
 export type HeaderIcon = "search" | "friendAdd" | "setting";
 
 export type SvgIcon =
