@@ -9,6 +9,7 @@ import FillTwinkle from "@assets/svg/FillTwinkle.svg?react"
 import UserAdd from "@assets/svg/User_Add.svg?react";
 import Dogface from "@assets/svg/Dogface.svg?react";
 import Face from "@assets/svg/Face.svg?react";
+import Close from "@assets/svg/Close.svg?react";
 import { SvgIcon } from "@models/index";
 
 type Props = {
@@ -46,6 +47,8 @@ export default function SvgSelector({ svg, width, height, stroke }: Props) {
       return (
         <Face width={width} height={height} stroke={stroke} fill={stroke} />
       );
+    case "close":
+      return <Close width={width} height={height} stroke={stroke} />;
     default:
       return <div />;
   }

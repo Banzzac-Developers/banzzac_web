@@ -1,3 +1,5 @@
+export * from "./common";
+
 export type HeaderIcon = "search" | "friendAdd" | "setting";
 
 export type SvgIcon =
@@ -11,6 +13,7 @@ export type SvgIcon =
   | "userAdd"
   | "dogFace"
   | "face"
+  | "close"
   | "fillTwinkle";
 
 export type NavItem = { route: string; name: string; icon: SvgIcon };
