@@ -9,6 +9,8 @@ import FillTwinkle from "@assets/svg/FillTwinkle.svg?react"
 import UserAdd from "@assets/svg/User_Add.svg?react";
 import Dogface from "@assets/svg/Dogface.svg?react";
 import Face from "@assets/svg/Face.svg?react";
+import ExpandUp from "@assets/svg/Expand_up.svg?react"
+import ExpandDown from "@assets/svg/Expand_down.svg?react"
 import { SvgIcon } from "@models/index";
 
 type Props = {
@@ -24,6 +26,10 @@ export default function SvgSelector({ svg, width, height, stroke }: Props) {
       return <Chat width={width} height={height} stroke={stroke} />;
     case "feed":
       return <Feed width={width} height={height} stroke={stroke} />;
+    case "expandUp":
+      return <ExpandUp width={width} height={height} fill={"none"} stroke={stroke} />;
+    case "expandDown":
+      return <ExpandDown width={width} height={height} fill={"none"} stroke={stroke} />;
     case "friends":
       return <Friends width={width} height={height} stroke={stroke} />;
     case "profile":
