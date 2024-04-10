@@ -35,7 +35,7 @@ const Container = styled.nav`
   justify-content: center;
   align-items: center;
   border-radius: 56px;
-  position: absolute;
+  position: fixed;
   width: calc(100% - (24px * 2));
   left: 24px;
   bottom: 15px;
