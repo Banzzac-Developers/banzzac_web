@@ -4,7 +4,7 @@ export interface DefaultModal {
   contents: React.ReactNode;
 }
 
-export interface Popup extends DefaultModal {
+export interface IPopup extends DefaultModal {
   buttonProps: {
     handleClick: () => void;
     text: string;
@@ -20,7 +20,7 @@ export interface IMenuPopup {
 }
 
 export type ModalType = "fullscreen" | "tailModal" | "popup" | "menuPopup";
-export type ModalProps = DefaultModal | Popup | IMenuPopup;
+export type ModalProps = DefaultModal | IPopup | IMenuPopup;
 
 export interface Modal {
   type: ModalType;
@@ -29,7 +29,7 @@ export interface Modal {
 
 export const isPopup = (
   modal: Modal,
-): modal is { type: ModalType; props: Popup } => {
+): modal is { type: ModalType; props: IPopup } => {
   return modal.type === "popup";
 };
 
