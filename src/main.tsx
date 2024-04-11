@@ -9,12 +9,16 @@ import "@/assets/fonts/web/variable/pretendardvariable.css";
 import App from "@/App.tsx";
 import { worker } from "@/mocks/browser.ts";
 
-if (import.meta.env.VITE_NODE_ENV === "mocking") {
-  worker.start();
-}
+const enableMocking = async () => {
+  if (import.meta.env.VITE_NODE_ENV === "mocking") {
+    await worker.start();
+  }
+};
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <RecoilRoot>
-    <App />
-  </RecoilRoot>,
+enableMocking().then(() =>
+  ReactDOM.createRoot(document.getElementById("root")!).render(
+    <RecoilRoot>
+      <App />
+    </RecoilRoot>,
+  ),
 );
