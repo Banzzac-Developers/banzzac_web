@@ -1,14 +1,25 @@
 import Navigator from "@layouts/Navigator";
-import { Badge } from "@components/Badge/Badge";
+import axios from "axios";
+import usePayment from "@hooks/profile/usePayment";
 
 export default function Profile() {
+  const payInfo = {
+    partnerOrderId: 3238113,
+    partnerUserId: "zkdlwjsxm@naver.com",
+    quantity: 56,
+    totalAmount: 5600,
+  };
+  const { requestPayment, data } = usePayment(payInfo);
   return (
     <>
-      <Badge txt="20대 중반" bold={true} />
-      <Badge txt="많이걷는" bold={true} />
-      <Badge txt="MBTI" />
-      <Badge txt="39.5" gradient={true} />
-      <Navigator />
+      <button
+        onClick={() => {
+          console.log(data);
+        }}
+      >
+        결제
+      </button>
+      <Navigator></Navigator>
     </>
   );
 }
