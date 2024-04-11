@@ -18,13 +18,13 @@ export default class API {
 
   static post<T, D>(
     url: string,
-    params: T,
-    config?: Omit<AxiosRequestConfig, "params">,
+    data: T,
+    config?: Omit<AxiosRequestConfig, "data">,
   ): Promise<D> {
     const option: AxiosRequestConfig = {
       method: "post",
       url,
-      params,
+      data,
       ...config,
     };
     return axiosInstance(option);
@@ -32,13 +32,13 @@ export default class API {
 
   static put<T, D>(
     url: string,
-    params: T,
-    config?: Omit<AxiosRequestConfig, "params">,
+    data: T,
+    config?: Omit<AxiosRequestConfig, "data">,
   ): Promise<D> {
     const option: AxiosRequestConfig = {
       method: "put",
       url,
-      params,
+      data,
       ...config,
     };
     return axiosInstance(option);
@@ -46,13 +46,13 @@ export default class API {
 
   static delete<T>(
     url: string,
-    params: T,
-    config?: Omit<AxiosRequestConfig, "params">,
+    data: T,
+    config?: Omit<AxiosRequestConfig, "data">,
   ) {
     const option: AxiosRequestConfig = {
       method: "delete",
       url,
-      params,
+      data,
       ...config,
     };
     return axiosInstance(option);
