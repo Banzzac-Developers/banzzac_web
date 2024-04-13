@@ -1,4 +1,5 @@
 export * from "./common";
+export * from "./chat";
 
 export type HeaderIcon = "search" | "friendAdd" | "setting";
 
