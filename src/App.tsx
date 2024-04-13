@@ -6,7 +6,7 @@ import Friends from "@pages/Friends";
 import Login from "@pages/Login";
 import Matching from "@pages/Matching";
 import Profile from "@pages/Profile";
-import ProfileEdit from "@pages/Profile/Edit";
+import ProfileEditPage from "@pages/Profile/Edit";
 import Search from "@pages/Search";
 import Signup from "@pages/Signup";
 import {
@@ -30,7 +30,7 @@ const router = createBrowserRouter(
       <Route path="/search" element={<Search />} />
       <Route path="/matching" element={<Matching />} />
       <Route path="/profile" element={<Profile />} />
-      <Route path="/profile/edit" element={<ProfileEdit />} />
+      <Route path="/profile/edit" element={<ProfileEditPage />} />
     </Route>,
   ),
 );
