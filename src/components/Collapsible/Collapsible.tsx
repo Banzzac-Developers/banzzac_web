@@ -24,14 +24,14 @@ export default function Collapsible({ dogProfile, contents }: Props) {
     <Container>
       {isOpen ? (
         <ContentsContainer>
-          <button onClick={toggleOpen}>
+          <ChevronButton onClick={toggleOpen}>
             <SvgSelector
               svg={"expandUp"}
               width={24}
               height={24}
               stroke={"#212121"}
             />
-          </button>
+          </ChevronButton>
           <div>{contents}</div>
         </ContentsContainer>
       ) : (
@@ -83,9 +83,10 @@ const ProfileWrapper = styled.div`
 
 const ContentsContainer = styled.div`
   padding: 56px 24px 24px 24px;
-  button {
-    position: absolute;
-    top: 17px;
-    right: 24px;
-  }
+`;
+
+const ChevronButton = styled.button`
+  position: absolute;
+  top: 17px;
+  right: 24px;
 `;
