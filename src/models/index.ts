@@ -14,6 +14,8 @@ export type SvgIcon =
   | "userAdd"
   | "dogFace"
   | "face"
+  | "expandUp"
+  | "expandDown"
   | "close"
   | "fillTwinkle";
 
