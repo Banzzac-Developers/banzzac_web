@@ -1,5 +1,4 @@
-import RoundButton from "@components/Button/RoundButton";
-import SquareButton from "@components/Button/SquareButton";
+import ChatContainer from "@containers/chat";
 import Navigator from "@layouts/Navigator";
 import SquareHeader from "@layouts/SquareHeader";
 
@@ -7,9 +6,7 @@ export default function Chat() {
   return (
     <>
       <SquareHeader title="채팅" headerIcons={["search", "setting"]} />
-      chat
-      <SquareButton title="버튼" fill={false} backgroundColor="#212121" />
-      <RoundButton title="버튼" fill={true} backgroundColor="#757575" />
+      <ChatContainer />
       <Navigator />
     </>
   );
