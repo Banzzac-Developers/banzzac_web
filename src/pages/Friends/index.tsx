@@ -1,3 +1,4 @@
+import FriendsContainer from "@containers/friends";
 import Navigator from "@layouts/Navigator";
 import SquareHeader from "@layouts/SquareHeader";
 
@@ -8,6 +9,7 @@ export default function Friends() {
         title="친구"
         headerIcons={["search", "friendAdd", "setting"]}
       />
+      <FriendsContainer />
       <Navigator />
     </>
   );
