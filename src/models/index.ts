@@ -1,3 +1,6 @@
+export * from "./common";
+export * from "./chat";
+
 export type HeaderIcon = "search" | "friendAdd" | "setting";
 
 export type SvgIcon =
@@ -11,9 +14,9 @@ export type SvgIcon =
   | "userAdd"
   | "dogFace"
   | "face"
-  | "fillTwinkle"
   | "expandUp"
-  | "expandDown";
-;
+  | "expandDown"
+  | "close"
+  | "fillTwinkle";
 
 export type NavItem = { route: string; name: string; icon: SvgIcon };

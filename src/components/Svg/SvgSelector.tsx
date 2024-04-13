@@ -5,12 +5,13 @@ import Profile from "@assets/svg/Profile.svg?react";
 import Search from "@assets/svg/Search.svg?react";
 import Setting from "@assets/svg/Setting.svg?react";
 import Twinkle from "@assets/svg/Twinkle.svg?react";
-import FillTwinkle from "@assets/svg/FillTwinkle.svg?react"
+import FillTwinkle from "@assets/svg/FillTwinkle.svg?react";
 import UserAdd from "@assets/svg/User_Add.svg?react";
 import Dogface from "@assets/svg/Dogface.svg?react";
 import Face from "@assets/svg/Face.svg?react";
-import ExpandUp from "@assets/svg/Expand_up.svg?react"
-import ExpandDown from "@assets/svg/Expand_down.svg?react"
+import ExpandUp from "@assets/svg/Expand_up.svg?react";
+import ExpandDown from "@assets/svg/Expand_down.svg?react";
+import Close from "@assets/svg/Close.svg?react";
 import { SvgIcon } from "@models/index";
 
 type Props = {
@@ -27,9 +28,18 @@ export default function SvgSelector({ svg, width, height, stroke }: Props) {
     case "feed":
       return <Feed width={width} height={height} stroke={stroke} />;
     case "expandUp":
-      return <ExpandUp width={width} height={height} fill={"none"} stroke={stroke} />;
+      return (
+        <ExpandUp width={width} height={height} fill={"none"} stroke={stroke} />
+      );
     case "expandDown":
-      return <ExpandDown width={width} height={height} fill={"none"} stroke={stroke} />;
+      return (
+        <ExpandDown
+          width={width}
+          height={height}
+          fill={"none"}
+          stroke={stroke}
+        />
+      );
     case "friends":
       return <Friends width={width} height={height} stroke={stroke} />;
     case "profile":
@@ -52,6 +62,8 @@ export default function SvgSelector({ svg, width, height, stroke }: Props) {
       return (
         <Face width={width} height={height} stroke={stroke} fill={stroke} />
       );
+    case "close":
+      return <Close width={width} height={height} stroke={stroke} />;
     default:
       return <div />;
   }
