@@ -9,10 +9,12 @@ type Props = {
   maxSelection: number;
   value: number[];
   gridStyle?: CSSObject;
+  className?: string;
   onChangeButton: React.Dispatch<SetStateAction<number[]>>;
 };
 
 export default function ButtonSelect({
+  className,
   label,
   buttonList,
   gridStyle = { gridTemplateColumns: "repeat(2, 1fr)", gap: "20px" },
@@ -40,13 +42,14 @@ export default function ButtonSelect({
   };
 
   return (
-    <Container gridStyle={gridStyle}>
+    <Container gridStyle={gridStyle} className={className}>
       <Label>{label}</Label>
       <div style={{ height: "14px" }} />
       <ul>
         {buttonList.map((button, idx) => (
           <li key={button}>
             <RoundButton
+              active={value.includes(idx)}
               onClick={() => handleClick(idx)}
               title={button}
               fill={false}
@@ -60,13 +63,8 @@ export default function ButtonSelect({
 }
 
 const Container = styled.div<{ gridStyle: CSSObject }>`
-  width: 390px;
-
   ul {
     display: grid;
-    list-style: none;
-    padding: 0;
-    margin: 0;
     ${({ gridStyle }) => gridStyle}
   }
   ul li {
