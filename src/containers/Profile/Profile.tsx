@@ -9,6 +9,8 @@ import { FontStyle } from "@utils/StyleUtil";
 
 import mangu from "@assets/images/mangu.jpg";
 import pet2 from "@assets/images/pet2.jpeg";
+import { Link } from "react-router-dom";
+import SvgSelector from "@components/Svg/SvgSelector";
 
 type Props = {
   profile: Profile;
@@ -48,9 +50,15 @@ function MyProfile({ profile, pets }: Props) {
         {carouselIdx === 0 ? nickname : pets[carouselIdx - 1].name}
       </Text>
       <Seperator height={18} />
-      <Text
-        {...FontStyle(16, 700, 20, "#000")}
-      >{`${nickname} | ${carouselIdx === 0 ? age : pets[carouselIdx - 1].age}`}</Text>
+      <NameContainer>
+        <Text
+          {...FontStyle(16, 700, 20, "#000")}
+        >{`${nickname} | ${carouselIdx === 0 ? age : pets[carouselIdx - 1].age}`}</Text>
+        <StyledLink to="/profile/edit">
+          <SvgSelector width={24} height={24} svg="pin" stroke="#212121" />
+          <Text {...FontStyle(16, 700, 19, "#212121")}>수정</Text>
+        </StyledLink>
+      </NameContainer>
       <Seperator height={20} />
       <BadgeContainer oneSentence={false}>
         <li>
@@ -99,6 +107,29 @@ const BadgeContainer = styled.ul<{ oneSentence: boolean }>`
   justify-content: space-around;
   align-items: center;
   width: 100%;
+`;
+
+const NameContainer = styled.div`
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const StyledLink = styled(Link)`
+  border: 2px solid #212121;
+  border-radius: 16px;
+  padding: 3px 15px 3px 8px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  div {
+    margin-left: 3px;
+  }
 `;
 
 export default MyProfile;
