@@ -22,6 +22,9 @@ export type SvgIcon =
   | "paymentHistory"
   | "filledPin"
   | "pin"
-  | "femail";
+  | "femail"
+  | "exit"
+  | "filledAddRound"
+  | "filledCloseRound";
 
 export type NavItem = { route: string; name: string; icon: SvgIcon };
