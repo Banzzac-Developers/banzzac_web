@@ -1,6 +1,5 @@
 import RoundButton from "@components/Button/RoundButton";
 import styled, { CSSObject } from "@emotion/styled";
-import { SetStateAction } from "react";
 
 type Props = {
   label: string;
@@ -10,7 +9,7 @@ type Props = {
   value: number[];
   gridStyle?: CSSObject;
   className?: string;
-  onChangeButton: React.Dispatch<SetStateAction<number[]>>;
+  onChangeButton: (idx: number[] | ((prev: number[]) => number[])) => void;
 };
 
 export default function ButtonSelect({
