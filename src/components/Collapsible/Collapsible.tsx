@@ -5,7 +5,7 @@ import SvgSelector from "@components/Svg/SvgSelector";
 
 type DogProfile = {
   name: string;
-  profileImg: string;
+  img: string;
 };
 
 type Props = {
@@ -38,7 +38,7 @@ export default function Collapsible({ dogProfile, contents }: Props) {
         <ProfileHeader>
           <ProfileWrapper>
             <SingleProfileImage
-              img={dogProfile.profileImg}
+              img={dogProfile.img}
               size={77}
               border={2}
               borderColor="#00000080"
