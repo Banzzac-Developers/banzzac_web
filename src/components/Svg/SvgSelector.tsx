@@ -17,6 +17,9 @@ import PaymentHistory from "@assets/svg/PaymentHistory.svg?react";
 import FilledPin from "@assets/svg/Pin_fill.svg?react";
 import Pin from "@assets/svg/Pin.svg?react";
 import Female from "@assets/svg/Female.svg?react";
+import Exit from "@assets/svg/Exit.svg?react";
+import FilledAddRound from "@assets/svg/Add_round_fill.svg?react";
+import FilledCloseRound from "@assets/svg/Close_round_fill.svg?react";
 import { SvgIcon } from "@models/index";
 
 type Props = {
@@ -88,7 +91,12 @@ export default function SvgSelector({ svg, width, height, stroke }: Props) {
       );
     case "pin":
       return <Pin width={width} height={height} stroke={stroke} />;
-
+    case "exit":
+      return <Exit width={width} height={height} />;
+    case "filledAddRound":
+      return <FilledAddRound width={width} height={height} fill={stroke} />;
+    case "filledCloseRound":
+      return <FilledCloseRound width={width} height={height} fill={stroke} />;
     default:
       return <div />;
   }

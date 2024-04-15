@@ -19,6 +19,25 @@ export type Profile = {
   temperature: number;
 };
 
+export const defaultProfile = {
+  no: 0,
+  gender: 1,
+  age: 0,
+  cnt: 0,
+  isGrant: 0,
+  quantity: 0,
+  id: "",
+  pwd: "",
+  img: "",
+  walkingStyleStr: "",
+  nickname: "",
+  phone: "",
+  statusMessage: null,
+  date: "",
+  walkingStyle: [],
+  temperature: 0,
+};
+
 export interface ProfileData extends Data {
   data: Profile[];
 }
@@ -41,3 +60,18 @@ export type Pet = {
 export interface PetData extends Data {
   data: Pet[];
 }
+
+export const defaultPet = {
+  id: "",
+  name: "",
+  img: "",
+  gender: "",
+  neutrification: "",
+  size: "",
+  kind: "",
+  personality: "",
+  activity: "",
+  age: 0,
+  weight: 0,
+  personalityArr: [],
+};
