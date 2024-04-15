@@ -8,7 +8,13 @@ import ButtonSelect from "@components/Input/ButtonSelect";
 import RoundButton from "@components/Button/RoundButton";
 import SvgSelector from "@components/Svg/SvgSelector";
 import { Pet, Profile } from "@models/profile";
-import { ACTIVITY, BREEDS, DOG_PERSONALITY } from "@constants/profile";
+import {
+  ACTIVITY,
+  BREEDS,
+  DOG_PERSONALITY,
+  NEUTRIFICATION,
+  SIZE,
+} from "@constants/profile";
 import useEditProfile from "@hooks/profile/useEditProfile";
 
 type Props = {
@@ -41,6 +47,34 @@ export default function PetEdit({ petInfo, setPetInfo }: Props) {
           : pet,
       ),
     }));
+  };
+
+  const handleChangeNeutrification = (
+    v: number[] | ((prev: number[]) => number[]),
+  ) => {
+    if (Array.isArray(v)) {
+      const neutrification = v.map((i) => NEUTRIFICATION[i]);
+      setPetInfo((prev) => ({
+        ...prev,
+        pets: prev.pets.map((pet) =>
+          pet.name === petInfo.name
+            ? { ...pet, neutrification: neutrification[0] }
+            : pet,
+        ),
+      }));
+    }
+  };
+
+  const handleChangeSize = (v: number[] | ((prev: number[]) => number[])) => {
+    if (Array.isArray(v)) {
+      const size = v.map((i) => SIZE[i]);
+      setPetInfo((prev) => ({
+        ...prev,
+        pets: prev.pets.map((pet) =>
+          pet.name === petInfo.name ? { ...pet, size: size[0] } : pet,
+        ),
+      }));
+    }
   };
 
   const handleChangeBreed = (v: number[] | ((prev: number[]) => number[])) => {
@@ -128,6 +162,29 @@ export default function PetEdit({ petInfo, setPetInfo }: Props) {
         placeholder=""
         value={petInfo.weight}
         onChange={handleChanteWeight}
+      />
+      <Seperator height={24} />
+      <ButtonSelection
+        label="중성화"
+        isDuplicate={false}
+        maxSelection={1}
+        buttonList={NEUTRIFICATION}
+        value={[
+          NEUTRIFICATION.findIndex(
+            (neutirfication) => petInfo.neutrification === neutirfication,
+          ),
+        ]}
+        onChangeButton={handleChangeNeutrification}
+      />
+      <Seperator height={24} />
+      <ButtonSelection
+        gridStyle={{ gridTemplateColumns: "repeat(3, 1fr)", gap: "10px" }}
+        label="크기"
+        isDuplicate={false}
+        maxSelection={1}
+        buttonList={SIZE}
+        value={[SIZE.findIndex((size) => petInfo.size === size)]}
+        onChangeButton={handleChangeSize}
       />
       <Seperator height={24} />
       <ButtonSelection

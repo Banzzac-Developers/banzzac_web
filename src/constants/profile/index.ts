@@ -1,3 +1,7 @@
+export const NEUTRIFICATION = ["네", "아니오"];
+
+export const SIZE = ["소형", "중형", "대형"];
+
 export const BREEDS = [
   "믹스",
   "말티즈",
