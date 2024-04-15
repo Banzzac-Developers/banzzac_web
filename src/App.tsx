@@ -1,4 +1,3 @@
-import ModalRenderer from "@components/Modal/ModalRenderer";
 import Chat from "@pages/Chat";
 import ChatRoom from "@pages/Chat/ChatRoom";
 import NotFound from "@pages/Error/NotFound";
@@ -15,14 +14,12 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import { useRecoilValue } from "recoil";
-import { modalState } from "./recoil";
 import AddPetPage from "@pages/Profile/AddPet";
+import MainLayout from "@layouts/MainLayout";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route errorElement={<NotFound />}>
-      <Route path="/" element={<div>splash</div>} />
+    <Route path="/" errorElement={<NotFound />} element={<MainLayout />}>
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/friends" element={<Friends />} />
@@ -38,11 +35,8 @@ const router = createBrowserRouter(
 );
 
 function App() {
-  const modals = useRecoilValue(modalState);
-
   return (
     <>
-      {modals.length !== 0 && <ModalRenderer />}
       <RouterProvider router={router} />
     </>
   );
