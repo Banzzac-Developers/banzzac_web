@@ -17,6 +17,7 @@ import {
 } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { modalState } from "./recoil";
+import AddPetPage from "@pages/Profile/AddPet";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -31,6 +32,7 @@ const router = createBrowserRouter(
       <Route path="/matching" element={<Matching />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/profile/edit" element={<ProfileEditPage />} />
+      <Route path="/profile/add-pet" element={<AddPetPage />} />
     </Route>,
   ),
 );
