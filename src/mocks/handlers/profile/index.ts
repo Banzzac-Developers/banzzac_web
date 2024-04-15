@@ -24,4 +24,7 @@ export default [
   http.post("/api/profile/:id", () => {
     return HttpResponse.json(updateUserResponse);
   }),
+  http.post("/api/profile/:id/withdraw", () => {
+    return HttpResponse.json();
+  }),
 ];
