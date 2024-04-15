@@ -1,13 +1,18 @@
 import API from "@api/api";
 import URLs from "@api/urls";
-import { Pet, Profile } from "@models/profile";
+import { Pet } from "@models/profile";
 import { useCallback } from "react";
 
 export default function useEditProfile(id: string) {
-  const updateUser = useCallback(async (profile: Profile) => {
-    const res = await API.post(URLs.profile.updateProfile(id), profile);
-    return res;
-  }, []);
+  const updateStatusMessage = useCallback(
+    async (statusMessage: string | null) => {
+      const res = await API.post(URLs.profile.updateStatusMessage, {
+        statusMessage,
+      });
+      return res;
+    },
+    [],
+  );
 
   const updatePet = useCallback(async (pet: Pet) => {
     const res = await API.post(URLs.profile.updatePet(id, pet.name), pet);
@@ -19,5 +24,5 @@ export default function useEditProfile(id: string) {
     return res;
   }, []);
 
-  return { updateUser, updatePet, deletePet };
+  return { updateStatusMessage, updatePet, deletePet };
 }

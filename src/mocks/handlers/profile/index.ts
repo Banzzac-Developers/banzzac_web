@@ -20,11 +20,13 @@ export default [
   http.post("/api/profile/dog/:id/:name", () => {
     return HttpResponse.json(updatePetResponse);
   }),
-
   http.post("/api/profile/:id", () => {
     return HttpResponse.json(updateUserResponse);
   }),
   http.post("/api/profile/:id/withdraw", () => {
+    return HttpResponse.json();
+  }),
+  http.post("/api/profile/dog/:id", () => {
     return HttpResponse.json();
   }),
 ];
