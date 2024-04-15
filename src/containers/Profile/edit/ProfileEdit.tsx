@@ -1,27 +1,70 @@
+import { ChangeEvent, Dispatch, SetStateAction } from "react";
+import { useNavigate } from "react-router-dom";
+import styled from "@emotion/styled";
+
 import { SingleProfileImage } from "@components/ProfileImage/ProfileImage";
 import mangu from "@assets/images/mangu.jpg";
-import styled from "@emotion/styled";
 import { FontStyle } from "@utils/StyleUtil";
 import Text from "@components/Text";
 import Seperator from "@components/Seperator";
 import InputDefault from "@components/Input";
-import { ChangeEvent, useState } from "react";
-import ButtonSelect from "@components/Input/ButtonSelect";
 import SvgSelector from "@components/Svg/SvgSelector";
+import { Pet, Profile } from "@models/profile";
+import useEditProfile from "@hooks/profile/useEditProfile";
+import useModal from "@hooks/common/useModal";
 
-export default function ProfileEdit() {
-  const [profileInfo, setProfileInfo] = useState<{
-    statusMessage: string;
-    walkingStyle: string;
-  }>({ statusMessage: "", walkingStyle: "" });
-  const [speed, setSpeed] = useState<number[]>([]);
+type Props = {
+  user: Profile;
+  pets: Pet[];
+  setUser: Dispatch<SetStateAction<{ user: Profile; pets: Pet[] }>>;
+};
+
+export default function ProfileEdit({ user, setUser, pets }: Props) {
+  const { updatePet, updateUser } = useEditProfile("email");
+  const { addModal, removeCurrentModal } = useModal();
+  const navigate = useNavigate();
 
   const handleChangeStatusMessage = (e: ChangeEvent<HTMLInputElement>) => {
-    setProfileInfo((prev) => ({ ...prev, statusMessage: e.target.value }));
+    setUser((prev) => ({
+      ...prev,
+      user: { ...prev.user, statusMessage: e.target.value },
+    }));
   };
 
-  const handleChangeWalkingStyle = (e: ChangeEvent<HTMLInputElement>) => {
-    setProfileInfo((prev) => ({ ...prev, walkingStyle: e.target.value }));
+  const editPets = () => {
+    pets.map((pet) => updatePet(pet));
+  };
+
+  const editUser = () => {
+    updateUser(user);
+  };
+
+  const handleClickYes = () => {
+    editPets();
+    editUser();
+    removeCurrentModal();
+    navigate("/profile");
+  };
+
+  const finishEdit = () => {
+    addModal({
+      type: "popup",
+      props: {
+        contents: <div>편집 끝?</div>,
+        buttonProps: [
+          {
+            text: "ㄴㄴ",
+            handleClick: removeCurrentModal,
+            style: {},
+          },
+          {
+            text: "ㅇㅇ",
+            handleClick: handleClickYes,
+            style: {},
+          },
+        ],
+      },
+    });
   };
 
   return (
@@ -34,10 +77,12 @@ export default function ProfileEdit() {
           borderColor="#21212180"
         />
         <Seperator height={30} />
-        <Text {...FontStyle(24, 700, 24, "#000")}>name</Text>
+        <Text {...FontStyle(24, 700, 24, "#000")}>{user.nickname}</Text>
         <Seperator height={18} />
-        <Text {...FontStyle(16, 700, 19, "#000")}>아이디 | 본명 | 26세</Text>
-        <FinishButton>
+        <Text
+          {...FontStyle(16, 700, 19, "#000")}
+        >{`${user.nickname} | ${user.age}세`}</Text>
+        <FinishButton onClick={finishEdit}>
           <SvgSelector
             svg="filledPin"
             stroke="#212121"
@@ -52,28 +97,9 @@ export default function ProfileEdit() {
         title="자기소개 한마디"
         placeholder="10자 이내 입력"
         id="statusMessage"
-        value={profileInfo?.statusMessage}
+        value={user.statusMessage ?? ""}
         onChange={handleChangeStatusMessage}
         width="100%"
-      />
-      <Seperator height={20} />
-      <InputDefault
-        title="주간 산책 횟수 "
-        placeholder=""
-        id="statusMessage"
-        value={profileInfo?.walkingStyle}
-        onChange={handleChangeWalkingStyle}
-        width="100%"
-      />
-      <Seperator height={20} />
-      <ButtonSelection
-        label="산책 스피드"
-        buttonList={["빠름", "보통", "적당"]}
-        value={speed}
-        onChangeButton={setSpeed}
-        isDuplicate={false}
-        maxSelection={1}
-        gridStyle={{ gridTemplateColumns: "repeat(3, 1fr)", gap: "10px" }}
       />
     </Container>
   );
@@ -110,8 +136,4 @@ const FinishButton = styled.button`
   div {
     margin-left: 3px;
   }
-`;
-
-const ButtonSelection = styled(ButtonSelect)`
-  width: 100%;
 `;
