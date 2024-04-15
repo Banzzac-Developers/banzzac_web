@@ -12,6 +12,7 @@ import SvgSelector from "@components/Svg/SvgSelector";
 import { Pet, Profile } from "@models/profile";
 import useEditProfile from "@hooks/profile/useEditProfile";
 import useModal from "@hooks/common/useModal";
+import { TEST_EMAIL } from "@constants/index";
 
 type Props = {
   user: Profile;
@@ -20,7 +21,7 @@ type Props = {
 };
 
 export default function ProfileEdit({ user, setUser, pets }: Props) {
-  const { updatePet, updateUser } = useEditProfile("email");
+  const { updatePet, updateStatusMessage } = useEditProfile(TEST_EMAIL);
   const { addModal, removeCurrentModal } = useModal();
   const navigate = useNavigate();
 
@@ -32,11 +33,11 @@ export default function ProfileEdit({ user, setUser, pets }: Props) {
   };
 
   const editPets = () => {
-    pets.map((pet) => updatePet(pet));
+    pets.forEach((pet) => updatePet(pet));
   };
 
   const editUser = () => {
-    updateUser(user);
+    updateStatusMessage(user.statusMessage);
   };
 
   const handleClickYes = () => {

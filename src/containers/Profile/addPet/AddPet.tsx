@@ -2,12 +2,12 @@ import { SingleProfileImage } from "@components/ProfileImage/ProfileImage";
 import pet from "@assets/images/pet2.jpeg";
 import styled from "@emotion/styled";
 import InputDefault from "@components/Input";
-import { ChangeEvent, Dispatch, SetStateAction } from "react";
+import { ChangeEvent, useState } from "react";
 import Seperator from "@components/Seperator";
 import ButtonSelect from "@components/Input/ButtonSelect";
 import RoundButton from "@components/Button/RoundButton";
 import SvgSelector from "@components/Svg/SvgSelector";
-import { Pet, Profile } from "@models/profile";
+import { Pet, defaultPet } from "@models/profile";
 import {
   ACTIVITY,
   BREEDS,
@@ -15,39 +15,27 @@ import {
   NEUTRIFICATION,
   SIZE,
 } from "@constants/profile";
-import useEditProfile from "@hooks/profile/useEditProfile";
 import { TEST_EMAIL } from "@constants/index";
+import useAddPet from "@hooks/profile/useAddPet";
+import { useNavigate } from "react-router-dom";
 
-type Props = {
-  petInfo: Pet;
-  setPetInfo: Dispatch<SetStateAction<{ user: Profile; pets: Pet[] }>>;
-};
-
-export default function PetEdit({ petInfo, setPetInfo }: Props) {
-  const { deletePet } = useEditProfile(TEST_EMAIL);
+export default function AddPet() {
+  const { addPet } = useAddPet(TEST_EMAIL);
+  const navigator = useNavigate();
+  const [petInfo, setPetInfo] = useState<Pet>(defaultPet);
 
   const handleChangeAge = (e: ChangeEvent<HTMLInputElement>) => {
     if (!/^[0-9]*$/.test(e.target.value)) return;
-    setPetInfo((prev) => ({
-      ...prev,
-      pets: prev.pets.map((pet) =>
-        pet.name === petInfo.name
-          ? { ...pet, age: Number(e.target.value) }
-          : pet,
-      ),
-    }));
+    setPetInfo((prev) => ({ ...prev, age: Number(e.target.value) }));
+  };
+
+  const handleChangeName = (e: ChangeEvent<HTMLInputElement>) => {
+    setPetInfo((prev) => ({ ...prev, name: e.target.value }));
   };
 
   const handleChanteWeight = (e: ChangeEvent<HTMLInputElement>) => {
     if (!/^[0-9]*$/.test(e.target.value)) return;
-    setPetInfo((prev) => ({
-      ...prev,
-      pets: prev.pets.map((pet) =>
-        pet.name === petInfo.name
-          ? { ...pet, weight: Number(e.target.value) }
-          : pet,
-      ),
-    }));
+    setPetInfo((prev) => ({ ...prev, weight: Number(e.target.value) }));
   };
 
   const handleChangeNeutrification = (
@@ -55,63 +43,37 @@ export default function PetEdit({ petInfo, setPetInfo }: Props) {
   ) => {
     if (Array.isArray(v)) {
       const neutrification = v.map((i) => NEUTRIFICATION[i]);
-      setPetInfo((prev) => ({
-        ...prev,
-        pets: prev.pets.map((pet) =>
-          pet.name === petInfo.name
-            ? { ...pet, neutrification: neutrification[0] }
-            : pet,
-        ),
-      }));
+      setPetInfo((prev) => ({ ...prev, neutrification: neutrification[0] }));
     }
   };
 
   const handleChangeSize = (v: number[] | ((prev: number[]) => number[])) => {
     if (Array.isArray(v)) {
       const size = v.map((i) => SIZE[i]);
-      setPetInfo((prev) => ({
-        ...prev,
-        pets: prev.pets.map((pet) =>
-          pet.name === petInfo.name ? { ...pet, size: size[0] } : pet,
-        ),
-      }));
+      setPetInfo((prev) => ({ ...prev, size: size[0] }));
     }
   };
 
   const handleChangeBreed = (v: number[] | ((prev: number[]) => number[])) => {
     if (Array.isArray(v)) {
       const kind = v.map((i) => BREEDS[i]);
-      setPetInfo((prev) => ({
-        ...prev,
-        pets: prev.pets.map((pet) =>
-          pet.name === petInfo.name ? { ...pet, kind: kind[0] } : pet,
-        ),
-      }));
+      setPetInfo((prev) => ({ ...prev, kind: kind[0] }));
     }
   };
 
   const handleChangePersonality = (
     v: number[] | ((prev: number[]) => number[]),
   ) => {
-    if (Array.isArray(v)) {
-      setPetInfo((prev) => ({ ...prev, personality: v }));
-    } else {
+    if (!Array.isArray(v)) {
       setPetInfo((prev) => {
-        const idx = prev.pets.findIndex((pet) => pet.name === petInfo.name);
-        const personalityIdxs = prev.pets[idx].personalityArr.map(
-          (personality) => DOG_PERSONALITY.findIndex((v) => v === personality),
+        const personalityIdxs = prev.personalityArr.map((personality) =>
+          DOG_PERSONALITY.findIndex((v) => v === personality),
         );
         const selectedIdxs = v(personalityIdxs);
         const personalityArr = selectedIdxs.map(
           (selectedIdx) => DOG_PERSONALITY[selectedIdx],
         );
-        console.log(personalityArr);
-        return {
-          ...prev,
-          pets: prev.pets.map((pet) =>
-            pet.name === petInfo.name ? { ...pet, personalityArr } : pet,
-          ),
-        };
+        return { ...prev, personalityArr };
       });
     }
   };
@@ -121,21 +83,13 @@ export default function PetEdit({ petInfo, setPetInfo }: Props) {
   ) => {
     if (Array.isArray(v)) {
       const activity = v.map((i) => ACTIVITY[i]);
-      setPetInfo((prev) => ({
-        ...prev,
-        pets: prev.pets.map((pet) =>
-          pet.name === petInfo.name ? { ...pet, activity: activity[0] } : pet,
-        ),
-      }));
+      setPetInfo((prev) => ({ ...prev, activity: activity[0] }));
     }
   };
 
-  const handleDeletePet = () => {
-    deletePet(petInfo.name);
-    setPetInfo((prev) => ({
-      ...prev,
-      pets: prev.pets.filter((pet) => pet.name !== petInfo.name),
-    }));
+  const handleConfirmButton = () => {
+    addPet(petInfo);
+    navigator("/profile/edit");
   };
 
   return (
@@ -154,6 +108,15 @@ export default function PetEdit({ petInfo, setPetInfo }: Props) {
         placeholder=""
         value={petInfo.age}
         onChange={handleChangeAge}
+      />
+      <Seperator height={24} />
+      <InputDefault
+        width="100%"
+        title="이름"
+        id="name"
+        placeholder=""
+        value={petInfo.name}
+        onChange={handleChangeName}
       />
       <Seperator height={24} />
       <InputDefault
@@ -225,15 +188,15 @@ export default function PetEdit({ petInfo, setPetInfo }: Props) {
           title={
             <>
               <SvgSelector
-                svg="filledCloseRound"
+                svg="filledAddRound"
                 width={24}
                 height={24}
                 stroke="#212121"
               />
-              반려견 삭제
+              확인
             </>
           }
-          onClick={handleDeletePet}
+          onClick={handleConfirmButton}
           active
           fill={false}
           backgroundColor="#212121"

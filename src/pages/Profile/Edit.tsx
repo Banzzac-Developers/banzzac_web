@@ -15,10 +15,11 @@ import usePets from "@hooks/profile/usePets";
 import { Pet, Profile, defaultProfile } from "@models/profile";
 import ModalContents from "@containers/Profile/edit/WithDrawModal";
 import useModal from "@hooks/common/useModal";
+import { TEST_EMAIL } from "@constants/index";
 
 export default function ProfileEditPage() {
-  const { data: profile } = useProfile("email");
-  const { data: pets } = usePets("email");
+  const { data: profile } = useProfile(TEST_EMAIL);
+  const { data: pets } = usePets(TEST_EMAIL);
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [profileInfo, setProfileInfo] = useState<{

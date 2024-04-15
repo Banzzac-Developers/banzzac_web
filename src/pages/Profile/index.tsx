@@ -6,10 +6,11 @@ import useProfile from "@hooks/profile/useProfile";
 import Seperator from "@components/Seperator";
 import UserCharacteristic from "@containers/Profile/UserCharacteristic";
 import usePets from "@hooks/profile/usePets";
+import { TEST_EMAIL } from "@constants/index";
 
 export default function Profile() {
-  const { data: profile } = useProfile("email");
-  const { data: pets } = usePets("email");
+  const { data: profile } = useProfile(TEST_EMAIL);
+  const { data: pets } = usePets(TEST_EMAIL);
 
   if (!profile?.data || !pets?.data) return <div />;
 

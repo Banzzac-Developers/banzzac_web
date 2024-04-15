@@ -6,7 +6,9 @@ const URLs = {
   profile: {
     fetchProfile: (id: string) => `/api/profile/${id}`,
     fetchPets: (id: string) => `/api/profile/dog/${id}`,
+    addPet: (id: string) => `/api/profile/dog/${id}`,
     updateProfile: (id: string) => `/api/profile/${id}`,
+    updateStatusMessage: "/api/profile/status",
     updatePet: (id: string, name: string) => `/api/profile/dog/${id}/${name}`,
     deletePet: (id: string, name: string) =>
       `/api/profile/dog/${id}/delete/${name}`,
