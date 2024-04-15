@@ -6,7 +6,9 @@ import useChatRoomList from "@hooks/chat/useChatRoomList";
 
 export default function ChatContainer() {
   // api 요청 어디서 하지...
-  const { data: chatList } = useChatRoomList("dfdsf");
+  const { data: chatList } = useChatRoomList("zkdlwjsxm@example.com");
+
+  console.log(chatList);
 
   if (!chatList) return <></>;
 
