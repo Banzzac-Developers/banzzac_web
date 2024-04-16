@@ -1,3 +1,4 @@
+import LogUtil from "@utils/LogUtil";
 import axios, { AxiosResponse, InternalAxiosRequestConfig } from "axios";
 
 const axiosInstance = axios.create({
@@ -9,6 +10,11 @@ const axiosInstance = axios.create({
 
 const handleReqFulfilled = async (config: InternalAxiosRequestConfig) => {
   // authorize
+  const randIdx = Math.floor(Math.random() * LogUtil.colors.length);
+  if (import.meta.env.VITE_NODE_ENV === "mocking") {
+    LogUtil.log(randIdx, `Started [${config.method}] : `, config.url);
+    LogUtil.log(randIdx, `Parameters :`, config.data);
+  }
   return config;
 };
 
