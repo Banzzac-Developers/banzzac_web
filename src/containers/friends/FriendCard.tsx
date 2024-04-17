@@ -2,8 +2,13 @@ import { DoubleProfileImage } from "@components/ProfileImage/ProfileImage";
 import Mangu from "@assets/images/mangu.jpg";
 import Mangu2 from "@assets/images/mangu2.jpg";
 import styled from "@emotion/styled";
+import { Friend } from "@models/friends";
 
-export default function FriendCard() {
+export default function FriendCard({
+  dogName,
+  mnickname,
+  mstatusMesaage,
+}: Friend) {
   return (
     <Container>
       <Profile>
@@ -17,8 +22,8 @@ export default function FriendCard() {
         />
         <div style={{ width: "50px" }} />
         <div>
-          <Name>{`name | dog name`}</Name>
-          <StateMsg>msg</StateMsg>
+          <Name>{`${mnickname} | ${dogName}`}</Name>
+          <StateMsg>{mstatusMesaage}</StateMsg>
         </div>
       </Profile>
     </Container>
