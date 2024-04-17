@@ -26,6 +26,9 @@ export type SvgIcon =
   | "exit"
   | "filledAddRound"
   | "filledCloseRound"
-  | "chatPlus";
+  | "chatPlus"
+  | "userClose"
+  | "userRemove"
+  | "sort";
 
 export type NavItem = { route: string; name: string; icon: SvgIcon };

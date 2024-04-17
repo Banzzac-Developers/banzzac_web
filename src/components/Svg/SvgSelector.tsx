@@ -21,6 +21,9 @@ import Exit from "@assets/svg/Exit.svg?react";
 import FilledAddRound from "@assets/svg/Add_round_fill.svg?react";
 import FilledCloseRound from "@assets/svg/Close_round_fill.svg?react";
 import ChatPlus from "@assets/svg/Chat_plus.svg?react";
+import UserClose from "@assets/svg/User_Close.svg?react";
+import UserRemove from "@assets/svg/User_Remove.svg?react";
+import Sort from "@assets/svg/Sort.svg?react";
 import { SvgIcon } from "@models/index";
 
 type Props = {
@@ -100,6 +103,12 @@ export default function SvgSelector({ svg, width, height, stroke }: Props) {
       return <FilledCloseRound width={width} height={height} fill={stroke} />;
     case "chatPlus":
       return <ChatPlus width={width} height={height} stroke={stroke} />;
+    case "userRemove":
+      return <UserRemove width={width} height={height} stroke={stroke} />;
+    case "userClose":
+      return <UserClose width={width} height={height} stroke={stroke} />;
+    case "sort":
+      return <Sort width={width} height={height} stroke={stroke} />;
     default:
       return <div />;
   }
