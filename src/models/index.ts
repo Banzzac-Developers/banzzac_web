@@ -25,6 +25,7 @@ export type SvgIcon =
   | "femail"
   | "exit"
   | "filledAddRound"
-  | "filledCloseRound";
+  | "filledCloseRound"
+  | "chatPlus";
 
 export type NavItem = { route: string; name: string; icon: SvgIcon };

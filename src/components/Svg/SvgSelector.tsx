@@ -20,6 +20,7 @@ import Female from "@assets/svg/Female.svg?react";
 import Exit from "@assets/svg/Exit.svg?react";
 import FilledAddRound from "@assets/svg/Add_round_fill.svg?react";
 import FilledCloseRound from "@assets/svg/Close_round_fill.svg?react";
+import ChatPlus from "@assets/svg/Chat_plus.svg?react";
 import { SvgIcon } from "@models/index";
 
 type Props = {
@@ -97,6 +98,8 @@ export default function SvgSelector({ svg, width, height, stroke }: Props) {
       return <FilledAddRound width={width} height={height} fill={stroke} />;
     case "filledCloseRound":
       return <FilledCloseRound width={width} height={height} fill={stroke} />;
+    case "chatPlus":
+      return <ChatPlus width={width} height={height} stroke={stroke} />;
     default:
       return <div />;
   }
