@@ -1,12 +1,12 @@
 import Navigator from "@layouts/Navigator";
 import WalkingHistory from "@containers/Profile/WalkingHistory";
 import MyProfile from "@containers/Profile/Profile";
-import DividerDefault from "@components/divider/divider";
 import useProfile from "@hooks/profile/useProfile";
 import Seperator from "@components/Seperator";
 import UserCharacteristic from "@containers/Profile/UserCharacteristic";
 import usePets from "@hooks/profile/usePets";
 import { TEST_EMAIL } from "@constants/index";
+import DividerDefault from "@components/divider/divider";
 
 export default function Profile() {
   const { data: profile } = useProfile(TEST_EMAIL);
