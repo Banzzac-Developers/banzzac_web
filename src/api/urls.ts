@@ -14,6 +14,9 @@ const URLs = {
       `/api/profile/dog/${id}/delete/${name}`,
     withdrawal: (id: string) => `/api/profile/${id}/withdraw`,
   },
+  friends: {
+    fetchFriendList: (id: string) => `/api/friend/list/${id}`,
+  },
 };
 
 export default URLs;
