@@ -4,16 +4,19 @@ import useModal from "@hooks/common/useModal";
 
 type Props = {
   contents: React.ReactNode;
+  hasCloseButton: boolean;
 };
 
-export default function FullScreenModal({ contents }: Props) {
+export default function FullScreenModal({ contents, hasCloseButton }: Props) {
   const { removeCurrentModal } = useModal();
 
   return (
     <Container>
-      <CloseButton onClick={removeCurrentModal}>
-        <SvgSelector svg={"close"} width={24} height={24} stroke="#212121" />
-      </CloseButton>
+      {hasCloseButton && (
+        <CloseButton onClick={removeCurrentModal}>
+          <SvgSelector svg={"close"} width={24} height={24} stroke="#212121" />
+        </CloseButton>
+      )}
       <div>{contents}</div>
     </Container>
   );

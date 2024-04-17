@@ -36,6 +36,7 @@ export default function FriendMenu({ friendList }: Props) {
       type: "fullscreen",
       props: {
         contents: <EditFriendList friendList={friendList} />,
+        hasCloseButton: false,
       },
     });
   };
