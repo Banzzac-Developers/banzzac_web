@@ -3,13 +3,29 @@ import ProfileCard from "@containers/friends/ProfileCard";
 import styled from "@emotion/styled";
 import Navigator from "@layouts/Navigator";
 import SquareHeader from "@layouts/SquareHeader";
+import { useState } from "react";
 
 export default function Friends() {
+  const [openMenu, setOpenMenu] = useState(false);
+
   return (
     <>
       <SquareHeader
         title="친구"
-        headerIcons={["search", "friendAdd", "setting"]}
+        headerIcons={[
+          {
+            icon: "search",
+            onClick: () => {},
+          },
+          {
+            icon: "friendAdd",
+            onClick: () => {},
+          },
+          {
+            icon: "setting",
+            onClick: () => setOpenMenu(!openMenu),
+          },
+        ]}
       />
       <ProfileCard />
       <Divider />
