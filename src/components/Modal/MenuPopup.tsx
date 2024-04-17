@@ -53,4 +53,8 @@ const Container = styled.ul<{
   li {
     padding: 8px 16px;
   }
+
+  li button {
+    width: 100%;
+  }
 `;
