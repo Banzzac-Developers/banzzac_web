@@ -16,6 +16,8 @@ const URLs = {
   },
   friends: {
     fetchFriendList: (id: string) => `/api/friend/list/${id}`,
+    deleteFriend: (id: string, friendId: string) =>
+      `/api/friend/${id}/delete/${friendId}`,
   },
 };
 
