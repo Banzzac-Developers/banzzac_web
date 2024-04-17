@@ -1,15 +1,14 @@
-import useFriendList from "@hooks/friends/useFriendList";
 import FriendCard from "./FriendCard";
-import { TEST_EMAIL } from "@constants/index";
 import styled from "@emotion/styled";
 import Text from "@components/Text";
 import { FontStyle } from "@utils/StyleUtil";
+import { Friend } from "@models/friends";
 
-export default function FriendList() {
-  const { data: friendList } = useFriendList(TEST_EMAIL);
+type Props = {
+  friendList: Friend[];
+};
 
-  if (!friendList) return <></>;
-
+export default function FriendList({ friendList }: Props) {
   return (
     <Container>
       <StyledText

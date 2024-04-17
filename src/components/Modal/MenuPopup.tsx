@@ -48,9 +48,13 @@ const Container = styled.ul<{
   left: ${({ pos }) => `${pos.left}px`};
   right: ${({ pos }) => `${pos.right}px`};
   bottom: ${({ pos }) => `${pos.bottom}px`};
-  z-index: 99999;
+  z-index: 999;
   background-color: #fff;
   li {
     padding: 8px 16px;
+  }
+
+  li button {
+    width: 100%;
   }
 `;

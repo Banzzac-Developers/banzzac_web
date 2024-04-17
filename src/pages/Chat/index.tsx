@@ -5,7 +5,19 @@ import SquareHeader from "@layouts/SquareHeader";
 export default function Chat() {
   return (
     <>
-      <SquareHeader title="채팅" headerIcons={["search", "setting"]} />
+      <SquareHeader
+        title="채팅"
+        headerIcons={[
+          {
+            icon: "search",
+            onClick: () => {},
+          },
+          {
+            icon: "setting",
+            onClick: () => {},
+          },
+        ]}
+      />
       <ChatContainer />
       <Navigator />
     </>
