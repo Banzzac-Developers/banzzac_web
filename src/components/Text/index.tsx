@@ -6,6 +6,7 @@ export type Props = {
   fontWeight: number;
   lineHeight: number;
   color: string;
+  className?: string;
 };
 
 export default function Text({
@@ -14,9 +15,11 @@ export default function Text({
   fontWeight,
   lineHeight,
   color,
+  className,
 }: Props) {
   return (
     <StyledText
+      className={className}
       fontSize={fontSize}
       fontWeight={fontWeight}
       lineHeight={lineHeight}
