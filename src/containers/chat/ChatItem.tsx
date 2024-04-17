@@ -12,6 +12,7 @@ export default function ChatItem({
   memberNickname,
   lastMessage,
   lastMessageSendtime,
+  unreadMessagesCount,
 }: ChatRoom) {
   return (
     <Container>
@@ -32,7 +33,7 @@ export default function ChatItem({
       </Profile>
       <Alert>
         <Time>{StringUtil.displayTime(lastMessageSendtime)}</Time>
-        <NumberAlert color="#BF8BFC" filled number={9} />
+        <NumberAlert color="#BF8BFC" filled number={unreadMessagesCount} />
       </Alert>
     </Container>
   );

@@ -9,4 +9,5 @@ export type ChatRoom = {
   dogImg: string;
   lastMessageSendtime: string;
   chatroomNo: number;
+  unreadMessagesCount: number;
 };
