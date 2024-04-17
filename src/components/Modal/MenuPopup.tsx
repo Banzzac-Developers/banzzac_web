@@ -1,4 +1,4 @@
-import DividerDefault from "@components/Divider/divider";
+import DividerDefault from "@components/divider/divider";
 import styled from "@emotion/styled";
 
 import React from "react";
