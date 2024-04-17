@@ -1,3 +1,4 @@
+import StringUtil from "@utils/StringUtil";
 import React, { Ref } from "react";
 import InfiniteScroll from "react-infinite-scroller";
 
@@ -9,6 +10,7 @@ interface ChatDTO {
   isRead: number;
   chatroomNo: number;
   sendTime: Date;
+  sendTimeStr: string;
 }
 
 interface ChatMessageListProps {
@@ -45,7 +47,7 @@ const ChatMessageList: React.FC<ChatMessageListProps> = ({
         >
           {messages.map((msg, idx) => (
             <div key={idx}>
-              {msg.senderId} : {msg.message}
+              {msg.senderId} : {msg.message} - {msg.sendTimeStr} - {msg.isRead}
             </div>
           ))}
         </InfiniteScroll>
