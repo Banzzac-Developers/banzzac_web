@@ -1,7 +1,7 @@
 export const friendList = [
   {
-    id: null,
-    friendId: null,
+    id: "zkdlwjsxm@example.com",
+    friendId: "example2@example.com",
     dogImg: "dog2.jpg",
     dogName: "고이봉",
     block: 0,
@@ -10,8 +10,8 @@ export const friendList = [
     mimg: "example2.jpg",
   },
   {
-    id: null,
-    friendId: null,
+    id: "zkdlwjsxm@example.com",
+    friendId: "example3@example.com",
     dogImg: "dog3.jpg",
     dogName: "고삼봉",
     block: 0,
@@ -20,8 +20,8 @@ export const friendList = [
     mimg: "example3.jpg",
   },
   {
-    id: null,
-    friendId: null,
+    id: "zkdlwjsxm@example.com",
+    friendId: "example4@example.com",
     dogImg: "dog4.jpg",
     dogName: "고사봉",
     block: 0,
@@ -30,8 +30,8 @@ export const friendList = [
     mimg: "example4.jpg",
   },
   {
-    id: null,
-    friendId: null,
+    id: "zkdlwjsxm@example.com",
+    friendId: "example5@example.com",
     dogImg: "dog5.jpg",
     dogName: "고오봉",
     block: 0,
@@ -40,8 +40,8 @@ export const friendList = [
     mimg: "example5.jpg",
   },
   {
-    id: null,
-    friendId: null,
+    id: "zkdlwjsxm@example.com",
+    friendId: "example9@example.com",
     dogImg: "dog9.jpg",
     dogName: "고구봉",
     block: 0,

@@ -1,8 +1,8 @@
 import { Data } from "@models/common";
 
 export type Friend = {
-  id: null;
-  friendId: null;
+  id: string;
+  friendId: string;
   dogImg: string;
   dogName: string;
   block: number;
