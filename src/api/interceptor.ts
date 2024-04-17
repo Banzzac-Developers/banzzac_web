@@ -1,5 +1,6 @@
 import LogUtil from "@utils/LogUtil";
-import axios, { AxiosResponse, InternalAxiosRequestConfig } from "axios";
+import axios, { InternalAxiosRequestConfig } from "axios";
+import { Response } from "@models/api";
 
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_SERVER_URL,
@@ -15,14 +16,23 @@ const handleReqFulfilled = async (config: InternalAxiosRequestConfig) => {
     LogUtil.log(randIdx, `Started [${config.method}] : `, config.url);
     LogUtil.log(randIdx, `Parameters :`, config.data);
   }
-  return config;
+  const _config = { ...config, logColorIdx: randIdx };
+  return _config;
 };
 
 const handleReqError = (err: any) => {
   return Promise.reject(err);
 };
 
-const handleResFulfilled = (res: AxiosResponse<any, any>) => {
+const handleResFulfilled = (res: Response) => {
+  if (import.meta.env.VITE_NODE_ENV === "mocking") {
+    LogUtil.log(
+      res.config.logColorIdx,
+      `Finished [${res.config.method}] : `,
+      res.config.url,
+    );
+    LogUtil.log(res.config.logColorIdx, `Response data :`, res.data);
+  }
   return res.data;
 };
 
