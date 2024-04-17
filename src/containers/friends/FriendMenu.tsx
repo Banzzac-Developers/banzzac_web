@@ -2,8 +2,11 @@ import MenuPopup from "@components/Modal/MenuPopup";
 import SvgSelector from "@components/Svg/SvgSelector";
 import Text from "@components/Text";
 import styled from "@emotion/styled";
+import useModal from "@hooks/common/useModal";
 import { SvgIcon } from "@models/index";
 import { FontStyle } from "@utils/StyleUtil";
+import EditFriendList from "./EditFriendList";
+import { Friend } from "@models/friends";
 
 const MenuItem = ({ txt, icon }: { txt: string; icon: SvgIcon }) => {
   return (
@@ -21,14 +24,29 @@ const MenuItemContainer = styled.div`
   align-items: center;
 `;
 
-export default function FriendMenu() {
+type Props = {
+  friendList: Friend[];
+};
+
+export default function FriendMenu({ friendList }: Props) {
+  const { addModal } = useModal();
+
+  const handleEditList = () => {
+    addModal({
+      type: "fullscreen",
+      props: {
+        contents: <EditFriendList friendList={friendList} />,
+      },
+    });
+  };
+
   return (
     <MenuPopup
       pos={{ right: 16, top: 40 }}
       menuList={[
         {
           menu: <MenuItem txt="리스트 편집" icon="sort" />,
-          handleClick: () => {},
+          handleClick: handleEditList,
         },
         {
           menu: <MenuItem txt="삭제한 친구" icon="userRemove" />,

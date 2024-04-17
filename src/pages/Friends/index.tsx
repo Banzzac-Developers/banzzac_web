@@ -1,13 +1,19 @@
+import { TEST_EMAIL } from "@constants/index";
 import FriendList from "@containers/friends/FriendList";
 import FriendMenu from "@containers/friends/FriendMenu";
 import ProfileCard from "@containers/friends/ProfileCard";
 import styled from "@emotion/styled";
+import useFriendList from "@hooks/friends/useFriendList";
 import Navigator from "@layouts/Navigator";
 import SquareHeader from "@layouts/SquareHeader";
 import { useState } from "react";
 
 export default function Friends() {
   const [openMenu, setOpenMenu] = useState(false);
+
+  const { data: friendList } = useFriendList(TEST_EMAIL);
+
+  if (!friendList) return <></>;
 
   return (
     <>
@@ -28,10 +34,10 @@ export default function Friends() {
           },
         ]}
       />
-      {openMenu && <FriendMenu />}
+      {openMenu && <FriendMenu friendList={friendList} />}
       <ProfileCard />
       <Divider />
-      <FriendList />
+      <FriendList friendList={friendList} />
       <Navigator />
     </>
   );
