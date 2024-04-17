@@ -17,6 +17,14 @@ export type SvgIcon =
   | "expandUp"
   | "expandDown"
   | "close"
-  | "fillTwinkle";
+  | "fillTwinkle"
+  | "payment"
+  | "paymentHistory"
+  | "filledPin"
+  | "pin"
+  | "femail"
+  | "exit"
+  | "filledAddRound"
+  | "filledCloseRound";
 
 export type NavItem = { route: string; name: string; icon: SvgIcon };

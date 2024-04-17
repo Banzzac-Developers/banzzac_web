@@ -44,3 +44,8 @@ export const isTailModal = (
 ): modal is { type: ModalType; props: DefaultModal } => {
   return modal.type === "tailModal";
 };
+
+export type Data = {
+  success: boolean;
+  error: Object | null;
+};
