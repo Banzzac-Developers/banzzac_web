@@ -1,4 +1,5 @@
 import FriendList from "@containers/friends/FriendList";
+import FriendMenu from "@containers/friends/FriendMenu";
 import ProfileCard from "@containers/friends/ProfileCard";
 import styled from "@emotion/styled";
 import Navigator from "@layouts/Navigator";
@@ -27,6 +28,7 @@ export default function Friends() {
           },
         ]}
       />
+      {openMenu && <FriendMenu />}
       <ProfileCard />
       <Divider />
       <FriendList />
