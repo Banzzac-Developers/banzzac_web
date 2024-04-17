@@ -12,6 +12,10 @@ export interface IPopup extends DefaultModal {
   }[];
 }
 
+export interface IFullScreen extends DefaultModal {
+  hasCloseButton: boolean;
+}
+
 export interface IMenuPopup {
   menuList: {
     handleClick: () => void;
@@ -20,7 +24,7 @@ export interface IMenuPopup {
 }
 
 export type ModalType = "fullscreen" | "tailModal" | "popup" | "menuPopup";
-export type ModalProps = DefaultModal | IPopup | IMenuPopup;
+export type ModalProps = DefaultModal | IPopup | IMenuPopup | IFullScreen;
 
 export interface Modal {
   type: ModalType;
@@ -35,7 +39,7 @@ export const isPopup = (
 
 export const isFullScreen = (
   modal: Modal,
-): modal is { type: ModalType; props: DefaultModal } => {
+): modal is { type: ModalType; props: IFullScreen } => {
   return modal.type === "fullscreen";
 };
 

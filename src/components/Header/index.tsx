@@ -1,17 +1,23 @@
 import SvgSelector from "@components/Svg/SvgSelector";
 import { HeaderIcon } from "@models/index";
 
-const IconButton = ({ icon }: { icon: HeaderIcon }) => {
+const IconButton = ({
+  icon,
+  onClick,
+}: {
+  icon: HeaderIcon;
+  onClick: () => void;
+}) => {
   switch (icon) {
     case "search":
       return (
-        <button>
+        <button onClick={onClick}>
           <SvgSelector width={24} height={24} stroke="#212121" svg={"search"} />
         </button>
       );
     case "friendAdd":
       return (
-        <button>
+        <button onClick={onClick}>
           <SvgSelector
             width={24}
             height={24}
@@ -22,7 +28,7 @@ const IconButton = ({ icon }: { icon: HeaderIcon }) => {
       );
     case "setting":
       return (
-        <button>
+        <button onClick={onClick}>
           <SvgSelector
             width={24}
             height={24}
