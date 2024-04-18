@@ -35,7 +35,8 @@ const StyledButton = styled.button<{
   backgroundColor: string;
   active: boolean;
 }>`
-  width: 110px;
+  padding: 8px;
+  width: inherit;
   height: 42px;
   font-size: 16px;
   font-weight: 700;
