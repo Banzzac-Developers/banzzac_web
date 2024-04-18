@@ -1,49 +1,36 @@
 import styled from "@emotion/styled";
-import { ReactElement } from "react";
 
 type Props = {
-  title: string | ReactElement;
+  title: string;
   fill: boolean;
+  /**
+   * 버튼 배경색
+   */
   backgroundColor: string;
   onClick: () => void;
   active?: boolean;
 };
 
-export default function RoundButton({
-  title,
-  fill,
-  backgroundColor,
-  active = false,
-  onClick,
-}: Props) {
+export default function RoundButton({ title, fill, backgroundColor }: Props) {
   return (
-    <StyledButton
-      active={active}
-      fill={fill}
-      backgroundColor={backgroundColor}
-      onClick={onClick}
-    >
+    <StyledButton fill={fill} backgroundColor={backgroundColor}>
       {title}
     </StyledButton>
   );
 }
 
-const StyledButton = styled.button<{
-  fill: boolean;
-  backgroundColor: string;
-  active: boolean;
-}>`
-  padding: 8px 10px;
-  min-width: 82px;
-  width: inherit;
-  display: flex;
+const StyledButton = styled.button<{ fill: boolean; backgroundColor: string }>`
+  width: 110px;
+  height: 42px;
+  font-size: 16px;
+  font-weight: 700;
   justify-content: center;
   align-items: center;
   font-size: 16px;
   line-height: 24px;
   font-weight: 700;
   border-radius: 22px;
-  border: ${({ active }) => (active ? "2px solid" : "1px solid")};
+  border: 2px solid;
   background-color: ${({ fill, backgroundColor }) =>
     fill ? backgroundColor : "#FFFFFF"};
   color: ${({ fill, backgroundColor }) => (fill ? "#FFFFFF" : backgroundColor)};
