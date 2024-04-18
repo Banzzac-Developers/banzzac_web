@@ -13,4 +13,24 @@ const fetchFavoriteFriendList = http.get("/api/friend/favoriteList/:id", () => {
   return HttpResponse.json(favoriteFriendList);
 });
 
-export default [fetchFriendList, deleteFriend, fetchFavoriteFriendList];
+const addFavoriteFriend = http.get(
+  "/api/friend/:id/friendFavorite/:friendId",
+  () => {
+    return HttpResponse.json();
+  },
+);
+
+const deleteFavoriteFriend = http.get(
+  "/api/friend/:id/friendUnFavorite/:friendId",
+  () => {
+    return HttpResponse.json();
+  },
+);
+
+export default [
+  fetchFriendList,
+  deleteFriend,
+  fetchFavoriteFriendList,
+  addFavoriteFriend,
+  deleteFavoriteFriend,
+];
