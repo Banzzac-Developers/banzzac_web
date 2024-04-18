@@ -50,3 +50,16 @@ export const friendList = [
     mimg: "example9.jpg",
   },
 ];
+
+export const favoriteFriendList = [
+  {
+    id: "zkdlwjsxm@example.com",
+    friendId: "example9@example.com",
+    dogImg: "dog9.jpg",
+    dogName: "고구봉",
+    block: 2,
+    mstatusMesaage: "청춘은바로지금! 청바지",
+    mnickname: "Olivia",
+    mimg: "example9.jpg",
+  },
+];
