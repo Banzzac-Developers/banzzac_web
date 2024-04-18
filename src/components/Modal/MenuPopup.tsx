@@ -1,21 +1,25 @@
 import DividerDefault from "@components/Divider/Divider";
 import styled from "@emotion/styled";
-import { IMenuPopup } from "@models/common";
 
 import React from "react";
 
-interface Props extends IMenuPopup {
+interface Props {
   pos: {
     top?: number;
     left?: number;
     right?: number;
     bottom?: number;
   };
+  menuList: {
+    handleClick: () => void;
+    menu: React.ReactNode | string;
+  }[];
+  className?: string;
 }
 
-export default function MenuPopup({ menuList, pos }: Props) {
+export default function MenuPopup({ menuList, pos, className }: Props) {
   return (
-    <Container pos={pos}>
+    <Container pos={pos} className={className}>
       {menuList.map(({ menu, handleClick }, idx) => (
         <React.Fragment key={`${menu}`}>
           <li>
@@ -44,8 +48,13 @@ const Container = styled.ul<{
   left: ${({ pos }) => `${pos.left}px`};
   right: ${({ pos }) => `${pos.right}px`};
   bottom: ${({ pos }) => `${pos.bottom}px`};
-
+  z-index: 999;
+  background-color: #fff;
   li {
     padding: 8px 16px;
+  }
+
+  li button {
+    width: 100%;
   }
 `;

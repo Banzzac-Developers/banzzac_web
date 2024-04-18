@@ -28,7 +28,11 @@ export default function ModalRenderer() {
         }
         if (isFullScreen(modal))
           return (
-            <FullScreenModal key={modal.type} contents={modal.props.contents} />
+            <FullScreenModal
+              hasCloseButton={modal.props.hasCloseButton}
+              key={modal.type}
+              contents={modal.props.contents}
+            />
           );
       })}
     </Container>

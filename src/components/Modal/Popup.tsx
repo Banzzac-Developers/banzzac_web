@@ -1,8 +1,8 @@
 import styled, { CSSObject } from "@emotion/styled";
-import { Popup } from "@models/common";
+import { IPopup } from "@models/common";
 import React from "react";
 
-export default function Popup({ contents, buttonProps }: Popup) {
+export default function Popup({ contents, buttonProps }: IPopup) {
   return (
     <Container>
       <div>{contents}</div>

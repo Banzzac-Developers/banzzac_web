@@ -1,18 +1,14 @@
 import styled from "@emotion/styled";
 
 type Props = {
-  /**
-   * button txt
-   */
   title: string;
-  /**
-   * 채워진 버튼 여부
-   */
   fill: boolean;
   /**
    * 버튼 배경색
    */
   backgroundColor: string;
+  onClick: () => void;
+  active?: boolean;
 };
 
 export default function RoundButton({ title, fill, backgroundColor }: Props) {
@@ -30,6 +26,9 @@ const StyledButton = styled.button<{ fill: boolean; backgroundColor: string }>`
   font-weight: 700;
   justify-content: center;
   align-items: center;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 700;
   border-radius: 22px;
   border: 2px solid;
   background-color: ${({ fill, backgroundColor }) =>
