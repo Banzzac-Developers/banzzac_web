@@ -1,3 +1,4 @@
+import Seperator from "@components/Seperator";
 import { TEST_EMAIL } from "@constants/index";
 import FavoriteFriendList from "@containers/friends/FavoriteFriendList";
 import FriendList from "@containers/friends/FriendList";
@@ -41,6 +42,7 @@ export default function Friends() {
       <FavoriteFriendList />
       <Divider />
       <FriendList friendList={friendList} />
+      <Seperator height={80} />
       <Navigator />
     </>
   );
