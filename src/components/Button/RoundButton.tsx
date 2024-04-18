@@ -33,7 +33,7 @@ const StyledButton = styled.button<{
   backgroundColor: string;
   active: boolean;
 }>`
-  padding: 8px 10px;
+  padding: 8px 0;
   min-width: 82px;
   width: inherit;
   display: flex;
