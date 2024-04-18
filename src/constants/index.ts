@@ -28,4 +28,4 @@ export const navList: NavItem[] = [
   },
 ];
 
-export const TEST_EMAIL = "zkdlwjsxm@example.com ";
+export const TEST_EMAIL = "zkdlwjsxm@example.com";
