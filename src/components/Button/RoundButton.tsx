@@ -38,7 +38,7 @@ const StyledButton = styled.button<{
   min-width: 82px;
   width: inherit;
   display: flex;
-  padding: 8px;
+  padding: 8px 0;
   height: 42px;
   font-size: 16px;
   font-weight: 700;
