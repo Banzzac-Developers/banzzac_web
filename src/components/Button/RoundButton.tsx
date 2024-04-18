@@ -35,17 +35,18 @@ const StyledButton = styled.button<{
   backgroundColor: string;
   active: boolean;
 }>`
-  padding: 8px 0;
   min-width: 82px;
   width: inherit;
   display: flex;
+  padding: 8px;
+  height: 42px;
+  font-size: 16px;
+  font-weight: 700;
   justify-content: center;
   align-items: center;
-  font-size: 16px;
   line-height: 24px;
-  font-weight: 700;
   border-radius: 22px;
-  border: 2px solid;
+  border: ${({ active }) => (active ? "2px solid" : "1px solid")};
   background-color: ${({ fill, backgroundColor }) =>
     fill ? backgroundColor : "#FFFFFF"};
   color: ${({ fill, backgroundColor }) => (fill ? "#FFFFFF" : backgroundColor)};
