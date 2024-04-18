@@ -110,14 +110,6 @@ export default function PetEdit({ petInfo, setPetInfo }: Props) {
     }));
   };
 
-  console.log(
-    petInfo.personalityArr.map((personality) =>
-      DOG_PERSONALITY.findIndex((v) => v === personality),
-    ),
-  );
-
-  console.log(petInfo.personalityArr);
-
   return (
     <Container>
       <SingleProfileImage

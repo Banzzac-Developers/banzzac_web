@@ -19,6 +19,10 @@ const URLs = {
     deleteFriend: (id: string, friendId: string) =>
       `/api/friend/${id}/delete/${friendId}`,
   },
+  signup: {
+    registUser: "/api/member/createMember",
+    registPet: (id: string) => `/api/member/createDog/${id}`,
+  },
 };
 
 export default URLs;

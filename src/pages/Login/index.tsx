@@ -1,16 +1,32 @@
+import KakaoLoginImg from "@assets/images/kakao_login@3x.png";
+import LogoImg from "@assets/images/Logo@3x.png";
+import Seperator from "@components/Seperator";
+import styled from "@emotion/styled";
+
 const SocialKakao = () => {
-  const Rest_api_key = "d1c29661caeadbbfdf7dfb03de5a298a"; //REST API KEY
-  const redirect_uri = "http://localhost/api/login/oauth2/code/kakao"; //Redirect URI
   // oauth 요청 URL
-  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`;
+  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${import.meta.env.VITE_KAKAO_LOGIN}&redirect_uri=${import.meta.env.VITE_KAKAO_LOGIN_REDIRECT}&response_type=code`;
   const handleLogin = () => {
     console.log("들옴?" + kakaoURL);
     window.location.href = kakaoURL;
   };
   return (
-    <>
-      <button onClick={handleLogin}>카카오 로그인</button>
-    </>
+    <Container>
+      <img src={LogoImg} alt="logo" width={80} />
+      <Seperator height={40} />
+      <button onClick={handleLogin}>
+        <img src={KakaoLoginImg} alt="kakao-login" width={342} />
+      </button>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
 export default SocialKakao;

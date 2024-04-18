@@ -1,3 +1,5 @@
+export const GENDER = ["남자", "여자"];
+
 export const NEUTRIFICATION = ["네", "아니오"];
 
 export const SIZE = ["소형", "중형", "대형"];
@@ -24,3 +26,13 @@ export const DOG_PERSONALITY = [
 ];
 
 export const ACTIVITY = ["적음", "보통", "많음"];
+
+export const WALKING_STYLE = [
+  "많이 걷는",
+  "앉아서 쉬는",
+  "대화를 하는",
+  "대화가 적은",
+  "산책이 능숙한",
+];
+
+export const MBTI = ["E", "S", "F", "J", "I", "N", "T", "P"];
