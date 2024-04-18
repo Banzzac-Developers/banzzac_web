@@ -1,8 +1,17 @@
 import Text from "@components/Text";
 import styled from "@emotion/styled";
 import { FontStyle } from "@utils/StyleUtil";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function SignupComplete() {
+  const navigator = useNavigate();
+  useEffect(() => {
+    setTimeout(() => {
+      navigator("/search");
+    }, 3000);
+  }, []);
+
   return (
     <Container>
       <Text {...FontStyle(24, 700, 32, "#000")}>반갑습니다!</Text>
