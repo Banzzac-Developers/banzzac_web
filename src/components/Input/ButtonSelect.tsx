@@ -9,7 +9,7 @@ type Props = {
   value: number[];
   gridStyle?: CSSObject;
   className?: string;
-  onChangeButton: (idx: number[] | ((prev: number[]) => number[])) => void;
+  onChangeButton: (idxArr: number[]) => void;
 };
 
 export default function ButtonSelect({
@@ -26,16 +26,20 @@ export default function ButtonSelect({
     // 중복선택 불가능
     if (!isDuplicate) {
       if (value.includes(idx)) {
-        onChangeButton((prev) => prev.filter((v) => v !== idx));
+        const newArr = value.filter((v) => v !== idx && v >= 0);
+        onChangeButton(newArr);
       } else {
-        onChangeButton([idx]);
+        const newArr = [idx].filter((v) => v >= 0);
+        onChangeButton(newArr);
       }
     } else {
       if (!value.includes(idx) && value.length >= maxSelection) return;
       if (value.includes(idx)) {
-        onChangeButton((prev) => prev.filter((v) => v !== idx));
+        const newArr = value.filter((v) => v !== idx && v >= 0);
+        onChangeButton(newArr);
       } else {
-        onChangeButton((prev) => [...prev, idx]);
+        const newArr = value.concat(idx).filter((v) => v >= 0);
+        onChangeButton(newArr);
       }
     }
   };
