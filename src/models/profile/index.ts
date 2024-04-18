@@ -75,3 +75,53 @@ export const defaultPet = {
   weight: 0,
   personalityArr: [],
 };
+
+export type PaymentReady = {
+  partnerUserId: String;
+  quantity: number;
+  totalAmount: number;
+};
+
+export const defaultPaymentReady = {
+  partnerUserId: "",
+  quantity: 0,
+  totalAmount: 0,
+};
+
+export type PaymentApprove = {
+  tid: String;
+  nextRedirect_mobile_url: String;
+  next_redirect_pc_url: String;
+};
+
+export interface PaymentApproveData extends Data {
+  data: PaymentApprove[];
+}
+
+export type PaymentList = {
+  partnerOrderId: number;
+  partnerUserId: String;
+  tid: String;
+  aid: String;
+  paymentMethodType: String;
+  quantity: number;
+  totalAmount: number;
+  approvedAt: Date;
+  approvedAtStr: String;
+};
+
+export interface PaymentListData extends Data {
+  data: PaymentList[];
+}
+
+export const defaultPaymentList = {
+  partnerOrderId: 0,
+  partnerUserId: "",
+  tid: "",
+  aid: "",
+  paymentMethodType: "",
+  quantity: 0,
+  totalAmount: 0,
+  approvedAt: "",
+  approvedAtStr: "",
+};
