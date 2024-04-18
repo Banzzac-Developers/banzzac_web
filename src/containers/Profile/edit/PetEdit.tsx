@@ -50,84 +50,56 @@ export default function PetEdit({ petInfo, setPetInfo }: Props) {
     }));
   };
 
-  const handleChangeNeutrification = (
-    v: number[] | ((prev: number[]) => number[]),
-  ) => {
-    if (Array.isArray(v)) {
-      const neutrification = v.map((i) => NEUTRIFICATION[i]);
-      setPetInfo((prev) => ({
-        ...prev,
-        pets: prev.pets.map((pet) =>
-          pet.name === petInfo.name
-            ? { ...pet, neutrification: neutrification[0] }
-            : pet,
-        ),
-      }));
-    }
+  const handleChangeNeutrification = (idxArr: number[]) => {
+    const neutrification = idxArr.map((i) => NEUTRIFICATION[i]);
+    setPetInfo((prev) => ({
+      ...prev,
+      pets: prev.pets.map((pet) =>
+        pet.name === petInfo.name
+          ? { ...pet, neutrification: neutrification[0] }
+          : pet,
+      ),
+    }));
   };
 
-  const handleChangeSize = (v: number[] | ((prev: number[]) => number[])) => {
-    if (Array.isArray(v)) {
-      const size = v.map((i) => SIZE[i]);
-      setPetInfo((prev) => ({
-        ...prev,
-        pets: prev.pets.map((pet) =>
-          pet.name === petInfo.name ? { ...pet, size: size[0] } : pet,
-        ),
-      }));
-    }
+  const handleChangeSize = (idxArr: number[]) => {
+    const size = idxArr.map((i) => SIZE[i]);
+    setPetInfo((prev) => ({
+      ...prev,
+      pets: prev.pets.map((pet) =>
+        pet.name === petInfo.name ? { ...pet, size: size[0] } : pet,
+      ),
+    }));
   };
 
-  const handleChangeBreed = (v: number[] | ((prev: number[]) => number[])) => {
-    if (Array.isArray(v)) {
-      const kind = v.map((i) => BREEDS[i]);
-      setPetInfo((prev) => ({
-        ...prev,
-        pets: prev.pets.map((pet) =>
-          pet.name === petInfo.name ? { ...pet, kind: kind[0] } : pet,
-        ),
-      }));
-    }
+  const handleChangeBreed = (idxArr: number[]) => {
+    const kind = idxArr.map((i) => BREEDS[i]);
+    setPetInfo((prev) => ({
+      ...prev,
+      pets: prev.pets.map((pet) =>
+        pet.name === petInfo.name ? { ...pet, kind: kind[0] } : pet,
+      ),
+    }));
   };
 
-  const handleChangePersonality = (
-    v: number[] | ((prev: number[]) => number[]),
-  ) => {
-    if (Array.isArray(v)) {
-      setPetInfo((prev) => ({ ...prev, personality: v }));
-    } else {
-      setPetInfo((prev) => {
-        const idx = prev.pets.findIndex((pet) => pet.name === petInfo.name);
-        const personalityIdxs = prev.pets[idx].personalityArr.map(
-          (personality) => DOG_PERSONALITY.findIndex((v) => v === personality),
-        );
-        const selectedIdxs = v(personalityIdxs);
-        const personalityArr = selectedIdxs.map(
-          (selectedIdx) => DOG_PERSONALITY[selectedIdx],
-        );
-        console.log(personalityArr);
-        return {
-          ...prev,
-          pets: prev.pets.map((pet) =>
-            pet.name === petInfo.name ? { ...pet, personalityArr } : pet,
-          ),
-        };
-      });
-    }
+  const handleChangePersonality = (idxArr: number[]) => {
+    const personalityArr = idxArr.map((i) => DOG_PERSONALITY[i]);
+    setPetInfo((prev) => ({
+      ...prev,
+      pets: prev.pets.map((pet) =>
+        pet.name === petInfo.name ? { ...pet, personalityArr } : pet,
+      ),
+    }));
   };
 
-  const handleChangeActivity = (
-    v: number[] | ((prev: number[]) => number[]),
-  ) => {
-    if (Array.isArray(v)) {
-      const activity = v.map((i) => ACTIVITY[i]);
-      setPetInfo((prev) => ({
-        ...prev,
-        pets: prev.pets.map((pet) =>
-          pet.name === petInfo.name ? { ...pet, activity: activity[0] } : pet,
-        ),
-      }));
-    }
+  const handleChangeActivity = (idxArr: number[]) => {
+    const activity = idxArr.map((i) => ACTIVITY[i]);
+    setPetInfo((prev) => ({
+      ...prev,
+      pets: prev.pets.map((pet) =>
+        pet.name === petInfo.name ? { ...pet, activity: activity[0] } : pet,
+      ),
+    }));
   };
 
   const handleDeletePet = () => {
@@ -137,6 +109,14 @@ export default function PetEdit({ petInfo, setPetInfo }: Props) {
       pets: prev.pets.filter((pet) => pet.name !== petInfo.name),
     }));
   };
+
+  console.log(
+    petInfo.personalityArr.map((personality) =>
+      DOG_PERSONALITY.findIndex((v) => v === personality),
+    ),
+  );
+
+  console.log(petInfo.personalityArr);
 
   return (
     <Container>
@@ -204,9 +184,11 @@ export default function PetEdit({ petInfo, setPetInfo }: Props) {
         isDuplicate={true}
         maxSelection={2}
         buttonList={DOG_PERSONALITY}
-        value={petInfo.personalityArr.map((personality) =>
-          DOG_PERSONALITY.findIndex((v) => v === personality),
-        )}
+        value={petInfo.personalityArr
+          .map((personality) =>
+            DOG_PERSONALITY.findIndex((v) => v === personality),
+          )
+          .filter((v) => v >= 0)}
         onChangeButton={handleChangePersonality}
       />
       <Seperator height={24} />
