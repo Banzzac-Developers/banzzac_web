@@ -24,7 +24,7 @@ export default function SquareButton({ title, fill, backgroundColor }: Props) {
 }
 
 const StyledButton = styled.button<{ fill: boolean; backgroundColor: string }>`
-  width: 110px;
+  width: inherit;
   height: 50px;
   font-size: 16px;
   font-weight: 700;
