@@ -8,6 +8,8 @@ import Profile from "@pages/Profile";
 import ProfileEditPage from "@pages/Profile/Edit";
 import Search from "@pages/Search";
 import UserInfoPage from "@pages/Signup/UserInfoPage";
+import PaymentPage from "@pages/Profile/Payment";
+import PaymentListPage from "@pages/Profile/PaymentList";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -34,6 +36,8 @@ const router = createBrowserRouter(
       <Route path="/profile" element={<Profile />} />
       <Route path="/profile/edit" element={<ProfileEditPage />} />
       <Route path="/profile/add-pet" element={<AddPetPage />} />
+      <Route path="/payment" element={<PaymentPage />} />
+      <Route path="/payment/list" element={<PaymentListPage />} />
     </Route>,
   ),
 );

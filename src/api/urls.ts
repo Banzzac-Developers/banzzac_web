@@ -13,6 +13,9 @@ const URLs = {
     deletePet: (id: string, name: string) =>
       `/api/profile/dog/${id}/delete/${name}`,
     withdrawal: (id: string) => `/api/profile/${id}/withdraw`,
+    fetchPayment: (id: string) => `/api/payment/${id}`,
+    addPayment: "/api/payment/ready",
+    fetchRefund: "/api/payment/refund",
   },
   friends: {
     fetchFriendList: (id: string) => `/api/friend/list/${id}`,
