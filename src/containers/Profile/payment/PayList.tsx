@@ -12,8 +12,8 @@ export function PayList({ payList }: Props) {
         return (
           <div key={i}>
             <MatchingTicket
-              text1={`매칭권 ${data.quantity}개`}
-              text2={`${data.approvedAtStr}`}
+              semiTitle={`매칭권 ${data.quantity}개`}
+              eventDate={`${data.approvedAtStr}`}
               afterPay={true}
             ></MatchingTicket>
           </div>
@@ -34,8 +34,8 @@ export function RefundStatusList({ refundList }: Props2) {
         return (
           <div key={i}>
             <MatchingTicket
-              text1={`매칭권 ${data.quantity}개`}
-              text2={`환불신청일 ${data.refundRequestDateStr}`}
+              semiTitle={`매칭권 ${data.quantity}개`}
+              eventDate={`환불신청일 ${data.refundRequestDateStr}`}
               afterPay={true}
             ></MatchingTicket>
           </div>

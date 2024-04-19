@@ -87,20 +87,16 @@ export const defaultPaymentReady = {
 };
 
 export type PaymentApprove = {
+  next_redirect_pc_url: string;
   tid: string;
   nextRedirect_mobile_url: string;
-  next_redirect_pc_url: string;
 };
 
 export const defaultPaymentApprove = {
+  next_redirect_pc_url: "",
   tid: "",
   nextRedirect_mobile_url: "",
-  next_redirect_pc_url: "",
 };
-
-export interface PaymentApproveData extends Data {
-  data: PaymentApprove[];
-}
 
 export type PaymentList = {
   partnerOrderId: number;
