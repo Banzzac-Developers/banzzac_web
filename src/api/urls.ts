@@ -28,6 +28,9 @@ const URLs = {
     registUser: "/api/member/createMember",
     registPet: (id: string) => `/api/member/createDog/${id}`,
   },
+  matching:{
+    fetchCondition : "api/matching/condition",
+  }
 };
 
 export default URLs;
