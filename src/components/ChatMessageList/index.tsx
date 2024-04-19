@@ -1,3 +1,4 @@
+import SvgSelector from "@components/Svg/SvgSelector";
 import StringUtil from "@utils/StringUtil";
 import React, { Ref } from "react";
 import InfiniteScroll from "react-infinite-scroller";
@@ -65,7 +66,7 @@ const ChatMessageList: React.FC<ChatMessageListProps> = ({
           }
         />
         <button className="send-button" onClick={onSendMessage}>
-          Send
+          <SvgSelector svg="sendButton" width={35} height={35} stroke="" />
         </button>
       </div>
     </>

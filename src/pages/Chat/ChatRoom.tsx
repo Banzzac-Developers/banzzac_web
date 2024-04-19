@@ -5,6 +5,8 @@ import { Link, useParams } from "react-router-dom";
 import "./ChatMessagePage.css";
 import ChatMessageList from "../../components/ChatMessageList";
 import SquareButton from "@components/Button/SquareButton";
+import SquareHeader from "@layouts/SquareHeader";
+import SvgSelector from "@components/Svg/SvgSelector";
 
 interface ChatDTO {
   senderId: string;
@@ -135,10 +137,29 @@ const ChatMessagePage: React.FC = () => {
         <Link
           to={"/chat/zkdlwjsxm@example.com"} //zkdlwjsxm@example.com 부분은 session id 받아서
           onClick={handleGoBack}
-          className="back-link"
         >
-          뒤로 가기
+          <SvgSelector
+            svg="expandLeft"
+            height={32}
+            width={32}
+            stroke="#212121"
+          />
         </Link>
+      </div>
+      <div>
+        <SquareHeader
+          title="채팅방 상세"
+          headerIcons={[
+            {
+              icon: "search",
+              onClick: () => {},
+            },
+            {
+              icon: "setting",
+              onClick: () => {},
+            },
+          ]}
+        />
       </div>
       <ChatMessageList
         messagesEndRef={messagesEndRef}
@@ -149,7 +170,7 @@ const ChatMessagePage: React.FC = () => {
         onNewMessageChange={onNewMessageChange}
         onSendMessage={onSendMessage}
       />
-      <div>
+      <div className="input-group">
         <SquareButton
           title="신고하기"
           fill={false}

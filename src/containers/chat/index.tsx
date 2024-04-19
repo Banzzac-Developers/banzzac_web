@@ -8,8 +8,6 @@ export default function ChatContainer() {
   // api 요청 어디서 하지...
   const { id } = useParams(); // 현재 params 에서 받는데 session id 받는걸로 변경
   const { data: chatList } = useChatRoomList(id || "");
-  console.log(id);
-  console.log(chatList);
 
   if (!chatList) return <></>;
 

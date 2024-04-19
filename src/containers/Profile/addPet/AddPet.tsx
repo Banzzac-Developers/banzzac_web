@@ -38,53 +38,32 @@ export default function AddPet() {
     setPetInfo((prev) => ({ ...prev, weight: Number(e.target.value) }));
   };
 
-  const handleChangeNeutrification = (
-    v: number[] | ((prev: number[]) => number[]),
-  ) => {
-    if (Array.isArray(v)) {
-      const neutrification = v.map((i) => NEUTRIFICATION[i]);
-      setPetInfo((prev) => ({ ...prev, neutrification: neutrification[0] }));
-    }
+  const handleChangeNeutrification = (idxArr: number[]) => {
+    const neutrification = idxArr.map((i) => NEUTRIFICATION[i]);
+    setPetInfo((prev) => ({ ...prev, neutrification: neutrification[0] }));
   };
 
-  const handleChangeSize = (v: number[] | ((prev: number[]) => number[])) => {
-    if (Array.isArray(v)) {
-      const size = v.map((i) => SIZE[i]);
-      setPetInfo((prev) => ({ ...prev, size: size[0] }));
-    }
+  const handleChangeSize = (idxArr: number[]) => {
+    const size = idxArr.map((i) => SIZE[i]);
+    console.log(size);
+    setPetInfo((prev) => ({ ...prev, size: size[0] }));
   };
 
-  const handleChangeBreed = (v: number[] | ((prev: number[]) => number[])) => {
-    if (Array.isArray(v)) {
-      const kind = v.map((i) => BREEDS[i]);
-      setPetInfo((prev) => ({ ...prev, kind: kind[0] }));
-    }
+  const handleChangeBreed = (idxArr: number[]) => {
+    const kind = idxArr.map((i) => BREEDS[i]);
+    setPetInfo((prev) => ({ ...prev, kind: kind[0] }));
   };
 
-  const handleChangePersonality = (
-    v: number[] | ((prev: number[]) => number[]),
-  ) => {
-    if (!Array.isArray(v)) {
-      setPetInfo((prev) => {
-        const personalityIdxs = prev.personalityArr.map((personality) =>
-          DOG_PERSONALITY.findIndex((v) => v === personality),
-        );
-        const selectedIdxs = v(personalityIdxs);
-        const personalityArr = selectedIdxs.map(
-          (selectedIdx) => DOG_PERSONALITY[selectedIdx],
-        );
-        return { ...prev, personalityArr };
-      });
-    }
+  const handleChangePersonality = (idxArr: number[]) => {
+    setPetInfo((prev) => {
+      const personalityArr = idxArr.map((i) => DOG_PERSONALITY[i]);
+      return { ...prev, personalityArr };
+    });
   };
 
-  const handleChangeActivity = (
-    v: number[] | ((prev: number[]) => number[]),
-  ) => {
-    if (Array.isArray(v)) {
-      const activity = v.map((i) => ACTIVITY[i]);
-      setPetInfo((prev) => ({ ...prev, activity: activity[0] }));
-    }
+  const handleChangeActivity = (idxArr: number[]) => {
+    const activity = idxArr.map((i) => ACTIVITY[i]);
+    setPetInfo((prev) => ({ ...prev, activity: activity[0] }));
   };
 
   const handleConfirmButton = () => {

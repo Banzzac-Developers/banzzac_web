@@ -5,8 +5,8 @@ import useProfile from "@hooks/profile/useProfile";
 import Seperator from "@components/Seperator";
 import UserCharacteristic from "@containers/Profile/UserCharacteristic";
 import usePets from "@hooks/profile/usePets";
-import DividerDefault from "@components/divider/divider";
 import { TEST_EMAIL } from "@constants/index";
+import DividerDefault from "@components/Divider/Divider";
 
 export default function Profile() {
   const { data: profile } = useProfile(TEST_EMAIL);

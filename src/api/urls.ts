@@ -18,6 +18,15 @@ const URLs = {
     fetchFriendList: (id: string) => `/api/friend/list/${id}`,
     deleteFriend: (id: string, friendId: string) =>
       `/api/friend/${id}/delete/${friendId}`,
+    fetchFavoriteFriendList: (id: string) => `/api/friend/favoriteList/${id}`,
+    addFavoriteFriend: (id: string, friendId: string) =>
+      `/api/friend/${id}/friendFavorite/${friendId}`,
+    deleteFavoriteFriend: (id: string, friendId: string) =>
+      `/api/friend/${id}/friendUnFavorite/${friendId}`,
+  },
+  signup: {
+    registUser: "/api/member/createMember",
+    registPet: (id: string) => `/api/member/createDog/${id}`,
   },
 };
 

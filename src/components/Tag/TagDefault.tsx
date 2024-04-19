@@ -1,7 +1,13 @@
 import styled from "@emotion/styled";
 
 type Props = {
+  /**
+   * tag contents
+   */
   txt: string;
+  /**
+   * bold tag 여부
+   */
   bold?: boolean;
 };
 
