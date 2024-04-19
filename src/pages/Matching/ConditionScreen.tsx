@@ -3,7 +3,6 @@ import styled from "@emotion/styled";
 import { useState } from "react";
 import DogCondition from "./DogCondition";
 import ProfileCondition from "./ProfileCondition";
-import { MatchingCondition} from "@models/matching";
 import { MatchingConditionProps } from "@layouts/RoundHeader";
 
 

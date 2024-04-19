@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { ReactElement } from "react";
 
 type Props = {
   /**
@@ -13,6 +14,8 @@ type Props = {
    * 버튼 배경색
    */
   backgroundColor: string;
+  onClick: () => void;
+  active?: boolean;
 };
 
 export default function SquareButton({ title, fill, backgroundColor }: Props) {

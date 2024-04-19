@@ -1,5 +1,6 @@
 import { NavItem } from "@models/index";
 
+export const TEST_EMAIL = "zkdlwjsxm@example.com ";
 export const navList: NavItem[] = [
   {
     route: "/friends",
@@ -7,7 +8,7 @@ export const navList: NavItem[] = [
     name: "친구",
   },
   {
-    route: "/chat",
+    route: "/chat/" + TEST_EMAIL,
     icon: "chat",
     name: "채팅",
   },

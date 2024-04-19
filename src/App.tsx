@@ -20,6 +20,8 @@ import AddPetPage from "@pages/Profile/AddPet";
 import MainLayout from "@layouts/MainLayout";
 import PetInfoPage from "@pages/Signup/PetInfoPage";
 import SignupComplete from "@pages/Signup/Complete";
+import PetInfoPage from "@pages/Signup/PetInfoPage";
+import SignupComplete from "@pages/Signup/Complete";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,9 +30,12 @@ const router = createBrowserRouter(
       <Route path="/signup/user" element={<UserInfoPage />} />
       <Route path="/signup/pet" element={<PetInfoPage />} />
       <Route path="/signup/complete" element={<SignupComplete />} />
+      <Route path="/signup/user" element={<UserInfoPage />} />
+      <Route path="/signup/pet" element={<PetInfoPage />} />
+      <Route path="/signup/complete" element={<SignupComplete />} />
       <Route path="/friends" element={<Friends />} />
-      <Route path="/chat" element={<Chat />} />
-      <Route path="/chat/:id" element={<ChatRoom />} />
+      <Route path="/chat/:id" element={<Chat />} />
+      <Route path="/chat/:oppId/:chatroomNo" element={<ChatRoom />} />
       <Route path="/search" element={<Search />} />
       <Route path="/matching" element={<Matching />} />
       <Route path="/profile" element={<Profile />} />

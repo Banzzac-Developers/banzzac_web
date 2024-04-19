@@ -13,10 +13,8 @@ type Props = {
 export default function DogCondition( {condition, setCondition} : Props){
     function handleChangeActivate( idxArr: number[]){
         const activate = idxArr.map((i)=>ACTIVITY[i]);
-        console.log(activate);
-        
-        console.log(condition.amountOfActivity);
         setCondition((prev) => ({...prev, amountOfActivity:activate[0] }))
+        console.log(condition.amountOfActivity);
     }
 
 
