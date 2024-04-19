@@ -8,6 +8,8 @@ import Profile from "@pages/Profile";
 import ProfileEditPage from "@pages/Profile/Edit";
 import Search from "@pages/Search";
 import UserInfoPage from "@pages/Signup/UserInfoPage";
+import PaymentPage from "@pages/Profile/Payment";
+import PaymentListPage from "@pages/Profile/PaymentList";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -18,11 +20,17 @@ import AddPetPage from "@pages/Profile/AddPet";
 import MainLayout from "@layouts/MainLayout";
 import PetInfoPage from "@pages/Signup/PetInfoPage";
 import SignupComplete from "@pages/Signup/Complete";
+import PetInfoPage from "@pages/Signup/PetInfoPage";
+import SignupComplete from "@pages/Signup/Complete";
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" errorElement={<NotFound />} element={<MainLayout />}>
       <Route path="/login" element={<Login />} />
+      <Route path="/signup/user" element={<UserInfoPage />} />
+      <Route path="/signup/pet" element={<PetInfoPage />} />
+      <Route path="/signup/complete" element={<SignupComplete />} />
       <Route path="/signup/user" element={<UserInfoPage />} />
       <Route path="/signup/pet" element={<PetInfoPage />} />
       <Route path="/signup/complete" element={<SignupComplete />} />
@@ -34,6 +42,8 @@ const router = createBrowserRouter(
       <Route path="/profile" element={<Profile />} />
       <Route path="/profile/edit" element={<ProfileEditPage />} />
       <Route path="/profile/add-pet" element={<AddPetPage />} />
+      <Route path="/payment" element={<PaymentPage />} />
+      <Route path="/payment/list" element={<PaymentListPage />} />
     </Route>,
   ),
 );

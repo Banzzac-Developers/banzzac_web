@@ -23,6 +23,7 @@ export default function SquareButton({
       backgroundColor={backgroundColor}
       onClick={onClick}
     >
+
       {title}
     </StyledButton>
   );
