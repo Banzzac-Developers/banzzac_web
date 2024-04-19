@@ -1,13 +1,14 @@
 import ChatItem from "./ChatItem";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import React from "react";
 import styled from "@emotion/styled";
 import useChatRoomList from "@hooks/chat/useChatRoomList";
 
 export default function ChatContainer() {
   // api 요청 어디서 하지...
-  const { data: chatList } = useChatRoomList("zkdlwjsxm@example.com");
-
+  const { id } = useParams(); // 현재 params 에서 받는데 session id 받는걸로 변경
+  const { data: chatList } = useChatRoomList(id || "");
+  console.log(id);
   console.log(chatList);
 
   if (!chatList) return <></>;
@@ -17,7 +18,7 @@ export default function ChatContainer() {
       {chatList.map((chatRoom, idx) => (
         <React.Fragment key={chatRoom.chatroomNo}>
           <li>
-            <Link to={`/chat/${chatRoom.chatroomNo}`}>
+            <Link to={`/chat/${chatRoom.opponentId}/${chatRoom.chatroomNo}`}>
               <ChatItem {...chatRoom} />
             </Link>
           </li>

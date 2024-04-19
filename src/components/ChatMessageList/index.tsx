@@ -4,13 +4,15 @@ import InfiniteScroll from "react-infinite-scroller";
 
 interface ChatDTO {
   senderId: string;
+  senderNickname?: string;
   receiverId: string;
-  sendImg: string;
+  receiverNickname?: string;
+  sendImg?: string;
   message: string;
   isRead: number;
   chatroomNo: number;
-  sendTime: Date;
-  sendTimeStr: string;
+  sendTime?: Date;
+  sendTimeStr?: string;
 }
 
 interface ChatMessageListProps {
@@ -47,7 +49,8 @@ const ChatMessageList: React.FC<ChatMessageListProps> = ({
         >
           {messages.map((msg, idx) => (
             <div key={idx}>
-              {msg.senderId} : {msg.message} - {msg.sendTimeStr} - {msg.isRead}
+              {msg.senderNickname} : {msg.message} - {msg.sendTimeStr} -{" "}
+              {msg.isRead}
             </div>
           ))}
         </InfiniteScroll>

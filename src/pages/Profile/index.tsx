@@ -5,7 +5,7 @@ import useProfile from "@hooks/profile/useProfile";
 import Seperator from "@components/Seperator";
 import UserCharacteristic from "@containers/Profile/UserCharacteristic";
 import usePets from "@hooks/profile/usePets";
-import DividerDefault from "@components/Divider/divider";
+import DividerDefault from "@components/divider/divider";
 import { TEST_EMAIL } from "@constants/index";
 
 export default function Profile() {

@@ -4,19 +4,23 @@ import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import "./ChatMessagePage.css";
 import ChatMessageList from "../../components/ChatMessageList";
+import SquareButton from "@components/Button/SquareButton";
 
 interface ChatDTO {
   senderId: string;
+  senderNickname?: string;
   receiverId: string;
-  sendImg: string;
+  receiverNickname?: string;
+  sendImg?: string;
   message: string;
   isRead: number;
   chatroomNo: number;
-  sendTime: Date;
+  sendTime?: Date;
+  sendTimeStr?: string;
 }
 
 const ChatMessagePage: React.FC = () => {
-  const { roomId } = useParams();
+  const { oppId, chatroomNo } = useParams();
   const [loading, setLoading] = useState(true);
   const [stompClient, setStompClient] = useState<Client | null>(null);
   const [messages, setMessages] = useState<ChatDTO[]>([]);
@@ -31,7 +35,7 @@ const ChatMessagePage: React.FC = () => {
   const loadInitChatMessages = useCallback(async () => {
     try {
       const response = await axios.get(
-        `http://localhost/api/chat/zkdlwjsxm@example.com/1`,
+        `http://localhost/api/chat/zkdlwjsxm@example.com/${chatroomNo}`, //zkdlwjsxm@example.com 부분은 session id 받아서
       );
       const responseMessages = response.data as ChatDTO[];
       setMessages(responseMessages);
@@ -39,7 +43,7 @@ const ChatMessagePage: React.FC = () => {
     } catch (error) {
       console.error("채팅 내역 로드 실패", error);
     }
-  }, [roomId]);
+  }, [oppId]);
 
   const client = new Client({
     brokerURL: "ws://localhost/chat", // 서버 WebSocket URL
@@ -55,6 +59,14 @@ const ChatMessagePage: React.FC = () => {
       client.subscribe(`/topic/public`, (message: IMessage) => {
         const msg: ChatDTO = JSON.parse(message.body);
         setMessages((prevMessages) => [...prevMessages, msg]);
+        console.log(
+          "message",
+          message,
+          "oppId",
+          oppId,
+          "chatroomNo",
+          chatroomNo,
+        );
       });
     };
 
@@ -64,12 +76,12 @@ const ChatMessagePage: React.FC = () => {
     return () => {
       client.deactivate();
     };
-  }, [loadInitChatMessages, loading, roomId]);
+  }, [loadInitChatMessages, loading, oppId]);
 
   const fetchMessages = async () => {
     try {
       const response = await axios.get(
-        `http://localhost/api/chat/zkdlwjsxm@example.com/1`,
+        `http://localhost/api/chat/zkdlwjsxm@example.com/${chatroomNo}`, //zkdlwjsxm@example.com 부분은 session id 받아서
       );
 
       const responseMessages = response.data as ChatDTO[];
@@ -87,18 +99,19 @@ const ChatMessagePage: React.FC = () => {
   const onSendMessage = () => {
     if (stompClient && newMessage) {
       const chatMessage: ChatDTO = {
-        senderId: "zkdlwjsxm@example.com",
-        receiverId: "example2@example.com",
+        senderId: "zkdlwjsxm@example.com", //zkdlwjsxm@example.com 부분은 session id 받아서
+        senderNickname: "최성재", //session nickname 받아서
+        receiverId: oppId || "",
         isRead: 1,
         sendImg: "",
         sendTime: new Date(),
         message: newMessage,
-        chatroomNo: 1,
+        chatroomNo: Number(chatroomNo),
+        sendTimeStr: "",
       };
-      console.log(roomId);
 
       stompClient.publish({
-        destination: `/app/chat/rooms/1/send`,
+        destination: `/app/chat/rooms/${chatroomNo}/send`,
         body: JSON.stringify(chatMessage),
       });
 
@@ -106,10 +119,24 @@ const ChatMessagePage: React.FC = () => {
     }
   };
 
+  const handleGoBack = () => {
+    if (stompClient) {
+      stompClient.deactivate();
+    }
+  };
+
+  const reportUser = () => {
+    axios.get(`http://localhost/api//zkdlwjsxm@example.com/${chatroomNo}`);
+  };
+
   return (
     <div className="chat-container">
       <div>
-        <Link to={"/chat"} className="back-link">
+        <Link
+          to={"/chat/zkdlwjsxm@example.com"} //zkdlwjsxm@example.com 부분은 session id 받아서
+          onClick={handleGoBack}
+          className="back-link"
+        >
           뒤로 가기
         </Link>
       </div>
@@ -122,6 +149,24 @@ const ChatMessagePage: React.FC = () => {
         onNewMessageChange={onNewMessageChange}
         onSendMessage={onSendMessage}
       />
+      <div>
+        <SquareButton
+          title="신고하기"
+          fill={false}
+          backgroundColor="#212121"
+          onClick={() => {
+            confirm("신고하시겠습니까?");
+          }}
+        />
+        <SquareButton
+          title="차단하기"
+          fill={false}
+          backgroundColor="#212121"
+          onClick={() => {
+            confirm("차단하시겠습니까?");
+          }}
+        />
+      </div>
     </div>
   );
 };

@@ -5,13 +5,12 @@ import styled from "@emotion/styled";
 
 import { ChatRoom } from "@models/chat";
 import NumberAlert from "@components/Badge/NumberAlert";
-import StringUtil from "@utils/StringUtil";
 
 export default function ChatItem({
   dogName,
   memberNickname,
   lastMessage,
-  lastMessageSendtime,
+  lastMessageSendtimeStr,
   unreadMessagesCount,
 }: ChatRoom) {
   return (
@@ -32,7 +31,7 @@ export default function ChatItem({
         </div>
       </Profile>
       <Alert>
-        <Time>{StringUtil.displayTime(lastMessageSendtime)}</Time>
+        <Time>{lastMessageSendtimeStr}</Time>
         <NumberAlert color="#BF8BFC" filled number={unreadMessagesCount} />
       </Alert>
     </Container>
