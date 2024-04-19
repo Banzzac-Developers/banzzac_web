@@ -28,5 +28,3 @@ export const navList: NavItem[] = [
     name: "내 프로필",
   },
 ];
-
-export const TEST_EMAIL = "zkdlwjsxm@example.com";
