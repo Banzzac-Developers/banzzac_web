@@ -3,11 +3,10 @@ import styled from "@emotion/styled";
 import { useState } from "react";
 import DogCondition from "./DogCondition";
 import ProfileCondition from "./ProfileCondition";
-import { MatchingConditionProps } from "@layouts/RoundHeader";
 
 
 
-export default function ConditionScreen({conditionData, setConditionData} : MatchingConditionProps){
+export default function ConditionScreen(){
     const [selectColor,setSelectColor] = useState(["#A86EFA","#212121"]);
     return(<>
         <Header>
@@ -20,7 +19,7 @@ export default function ConditionScreen({conditionData, setConditionData} : Matc
                 <TextInHeader color={selectColor[1]}>보호자</TextInHeader>
             </HeaderContent>
         </Header>
-        {selectColor[0] === "#A86EFA" ? <DogCondition condition={conditionData} setCondition={setConditionData} /> : <ProfileCondition />}
+        {selectColor[0] === "#A86EFA" ? <DogCondition/> : <ProfileCondition />}
     </>)
 }
 

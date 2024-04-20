@@ -2,39 +2,50 @@ import styled from "@emotion/styled";
 import { ReactElement } from "react";
 
 type Props = {
-  /**
-   * button txt
-   */
-  title: string;
-  /**
-   * 채워진 버튼 여부
-   */
+  title: string | ReactElement;
   fill: boolean;
   /**
    * 버튼 배경색
    */
   backgroundColor: string;
-  onClick: () => void;
+  onClick?: () => void;
   active?: boolean;
 };
 
-export default function SquareButton({ title, fill, backgroundColor }: Props) {
+export default function SquareButton({
+  title,
+  fill,
+  backgroundColor,
+  active = false,
+  onClick,
+}: Props) {
   return (
-    <StyledButton fill={fill} backgroundColor={backgroundColor}>
+    <StyledButton
+      active={active}
+      fill={fill}
+      backgroundColor={backgroundColor}
+      onClick={onClick}
+    >
       {title}
     </StyledButton>
   );
 }
 
-const StyledButton = styled.button<{ fill: boolean; backgroundColor: string }>`
-  width: 100%;
-  height: 50px;
+const StyledButton = styled.button<{
+  fill: boolean;
+  backgroundColor: string;
+  active: boolean;
+}>`
+  padding: 8px 10px;
+  min-width: 82px;
+  width: inherit;
+  display: flex;
   font-size: 16px;
   font-weight: 700;
   justify-content: center;
   align-items: center;
   border-radius: 8px;
-  border: 2px solid;
+  border: ${({ active }) => (active ? "2px solid" : "1px solid")};
   background-color: ${({ fill, backgroundColor }) =>
     fill ? backgroundColor : "#FFFFFF"};
   color: ${({ fill, backgroundColor }) => (fill ? "#FFFFFF" : backgroundColor)};

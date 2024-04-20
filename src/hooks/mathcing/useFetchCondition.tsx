@@ -1,12 +1,14 @@
 import API from "@api/api";
 import URLs from "@api/urls";
 import { MatchingCondition, defaultCondition } from "@models/matching";
+import { conditionState } from "@recoil/matching";
 import { useCallback, useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
 
 
 
 export default function useFetchCondition(){
-    const [data, setData] = useState<MatchingCondition>(defaultCondition);
+    const [data, setData] = useRecoilState(conditionState);
     
     const fetchCondition = useCallback(async () =>{
         const res : MatchingCondition = await API.get(URLs.matching.fetchCondition);
@@ -17,5 +19,5 @@ export default function useFetchCondition(){
         fetchCondition();
     },[])
 
-    return {data ,setData};
+    return {data};
 }

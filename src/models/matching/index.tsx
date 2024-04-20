@@ -14,6 +14,8 @@ export type MatchingCondition = {
 	dogNature:string [],
 	amountOfActivity : string,
 	wantMatching:boolean,
+	memberDTO : Profile |null,
+	dogDTOs:Pet |null
 }
 
 
@@ -23,13 +25,15 @@ export const defaultCondition = {
 	walkingStyle:[],
 	walkingStyleStr:"",
 	ageRangeStart :0,
-	ageRangeEnd : 0,
-	gender:0,
+	ageRangeEnd : 100,
+	gender:1,
 	size:"",
 	dogNatureStr:"",
 	dogNature:[],
 	amountOfActivity : "",
 	wantMatching:true,
+	memberDTO : null,
+	dogDTOs : null
 }
 
 export type Matching = {
