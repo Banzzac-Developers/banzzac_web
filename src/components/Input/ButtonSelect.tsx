@@ -1,6 +1,5 @@
 import RoundButton from "@components/Button/RoundButton";
 import styled, { CSSObject } from "@emotion/styled";
-import { SetStateAction } from "react";
 
 type Props = {
   label: string;
@@ -9,10 +8,12 @@ type Props = {
   maxSelection: number;
   value: number[];
   gridStyle?: CSSObject;
-  onChangeButton: React.Dispatch<SetStateAction<number[]>>;
+  className?: string;
+  onChangeButton: (idxArr: number[]) => void;
 };
 
 export default function ButtonSelect({
+  className,
   label,
   buttonList,
   gridStyle = { gridTemplateColumns: "repeat(2, 1fr)", gap: "20px" },
@@ -25,28 +26,33 @@ export default function ButtonSelect({
     // 중복선택 불가능
     if (!isDuplicate) {
       if (value.includes(idx)) {
-        onChangeButton((prev) => prev.filter((v) => v !== idx));
+        const newArr = value.filter((v) => v !== idx && v >= 0);
+        onChangeButton(newArr);
       } else {
-        onChangeButton([idx]);
+        const newArr = [idx].filter((v) => v >= 0);
+        onChangeButton(newArr);
       }
     } else {
       if (!value.includes(idx) && value.length >= maxSelection) return;
       if (value.includes(idx)) {
-        onChangeButton((prev) => prev.filter((v) => v !== idx));
+        const newArr = value.filter((v) => v !== idx && v >= 0);
+        onChangeButton(newArr);
       } else {
-        onChangeButton((prev) => [...prev, idx]);
+        const newArr = value.concat(idx).filter((v) => v >= 0);
+        onChangeButton(newArr);
       }
     }
   };
 
   return (
-    <Container gridStyle={gridStyle}>
+    <Container gridStyle={gridStyle} className={className}>
       <Label>{label}</Label>
       <div style={{ height: "14px" }} />
       <ul>
         {buttonList.map((button, idx) => (
           <li key={button}>
             <RoundButton
+              active={value.includes(idx)}
               onClick={() => handleClick(idx)}
               title={button}
               fill={false}
@@ -60,13 +66,8 @@ export default function ButtonSelect({
 }
 
 const Container = styled.div<{ gridStyle: CSSObject }>`
-  width: 390px;
-
   ul {
     display: grid;
-    list-style: none;
-    padding: 0;
-    margin: 0;
     ${({ gridStyle }) => gridStyle}
   }
   ul li {

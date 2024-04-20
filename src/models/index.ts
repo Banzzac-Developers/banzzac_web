@@ -14,6 +14,7 @@ export type SvgIcon =
   | "userAdd"
   | "dogFace"
   | "face"
+  | "expandLeft"
   | "expandUp"
   | "expandDown"
   | "close"
@@ -22,6 +23,17 @@ export type SvgIcon =
   | "paymentHistory"
   | "filledPin"
   | "pin"
-  | "femail";
+  | "femail"
+  | "exit"
+  | "filledAddRound"
+  | "filledCloseRound"
+  | "chatPlus"
+  | "userClose"
+  | "userRemove"
+  | "sort"
+  | "filledStar"
+  | "star"
+  | "menu"
+  | "sendButton";
 
 export type NavItem = { route: string; name: string; icon: SvgIcon };

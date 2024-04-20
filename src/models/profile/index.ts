@@ -19,6 +19,25 @@ export type Profile = {
   temperature: number;
 };
 
+export const defaultProfile = {
+  no: 0,
+  gender: 1,
+  age: 0,
+  cnt: 0,
+  isGrant: 0,
+  quantity: 0,
+  id: "",
+  pwd: "",
+  img: "",
+  walkingStyleStr: "",
+  nickname: "",
+  phone: "",
+  statusMessage: null,
+  date: "",
+  walkingStyle: [],
+  temperature: 0,
+};
+
 export interface ProfileData extends Data {
   data: Profile[];
 }
@@ -41,3 +60,98 @@ export type Pet = {
 export interface PetData extends Data {
   data: Pet[];
 }
+
+export const defaultPet = {
+  id: "",
+  name: "",
+  img: "",
+  gender: "",
+  neutrification: "",
+  size: "",
+  kind: "",
+  personality: "",
+  activity: "",
+  age: 0,
+  weight: 0,
+  personalityArr: [],
+};
+
+export type PaymentApprove = {
+  next_redirect_pc_url: string;
+  tid: string;
+  nextRedirect_mobile_url: string;
+};
+
+export const defaultPaymentApprove = {
+  next_redirect_pc_url: "",
+  tid: "",
+  nextRedirect_mobile_url: "",
+};
+
+export type PaymentList = {
+  partnerOrderId: number;
+  partnerUserId: string;
+  tid: string;
+  aid: string;
+  paymentMethodType: string;
+  quantity: number;
+  totalAmount: number;
+  approvedAt: Date;
+  approvedAtStr: string;
+};
+
+export interface PaymentListData extends Data {
+  data: PaymentList[];
+}
+
+export const defaultPaymentList = {
+  partnerOrderId: 0,
+  partnerUserId: "",
+  tid: "",
+  aid: "",
+  paymentMethodType: "",
+  quantity: 0,
+  totalAmount: 0,
+  approvedAt: "",
+  approvedAtStr: "",
+};
+
+export type AddRefund = {
+  partnerOrderId: number;
+  reason: string;
+};
+
+export const defaultAddRefund = {
+  partnerOrderId: 0,
+  reason: "",
+};
+
+export type RefundList = {
+  partnerOrderId: number;
+  approve: number;
+  reason: string;
+  refundRequestDate: string;
+  approveTime: string | null;
+  refundRequestDateStr: string;
+  approveTimeStr: string | null;
+  quantity: number;
+  totalAmount: number;
+  sessionId: null;
+};
+
+export interface RefundListData extends Data {
+  data: RefundList[];
+}
+
+export const defaultRefundList = {
+  partnerOrderId: 0,
+  approve: 0,
+  reason: "",
+  refundRequestDate: "",
+  approveTime: "",
+  refundRequestDateStr: "",
+  approveTimeStr: "",
+  quantity: 0,
+  totalAmount: 0,
+  sessionId: null,
+};

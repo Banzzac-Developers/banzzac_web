@@ -28,7 +28,11 @@ export default function ModalRenderer() {
         }
         if (isFullScreen(modal))
           return (
-            <FullScreenModal key={modal.type} contents={modal.props.contents} />
+            <FullScreenModal
+              hasCloseButton={modal.props.hasCloseButton}
+              key={modal.type}
+              contents={modal.props.contents}
+            />
           );
       })}
     </Container>
@@ -48,7 +52,7 @@ const Background = styled.div`
   background-color: rgba(0, 0, 0, 0.25);
   width: 100%;
   height: 100vh;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
 `;

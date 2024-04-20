@@ -1,20 +1,43 @@
 import SvgSelector from "@components/Svg/SvgSelector";
 import TagDefault from "@components/Tag/TagDefault";
 import styled from "@emotion/styled";
+import useModal from "@hooks/common/useModal";
+import ConditionScreen from "@pages/Matching/ConditionScreen";
+import { conditionState } from "@recoil/matching";
+import { useRecoilState, useRecoilValue } from "recoil";
+
+
 
 export default function RoundHeader() {
+  const {addModal} = useModal();
+  const conditionsState = useRecoilValue(conditionState);
+  const handleConditionScreen = () =>{
+    addModal({
+      type : "fullscreen",
+      props : {
+        contents :<ConditionScreen />,
+        hasCloseButton : true,
+      }
+    })
+  }
+
   return (
-    <Header>
+    <Header onClick={()=>{handleConditionScreen()}}>
       <Wrapper>
         <SvgSelector svg={"dogFace"} width={24} height={24} stroke="#212121" />
         <div>
-          <TagDefault txt="적용된 필터 없음" />
+          {
+            conditionsState.dogNature.map((v,i)=><TagDefault key={i} txt={v}/>)
+          }
+          
         </div>
       </Wrapper>
       <Wrapper>
         <SvgSelector svg={"face"} width={24} height={24} stroke="#212121" />
         <div>
-          <TagDefault txt="적용된 필터 없음" />
+        {
+            conditionsState.walkingStyle.map((v,i)=><TagDefault key={i} txt={v}/>)
+          }
         </div>
       </Wrapper>
     </Header>

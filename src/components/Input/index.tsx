@@ -6,7 +6,7 @@ type Props = {
   id: string;
   width: string;
   value: string | number | readonly string[];
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export default function InputDefault({
@@ -19,7 +19,7 @@ export default function InputDefault({
 }: Props) {
   return (
     <Container>
-      <label htmlFor={id}>{title}</label>
+      <Label htmlFor={id}>{title}</Label>
       <InputItem
         value={value}
         onChange={onChange}
@@ -37,12 +37,20 @@ const Container = styled.div`
   flex-direction: column;
   color: #212121;
   line-height: 22px;
-  padding: 0px 30px;
+  width: 100%;
+`;
+
+const Label = styled.label`
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  color: #212121;
+  padding-bottom: 10px;
 `;
 
 const InputItem = styled.input<{ width: string }>`
   border: none;
-  border-bottom: 2px solid #e0e0e0;
+  border-bottom: 1px solid #757575;
   width: ${({ width }) => {
     return width;
   }};

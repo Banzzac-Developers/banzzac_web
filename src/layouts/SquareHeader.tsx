@@ -1,10 +1,15 @@
 import Header from "@components/Header";
 import styled from "@emotion/styled";
-import { HeaderIcon } from "@models/index";
+import { HeaderIcon, SvgIcon } from "@models/index";
+
+type Icon = {
+  icon: HeaderIcon;
+  onClick: () => void;
+};
 
 type Props = {
   title: string;
-  headerIcons: HeaderIcon[];
+  headerIcons: Icon[];
 };
 
 export default function SquareHeader({ title, headerIcons }: Props) {
@@ -13,9 +18,9 @@ export default function SquareHeader({ title, headerIcons }: Props) {
       <Header.Title title={title} />
       <div>
         <ul>
-          {headerIcons.map((icon) => (
+          {headerIcons.map(({ icon, onClick }) => (
             <li key={icon}>
-              <Header.IconButton icon={icon} />
+              <Header.IconButton onClick={onClick} icon={icon} />
             </li>
           ))}
         </ul>

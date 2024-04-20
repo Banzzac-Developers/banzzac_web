@@ -5,6 +5,8 @@ import styled from "@emotion/styled";
 import { Profile } from "@models/profile";
 import { FontStyle } from "@utils/StyleUtil";
 import Text from "@components/Text";
+import { Link } from "react-router-dom";
+import { TEST_EMAIL } from "@constants/index";
 
 export default function UserCharacteristic({
   nickname,
@@ -21,23 +23,9 @@ export default function UserCharacteristic({
         <TemperatureBar point={temperature / 10} />
       </Box>
       <Seperator height={18} />
-      <Box display={true} height={80}>
-        <IconBox>
-          <Text {...FontStyle(24, 600, 22, "#333")}>{quantity}</Text>
-          <Text {...FontStyle(12, 600, 22, "#333")}>주간 산책 횟수</Text>
-        </IconBox>
-        <IconBox>
-          <Text {...FontStyle(24, 600, 22, "#333")}>40</Text>
-          <Text {...FontStyle(12, 600, 22, "#333")}>평균 산책 시간</Text>
-        </IconBox>
-        <IconBox>
-          <Text {...FontStyle(24, 600, 22, "#333")}>리뷰</Text>
-          <Text {...FontStyle(12, 600, 22, "#333")}>리뷰조회</Text>
-        </IconBox>
-      </Box>
       <Seperator height={18} />
       <Box display={true} height={80}>
-        <IconBox>
+        <StyledLink to="/payment" state={{ quantity: quantity }}>
           <SvgSelector
             svg="payment"
             height={30}
@@ -45,8 +33,8 @@ export default function UserCharacteristic({
             stroke={"#A86EFA"}
           />
           <Text {...FontStyle(12, 600, 22, "#333")}>매칭권 구매</Text>
-        </IconBox>
-        <IconBox>
+        </StyledLink>
+        <StyledLink to="/payment/list">
           <SvgSelector
             svg="paymentHistory"
             height={30}
@@ -54,7 +42,7 @@ export default function UserCharacteristic({
             stroke={"#A86EFA"}
           />
           <Text {...FontStyle(12, 600, 22, "#333")}>구매내역</Text>
-        </IconBox>
+        </StyledLink>
       </Box>
     </>
   );
@@ -71,7 +59,7 @@ const Box = styled.div<{ height: number; display: boolean }>`
   width: 100%;
 `;
 
-const IconBox = styled.div`
+const StyledLink = styled(Link)`
   display: flex;
   align-items: center;
   flex-direction: column;
