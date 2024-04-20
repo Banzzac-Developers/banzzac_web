@@ -16,7 +16,7 @@ export default function ModalContents() {
     if (!password) return;
     withdrawal(password);
     removeCurrentModal();
-    navigator("/search");
+    navigator("/login");
   };
 
   return (

@@ -2,9 +2,6 @@ import SvgSelector from "@components/Svg/SvgSelector";
 import Text from "@components/Text";
 import { FontStyle } from "@utils/StyleUtil";
 import styled from "@emotion/styled";
-import Seperator from "@components/Seperator";
-import DividerDefault from "@components/Divider/Divider";
-import axios from "axios";
 
 type Props = {
   semiTitle: String;
@@ -14,61 +11,21 @@ type Props = {
   isClcik?: boolean;
 };
 
-function MatchingTicket({
-  semiTitle,
-  eventDate,
-  afterPay = false,
-  quantity = 1,
-  isClcik = false,
-}: Props) {
-  const price: number = 1000;
-
+function MatchingTicket({ semiTitle, eventDate, afterPay = false }: Props) {
   return (
     <>
-      <StyledDiv>
-        <Container>
-          <SvgSelector
-            svg="payment"
-            height={30}
-            width={30}
-            stroke={"#A86EFA"}
-          />
-          <Content>
-            <Text {...FontStyle(13, 670, 23, "#212121")}>{semiTitle}</Text>
-            {afterPay && (
-              <Text {...FontStyle(11, 600, 20, "#333")}>{eventDate}</Text>
-            )}
-          </Content>
-        </Container>
-        {isClcik && (
-          <ButtonContainer
-            onClick={() => {
-              axios
-                .post("http://localhost/api/payment/ready", {
-                  quantity: quantity,
-                  totalAmount: quantity * price,
-                })
-                .then(({ data }) => {
-                  location.href = data.data.next_redirect_pc_url;
-                });
-            }}
-          >
-            ₩{quantity * price}
-          </ButtonContainer>
-        )}
-      </StyledDiv>
-      <Seperator height={3} />
-      <DividerDefault width={"100%"} />
-      <Seperator height={6} />
+      <Container>
+        <SvgSelector svg="payment" height={30} width={30} stroke={"#A86EFA"} />
+        <Content>
+          <Text {...FontStyle(13, 670, 23, "#212121")}>{semiTitle}</Text>
+          {afterPay && (
+            <Text {...FontStyle(11, 600, 20, "#333")}>{eventDate}</Text>
+          )}
+        </Content>
+      </Container>
     </>
   );
 }
-
-const StyledDiv = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
 
 const Container = styled.div`
   width: 50vw;
@@ -85,8 +42,8 @@ const Content = styled.div`
   width: max-content;
 `;
 
-const ButtonContainer = styled.button`
-  width: 15%;
+export const ButtonContainer = styled.button`
+  width: 70px;
   height: 25px;
   font-size: 13px;
   font-weight: 500;

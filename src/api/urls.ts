@@ -14,8 +14,10 @@ const URLs = {
       `/api/profile/dog/${id}/delete/${name}`,
     withdrawal: (id: string) => `/api/profile/${id}/withdraw`,
     fetchPayment: (id: string) => `/api/payment/${id}`,
-    addPayment: "/api/payment/ready",
     fetchRefund: "/api/payment/refund",
+    updateRefund: "/api/payment/refund",
+    addRefund: "/api/payment/refund/insert",
+    deleteRefund: (orderId: string) => `/api/payment/refund/cancel/${orderId}`,
   },
   friends: {
     fetchFriendList: (id: string) => `/api/friend/list/${id}`,
@@ -31,9 +33,9 @@ const URLs = {
     registUser: "/api/member/createMember",
     registPet: (id: string) => `/api/member/createDog/${id}`,
   },
-  matching:{
-    fetchCondition : "api/matching/condition",
-  }
+  matching: {
+    fetchCondition: "api/matching/condition",
+  },
 };
 
 export default URLs;
