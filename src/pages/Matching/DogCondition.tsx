@@ -3,15 +3,19 @@ import ButtonSelect from "@components/Input/ButtonSelect"
 import Seperator from "@components/Seperator";
 import { ACTIVITY, DOG_PERSONALITY, SIZE } from "@constants/profile"
 import styled from "@emotion/styled"
+import useModal from "@hooks/common/useModal";
+import { useUpdateCondition } from "@hooks/mathcing/useUpdateCondition";
 import { conditionState } from "@recoil/matching";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
 
 export const gridStlye= { gridTemplateColumns: "repeat(3, 1fr)", gap: "10px" }
 
-export default function DogCondition( ){
+export default function DogCondition(){
     const [condition, setCondition] = useRecoilState(conditionState);
     const [reset] = useState(condition);
+    const {removeCurrentModal} = useModal();
+    const {updateCondition} = useUpdateCondition();
     
     const handleChangeSize = (idxArr: number[]) => {
         const size = idxArr.map((i) => SIZE[i]);
@@ -73,7 +77,10 @@ export default function DogCondition( ){
         </RowBox>
         <ButtonBox>
             <ActionButton onClick={()=>handleResetValue()} bgcolor="#fff" width="35%">초기화</ActionButton>
-            <ActionButton bgcolor="#000" width="65%">적용하기</ActionButton>
+            <ActionButton onClick={()=>{
+                updateCondition(condition)
+                removeCurrentModal();
+            }} bgcolor="#000" width="65%">적용하기</ActionButton>
         </ButtonBox>
     </Container>)
 }

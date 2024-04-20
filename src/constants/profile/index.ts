@@ -33,6 +33,7 @@ export const WALKING_STYLE = [
   "대화를 하는",
   "대화가 적은",
   "산책이 능숙한",
+  "활기찬"
 ];
 
 export const MBTI = ["E", "S", "F", "J", "I", "N", "T", "P"];

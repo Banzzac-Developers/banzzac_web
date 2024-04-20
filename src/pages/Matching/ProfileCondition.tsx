@@ -4,21 +4,35 @@ import { conditionState } from "@recoil/matching";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { gridStlye } from "./DogCondition";
-import { GENDER } from "@constants/profile";
+import { GENDER, WALKING_STYLE } from "@constants/profile";
 import Seperator from "@components/Seperator";
 import DividerDefault from "@components/Divider/Divider";
 import MultiSlider from "@components/Slider/Slider";
+import { MatchingCondition } from "@models/matching";
+import { useUpdateCondition } from "@hooks/mathcing/useUpdateCondition";
+import useModal from "@hooks/common/useModal";
 
 
 
 export default function ProfileCondition(){
     const [condition, setCondition] = useRecoilState(conditionState);
     const [reset] = useState(condition);
+    const {updateCondition} = useUpdateCondition();
+    const {removeCurrentModal} = useModal();
 
     function handleChangeGender(idxArr: number[]){
         const gender = idxArr.map((i)=> GENDER[i])
         const changeGender = gender[0] === "남자" ? 1 :2
         setCondition((prev)=>({...prev, gender : changeGender}))
+    }
+
+    function handleWalkingStyle(idxArr : number[]){
+        setCondition((prev)=>{
+            const walkingStyleArr = idxArr.map((idx) => WALKING_STYLE[idx]);
+            return {...prev, walkingStyle : walkingStyleArr}
+        })
+        console.log(condition);
+        
     }
 
     function handleResetValue(){
@@ -54,10 +68,24 @@ export default function ProfileCondition(){
             <DividerDefault width="100" />
             <Seperator height={24} />
 
+            <ButtonSelection 
+                gridStyle={gridStlye}
+                buttonList={WALKING_STYLE}
+                label="산책 스타일"
+                isDuplicate={true}
+                maxSelection={5}
+                value={condition.walkingStyle.map((v)=> WALKING_STYLE.findIndex((walkingStyle)=> walkingStyle === v))}
+                onChangeButton={handleWalkingStyle}
+            />
+
         </RowBox>
         <ButtonBox>
             <ActionButton onClick={()=>handleResetValue()} bgcolor="#fff" width="35%">초기화</ActionButton>
-            <ActionButton bgcolor="#000" width="65%">적용하기</ActionButton>
+            <ActionButton onClick={()=>
+                {
+                    updateCondition(condition)
+                    removeCurrentModal()
+                }} bgcolor="#000" width="65%">적용하기</ActionButton>
         </ButtonBox>
     </Container>)
 }

@@ -35,6 +35,7 @@ const URLs = {
   },
   matching: {
     fetchCondition: "api/matching/condition",
+    updateCondition : "api/matching/condition",
   },
 };
 

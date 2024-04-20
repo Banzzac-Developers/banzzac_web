@@ -25,20 +25,19 @@ export default function RoundHeader() {
     <Header onClick={()=>{handleConditionScreen()}}>
       <Wrapper>
         <SvgSelector svg={"dogFace"} width={24} height={24} stroke="#212121" />
-        <div>
+        <TagWrapper>
           {
-            conditionsState.dogNature.map((v,i)=><TagDefault key={i} txt={v}/>)
+           conditionsState.dogNature.map((v,i)=><TagDefault key={i} txt={v}/>)
           }
-          
-        </div>
+        </TagWrapper>
       </Wrapper>
       <Wrapper>
         <SvgSelector svg={"face"} width={24} height={24} stroke="#212121" />
-        <div>
-        {
+        <TagWrapper>
+          {
             conditionsState.walkingStyle.map((v,i)=><TagDefault key={i} txt={v}/>)
           }
-        </div>
+        </TagWrapper>
       </Wrapper>
     </Header>
   );
@@ -57,8 +56,20 @@ const Header = styled.header`
 `;
 
 const Wrapper = styled.div`
+  width: 100%;
   display: flex;
   gap: 4px;
   justify-content: flex-start;
   align-items: center;
 `;
+
+
+const TagWrapper = styled.div`
+  display:flex;
+  gap:2px;
+  justify-content: flex-start;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`
