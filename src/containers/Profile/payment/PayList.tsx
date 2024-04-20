@@ -1,21 +1,46 @@
 import { PaymentList, RefundList } from "@models/profile";
 import MatchingTicket from "@components/matchingTicket";
+import Seperator from "@components/Seperator";
+import DividerDefault from "@components/Divider/Divider";
+import { PayButtonContainer, PayStyledDiv } from "./Payment";
+import useModal from "@hooks/common/useModal";
+import RefundPop from "@components/matchingTicket/refundPop";
 
 type Props = {
   payList: PaymentList[];
 };
 
 export function PayList({ payList }: Props) {
+  const { addModal } = useModal();
+  const handleRefund = (orderId: number) => {
+    addModal({
+      type: "popup",
+      props: {
+        contents: <RefundPop orderId={orderId} />,
+        buttonProps: [],
+      },
+    });
+  };
   return (
     <>
       {payList.map((data, i) => {
         return (
           <div key={i}>
-            <MatchingTicket
-              text1={`매칭권 ${data.quantity}개`}
-              text2={`${data.approvedAtStr}`}
-              afterPay={true}
-            ></MatchingTicket>
+            <PayStyledDiv>
+              <MatchingTicket
+                semiTitle={`매칭권 ${data.quantity}개`}
+                eventDate={`${data.approvedAtStr}`}
+                afterPay={true}
+              ></MatchingTicket>
+              <PayButtonContainer
+                onClick={() => handleRefund(data.partnerOrderId)}
+              >
+                환불신청
+              </PayButtonContainer>
+            </PayStyledDiv>
+            <Seperator height={7} />
+            <DividerDefault width={"100%"} />
+            <Seperator height={7} />
           </div>
         );
       })}
@@ -34,10 +59,13 @@ export function RefundStatusList({ refundList }: Props2) {
         return (
           <div key={i}>
             <MatchingTicket
-              text1={`매칭권 ${data.quantity}개`}
-              text2={`환불신청일 ${data.refundRequestDateStr}`}
+              semiTitle={`매칭권 ${data.quantity}개`}
+              eventDate={`환불신청일 ${data.refundRequestDateStr}`}
               afterPay={true}
             ></MatchingTicket>
+            <Seperator height={7} />
+            <DividerDefault width={"100%"} />
+            <Seperator height={7} />
           </div>
         );
       })}

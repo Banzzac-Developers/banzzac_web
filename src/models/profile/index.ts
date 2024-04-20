@@ -76,31 +76,17 @@ export const defaultPet = {
   personalityArr: [],
 };
 
-export type PaymentReady = {
-  quantity: number;
-  totalAmount: number;
-};
-
-export const defaultPaymentReady = {
-  quantity: 0,
-  totalAmount: 0,
-};
-
 export type PaymentApprove = {
+  next_redirect_pc_url: string;
   tid: string;
   nextRedirect_mobile_url: string;
-  next_redirect_pc_url: string;
 };
 
 export const defaultPaymentApprove = {
+  next_redirect_pc_url: "",
   tid: "",
   nextRedirect_mobile_url: "",
-  next_redirect_pc_url: "",
 };
-
-export interface PaymentApproveData extends Data {
-  data: PaymentApprove[];
-}
 
 export type PaymentList = {
   partnerOrderId: number;
@@ -130,19 +116,42 @@ export const defaultPaymentList = {
   approvedAtStr: "",
 };
 
+export type AddRefund = {
+  partnerOrderId: number;
+  reason: string;
+};
+
+export const defaultAddRefund = {
+  partnerOrderId: 0,
+  reason: "",
+};
+
 export type RefundList = {
   partnerOrderId: number;
   approve: number;
   reason: string;
   refundRequestDate: string;
-  approveTime: string;
+  approveTime: string | null;
   refundRequestDateStr: string;
-  approveTimeStr: string;
+  approveTimeStr: string | null;
   quantity: number;
   totalAmount: number;
-  sessionId: string;
+  sessionId: null;
 };
 
 export interface RefundListData extends Data {
   data: RefundList[];
 }
+
+export const defaultRefundList = {
+  partnerOrderId: 0,
+  approve: 0,
+  reason: "",
+  refundRequestDate: "",
+  approveTime: "",
+  refundRequestDateStr: "",
+  approveTimeStr: "",
+  quantity: 0,
+  totalAmount: 0,
+  sessionId: null,
+};
