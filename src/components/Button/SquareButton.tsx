@@ -4,9 +4,6 @@ import { ReactElement } from "react";
 type Props = {
   title: string | ReactElement;
   fill: boolean;
-  /**
-   * 버튼 배경색
-   */
   backgroundColor: string;
   onClick?: () => void;
   active?: boolean;
@@ -26,6 +23,7 @@ export default function SquareButton({
       backgroundColor={backgroundColor}
       onClick={onClick}
     >
+
       {title}
     </StyledButton>
   );
