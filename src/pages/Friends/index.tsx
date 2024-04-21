@@ -8,12 +8,15 @@ import styled from "@emotion/styled";
 import useFriendList from "@hooks/friends/useFriendList";
 import Navigator from "@layouts/Navigator";
 import SquareHeader from "@layouts/SquareHeader";
+import { friendListState } from "@recoil/friends";
 import { useState } from "react";
+import { useRecoilValue } from "recoil";
 
 export default function Friends() {
   const [openMenu, setOpenMenu] = useState(false);
+  const friendList = useRecoilValue(friendListState);
 
-  const { data: friendList } = useFriendList(TEST_EMAIL);
+  useFriendList(TEST_EMAIL, true);
 
   if (!friendList) return <></>;
 
