@@ -60,10 +60,6 @@ export default function FriendMenu({ friendList }: Props) {
           handleClick: handleEditList,
         },
         {
-          menu: <MenuItem txt="삭제한 친구" icon="userRemove" />,
-          handleClick: () => {},
-        },
-        {
           menu: <MenuItem txt="차단친구" icon="userClose" />,
           handleClick: handleBlockList,
         },
