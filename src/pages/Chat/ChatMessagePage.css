@@ -7,6 +7,22 @@
   background-color: #f9f9f9;
 }
 
+.chat-header {
+  padding: 6px 10px 6px 10px;
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.profile-img {
+  width: 200px;
+  height: 74px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .chat-messages {
   max-height: 644px;
   overflow-y: auto;
@@ -17,9 +33,9 @@
   height: 800px;
 }
 
-.chat-messages div {
+/* .chat-messages div {
   margin-bottom: 10px;
-}
+} */
 
 .input-group {
   height: 44px;
