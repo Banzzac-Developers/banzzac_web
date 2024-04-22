@@ -83,3 +83,26 @@ export const favoriteFriendList = [
     mimg: "example9.jpg",
   },
 ];
+
+export const blockedFriendList = [
+  {
+    id: "zkdlwjsxm@example.com",
+    friendId: "example6@example.com",
+    dogImg: "dog6.jpg",
+    dogName: "고육봉",
+    block: 0,
+    mstatusMesaage: "바보랍니다",
+    mnickname: "Michael",
+    mimg: "example6.jpg",
+  },
+  {
+    id: "zkdlwjsxm@example.com",
+    friendId: "example7@example.com",
+    dogImg: "dog7.jpg",
+    dogName: "고칠봉",
+    block: 0,
+    mstatusMesaage: "인생쓰다써",
+    mnickname: "Sophia",
+    mimg: "example7.jpg",
+  },
+];
