@@ -9,9 +9,9 @@ export default function useRefund() {
     return res;
   }, []);
 
-  const deleteRefund = useCallback(async (orderId: string) => {
+  const deleteRefund = useCallback(async (orderId: Number) => {
     const res = await API.get(URLs.profile.deleteRefund(orderId));
     return res;
   }, []);
-  return { deleteRefund, updateRefund };
+  return { deleteRefund };
 }

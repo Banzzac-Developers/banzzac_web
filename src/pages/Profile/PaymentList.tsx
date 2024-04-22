@@ -30,7 +30,7 @@ export default function PaymentListPage() {
             onClick={() => setIsClick(["#212121", "#A86efa"])}
             color={isClick[1]}
           >
-            환불내역
+            환불신청내역
           </Text>
         </Tab>
         <Seperator height={46} />
@@ -40,7 +40,7 @@ export default function PaymentListPage() {
           <RefundStatusList refundList={refundList.data}></RefundStatusList>
         ) : isClick[0] === "#A86efa" && !payList ? (
           <PayStyledDiv>구매내역이 없습니다</PayStyledDiv>
-        ) : isClick[1] === "#A86efa" && !refundList ? (
+        ) : isClick[1] === "#A86efa" && refundList?.data.length == 0 ? (
           <PayStyledDiv>환불신청 내역이 없습니다</PayStyledDiv>
         ) : (
           isClick[0] === "#A86efa" && !payList && !refundList && <></>

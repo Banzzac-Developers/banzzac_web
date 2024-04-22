@@ -17,7 +17,7 @@ const URLs = {
     fetchRefund: "/api/payment/refund",
     updateRefund: "/api/payment/refund",
     addRefund: "/api/payment/refund/insert",
-    deleteRefund: (orderId: string) => `/api/payment/refund/cancel/${orderId}`,
+    deleteRefund: (orderId: Number) => `/api/payment/refund/cancel/${orderId}`,
   },
   friends: {
     fetchFriendList: (id: string) => `/api/friend/list/${id}`,
