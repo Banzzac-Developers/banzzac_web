@@ -16,7 +16,6 @@ import {
   SIZE,
 } from "@constants/profile";
 import useEditProfile from "@hooks/profile/useEditProfile";
-import { TEST_EMAIL } from "@constants/index";
 
 type Props = {
   petInfo: Pet;
@@ -24,7 +23,7 @@ type Props = {
 };
 
 export default function PetEdit({ petInfo, setPetInfo }: Props) {
-  const { deletePet } = useEditProfile(TEST_EMAIL);
+  const { deletePet } = useEditProfile();
 
   const handleChangeAge = (e: ChangeEvent<HTMLInputElement>) => {
     if (!/^[0-9]*$/.test(e.target.value)) return;

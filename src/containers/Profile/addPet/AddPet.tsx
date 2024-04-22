@@ -15,12 +15,11 @@ import {
   NEUTRIFICATION,
   SIZE,
 } from "@constants/profile";
-import { TEST_EMAIL } from "@constants/index";
 import useAddPet from "@hooks/profile/useAddPet";
 import { useNavigate } from "react-router-dom";
 
 export default function AddPet() {
-  const { addPet } = useAddPet(TEST_EMAIL);
+  const { addPet } = useAddPet();
   const navigator = useNavigate();
   const [petInfo, setPetInfo] = useState<Pet>(defaultPet);
 

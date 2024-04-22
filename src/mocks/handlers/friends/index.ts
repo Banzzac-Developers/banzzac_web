@@ -2,7 +2,8 @@ import { HttpResponse, http } from "msw";
 import { favoriteFriendList, friendList } from "./data";
 
 const fetchFriendList = http.get("/api/friend/list/:id", () => {
-  return HttpResponse.json(friendList);
+  const randIdx = Math.floor(Math.random() * friendList.length) + 1;
+  return HttpResponse.json(friendList.slice(0, randIdx));
 });
 
 const deleteFriend = http.get("/api/friend/:id/delete/:friendId", () => {
@@ -10,7 +11,8 @@ const deleteFriend = http.get("/api/friend/:id/delete/:friendId", () => {
 });
 
 const fetchFavoriteFriendList = http.get("/api/friend/favoriteList/:id", () => {
-  return HttpResponse.json(favoriteFriendList);
+  const randIdx = Math.floor(Math.random() * favoriteFriendList.length) + 1;
+  return HttpResponse.json(favoriteFriendList.slice(0, randIdx));
 });
 
 const addFavoriteFriend = http.get(

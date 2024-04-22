@@ -6,7 +6,6 @@ import { Profile } from "@models/profile";
 import { FontStyle } from "@utils/StyleUtil";
 import Text from "@components/Text";
 import { Link } from "react-router-dom";
-import { TEST_EMAIL } from "@constants/index";
 
 export default function UserCharacteristic({
   nickname,
