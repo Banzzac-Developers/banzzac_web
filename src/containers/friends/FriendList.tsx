@@ -15,8 +15,8 @@ export default function FriendList({ friendList }: Props) {
         {...FontStyle(14, 700, 20, "#9e9e9e")}
       >{`친구 ${friendList.length}`}</StyledText>
       <FriendListWrapper>
-        {friendList.map((friend) => (
-          <li key={friend.mnickname}>
+        {friendList.map((friend, idx) => (
+          <li key={`${friend.mnickname}-${idx}`}>
             <FriendCard {...friend} />
           </li>
         ))}
