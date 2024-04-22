@@ -100,10 +100,11 @@ export default function PetInfo() {
   ) => {
     if (Array.isArray(personalityIdxs)) {
       setUserInfo((prev) => {
-        const personality = personalityIdxs
-          .map((personalityIdx) => DOG_PERSONALITY[personalityIdx])
-          .join();
-        return { ...prev, pet: { ...prev.pet, personality } };
+        const personalityArr = personalityIdxs.map(
+          (personalityIdx) => DOG_PERSONALITY[personalityIdx],
+        );
+        const personality = personalityArr.join();
+        return { ...prev, pet: { ...prev.pet, personality, personalityArr } };
       });
     }
   };
@@ -124,7 +125,7 @@ export default function PetInfo() {
   const handleSignupButton = () => {
     const { user, pet } = userInfo;
     addUser(user);
-    addPet(pet);
+    addPet({ ...pet, id: user.id });
   };
 
   return (
