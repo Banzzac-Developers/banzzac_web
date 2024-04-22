@@ -50,8 +50,8 @@ export default function ModalRenderer() {
 
 const Container = styled.div`
   width: 100%;
-  height: 100vh;
-  position: absolute;
+  height: 100%;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 99999;
@@ -60,8 +60,8 @@ const Container = styled.div`
 const Background = styled.div`
   background-color: rgba(0, 0, 0, 0.25);
   width: 100%;
-  height: 100vh;
-  position: absolute;
+  height: 100%;
+  position: fixed;
   top: 0;
   left: 0;
 `;
