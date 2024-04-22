@@ -6,6 +6,9 @@ import { Friend } from "@models/friends";
 import SvgSelector from "@components/Svg/SvgSelector";
 import useFavoriteFriend from "@hooks/friends/useFavoriteFriend";
 import { TEST_EMAIL } from "@constants/index";
+import useModal from "@hooks/common/useModal";
+import ProfileDetailModal from "@containers/common/ProfileDetailModal";
+import Seperator from "@components/Seperator";
 
 export default function FriendCard({
   dogName,
@@ -14,6 +17,7 @@ export default function FriendCard({
   block,
   friendId,
 }: Friend) {
+  const { addModal } = useModal();
   const { addFavoriteFriend, deleteFavoriteFriend } =
     useFavoriteFriend(TEST_EMAIL);
 
@@ -25,9 +29,25 @@ export default function FriendCard({
     }
   };
 
+  const showFriendDetail = () => {
+    addModal({
+      type: "fullscreen",
+      props: {
+        contents: (
+          <ModalContainer>
+            <ProfileDetailModal.ProfileDetail />
+            <Seperator height={25} />
+            <ProfileDetailModal.BottomButton />
+          </ModalContainer>
+        ),
+        hasCloseButton: true,
+      },
+    });
+  };
+
   return (
     <Container>
-      <Profile>
+      <Profile onClick={showFriendDetail}>
         <DoubleProfileImage
           size={48}
           border={3}
@@ -60,7 +80,8 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const Profile = styled.div`
+const Profile = styled.button`
+  text-align: left;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -78,4 +99,8 @@ const StateMsg = styled.div`
   font-size: 12px;
   line-height: 16px;
   font-weight: 400;
+`;
+
+const ModalContainer = styled.div`
+  padding: 26px;
 `;
