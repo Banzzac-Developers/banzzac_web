@@ -9,9 +9,7 @@ export default function useFavoriteFriendList(id: string, enable: boolean) {
   const [data, setData] = useRecoilState(favoriteFriendListState);
 
   const fetchFavoriteFriendList = useCallback(async () => {
-    const res: Friend[] = await API.get(
-      URLs.friends.fetchFavoriteFriendList(id),
-    );
+    const res: Friend[] = await API.get(URLs.friends.fetchFavoriteFriendList);
     setData(res);
   }, []);
 

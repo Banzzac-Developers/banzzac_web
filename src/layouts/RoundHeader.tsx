@@ -1,20 +1,45 @@
 import SvgSelector from "@components/Svg/SvgSelector";
 import TagDefault from "@components/Tag/TagDefault";
 import styled from "@emotion/styled";
+import useModal from "@hooks/common/useModal";
+import { MatchingCondition } from "@models/matching";
+import ConditionScreen from "@pages/Matching/ConditionScreen";
+import { Dispatch, SetStateAction } from "react";
 
-export default function RoundHeader() {
+export type MatchingConditionProps = {
+  conditionData : MatchingCondition,
+  setConditionData : Dispatch<SetStateAction<MatchingCondition>>,
+}
+
+export default function RoundHeader({conditionData , setConditionData} : MatchingConditionProps) {
+  const {addModal} = useModal();
+  const handleConditionScreen = (data : MatchingCondition) =>{
+    addModal({
+      type : "fullscreen",
+      props : {
+        contents :<ConditionScreen conditionData={data} setConditionData={setConditionData}/>,
+        hasCloseButton : true,
+      }
+    })
+  }
+
   return (
-    <Header>
+    <Header onClick={()=>{handleConditionScreen(conditionData)}}>
       <Wrapper>
         <SvgSelector svg={"dogFace"} width={24} height={24} stroke="#212121" />
         <div>
-          <TagDefault txt="적용된 필터 없음" />
+          {
+            conditionData.dogNature.map((v,i)=><TagDefault key={i} txt={v}/>)
+          }
+          
         </div>
       </Wrapper>
       <Wrapper>
         <SvgSelector svg={"face"} width={24} height={24} stroke="#212121" />
         <div>
-          <TagDefault txt="적용된 필터 없음" />
+        {
+            conditionData.walkingStyle.map((v,i)=><TagDefault key={i} txt={v}/>)
+          }
         </div>
       </Wrapper>
     </Header>

@@ -13,7 +13,7 @@ export default function useFavoriteFriend(id: string) {
   );
 
   const deleteFavoriteFriend = useCallback(async (friendId: string) => {
-    await API.get(URLs.friends.deleteFavoriteFriend(id, friendId));
+    await API.get(URLs.friends.deleteFavoriteFriend(friendId));
     await refetch();
   }, []);
 
@@ -25,7 +25,7 @@ export default function useFavoriteFriend(id: string) {
   };
 
   const addFavoriteFriend = async (friendId: string) => {
-    await API.get(URLs.friends.addFavoriteFriend(id, friendId));
+    await API.get(URLs.friends.addFavoriteFriend(friendId));
     await refetch();
   };
 

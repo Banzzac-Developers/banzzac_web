@@ -14,6 +14,7 @@ export type SvgIcon =
   | "userAdd"
   | "dogFace"
   | "face"
+  | "expandLeft"
   | "expandUp"
   | "expandDown"
   | "close"
@@ -31,6 +32,8 @@ export type SvgIcon =
   | "userRemove"
   | "sort"
   | "filledStar"
-  | "star";
+  | "star"
+  | "menu"
+  | "sendButton";
 
 export type NavItem = { route: string; name: string; icon: SvgIcon };
