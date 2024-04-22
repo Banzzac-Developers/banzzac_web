@@ -6,9 +6,11 @@ import { Friend } from "@models/friends";
 import SvgSelector from "@components/Svg/SvgSelector";
 import useFavoriteFriend from "@hooks/friends/useFavoriteFriend";
 import { TEST_EMAIL } from "@constants/index";
+import useModal from "@hooks/common/useModal";
+import ProfileDetailModal from "@containers/common/ProfileDetailModal";
+import Seperator from "@components/Seperator";
 import RoundButton from "@components/Button/RoundButton";
 import useBlockFriend from "@hooks/friends/useBlockFriend";
-import useModal from "@hooks/common/useModal";
 
 export default function FriendCard({
   dogName,
@@ -17,6 +19,7 @@ export default function FriendCard({
   block,
   friendId,
 }: Friend) {
+  const { addModal } = useModal();
   const { addFavoriteFriend, deleteFavoriteFriend } =
     useFavoriteFriend(TEST_EMAIL);
   const { clearModal } = useModal();
@@ -29,6 +32,21 @@ export default function FriendCard({
     }
   };
 
+  const showFriendDetail = () => {
+    addModal({
+      type: "fullscreen",
+      props: {
+        contents: (
+          <ModalContainer>
+            <ProfileDetailModal.ProfileDetail friendId={friendId} />
+            <Seperator height={25} />
+            <ProfileDetailModal.BottomButton />
+          </ModalContainer>
+        ),
+        hasCloseButton: true,
+      },
+    });
+  };
   const { deleteBlockfriend } = useBlockFriend(TEST_EMAIL);
 
   const handleUnblockButton = (friendId: string) => {
@@ -38,7 +56,7 @@ export default function FriendCard({
 
   return (
     <Container>
-      <Profile>
+      <Profile onClick={showFriendDetail}>
         <DoubleProfileImage
           size={48}
           border={3}
@@ -80,7 +98,8 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const Profile = styled.div`
+const Profile = styled.button`
+  text-align: left;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -98,4 +117,8 @@ const StateMsg = styled.div`
   font-size: 12px;
   line-height: 16px;
   font-weight: 400;
+`;
+
+const ModalContainer = styled.div`
+  padding: 26px;
 `;

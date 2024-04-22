@@ -27,6 +27,7 @@ const Container = styled.div`
   height: 100%;
   background-color: #ffffff;
   position: relative;
+  overflow-y: auto;
 `;
 
 const CloseButton = styled.button`

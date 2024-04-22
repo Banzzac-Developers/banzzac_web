@@ -1,5 +1,10 @@
 import { HttpResponse, http } from "msw";
-import { blockedFriendList, favoriteFriendList, friendList } from "./data";
+import {
+  favoriteFriendList,
+  friendDetailData,
+  friendList,
+  blockedFriendList,
+} from "./data";
 
 const fetchFriendList = http.get("/api/friend/list", () => {
   const randIdx = Math.floor(Math.random() * friendList.length) + 1;
@@ -29,6 +34,12 @@ const deleteFavoriteFriend = http.get(
   },
 );
 
+const fetchFriendDetail = http.get(
+  "/api/friend/friendProfile/:friendId",
+  () => {
+    return HttpResponse.json(friendDetailData);
+  },
+);
 const fetchBlockList = http.get("/api/friend/blockList", () => {
   const randIdx = Math.floor(Math.random() * blockedFriendList.length) + 1;
   return HttpResponse.json(blockedFriendList.slice(0, randIdx));
@@ -48,6 +59,7 @@ export default [
   fetchFavoriteFriendList,
   addFavoriteFriend,
   deleteFavoriteFriend,
+  fetchFriendDetail,
   fetchBlockList,
   blockFriend,
   unblockFriend,
