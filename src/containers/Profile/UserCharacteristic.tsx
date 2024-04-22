@@ -6,8 +6,6 @@ import { Profile } from "@models/profile";
 import { FontStyle } from "@utils/StyleUtil";
 import Text from "@components/Text";
 import { Link } from "react-router-dom";
-import usePaymentList from "@hooks/profile/usePaymentList";
-import { TEST_EMAIL } from "@constants/index";
 
 export default function UserCharacteristic({
   nickname,
@@ -26,7 +24,7 @@ export default function UserCharacteristic({
       <Seperator height={18} />
       <Seperator height={18} />
       <Box display={true} height={80}>
-        <StyledLink to="/payment">
+        <StyledLink to="/payment" state={{ quantity: quantity }}>
           <SvgSelector
             svg="payment"
             height={30}

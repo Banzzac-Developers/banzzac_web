@@ -5,7 +5,7 @@ type Props = {
   title: string | ReactElement;
   fill: boolean;
   backgroundColor: string;
-  onClick: () => void;
+  onClick?: () => void;
   active?: boolean;
 };
 

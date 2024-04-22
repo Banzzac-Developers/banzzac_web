@@ -3,7 +3,7 @@ import URLs from "@api/urls";
 import { Pet } from "@models/profile";
 import { useCallback } from "react";
 
-export default function useEditProfile(id: string) {
+export default function useEditProfile() {
   const updateStatusMessage = useCallback(
     async (statusMessage: string | null) => {
       const res = await API.post(URLs.profile.updateStatusMessage, {
@@ -15,12 +15,12 @@ export default function useEditProfile(id: string) {
   );
 
   const updatePet = useCallback(async (pet: Pet) => {
-    const res = await API.post(URLs.profile.updatePet(id, pet.name), pet);
+    const res = await API.post(URLs.profile.updatePet(pet.name), pet);
     return res;
   }, []);
 
   const deletePet = useCallback(async (name: string) => {
-    const res = await API.get(URLs.profile.deletePet(id, name));
+    const res = await API.get(URLs.profile.deletePet(name));
     return res;
   }, []);
 

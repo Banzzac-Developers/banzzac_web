@@ -4,18 +4,20 @@ const URLs = {
     fetchChatList: (id: string) => `/api/chat/${id}`,
   },
   profile: {
-    fetchProfile: (id: string) => `/api/profile/${id}`,
-    fetchPets: (id: string) => `/api/profile/dog/${id}`,
-    addPet: (id: string) => `/api/profile/dog/${id}`,
-    updateProfile: (id: string) => `/api/profile/${id}`,
+    fetchProfile: `/api/profile`,
+    fetchPets: `/api/profile/dog`,
+    addPet: `/api/profile/dog`,
+    updateProfile: `/api/profile`,
     updateStatusMessage: "/api/profile/status",
-    updatePet: (id: string, name: string) => `/api/profile/dog/${id}/${name}`,
-    deletePet: (id: string, name: string) =>
-      `/api/profile/dog/${id}/delete/${name}`,
-    withdrawal: (id: string) => `/api/profile/${id}/withdraw`,
-    fetchPayment: (id: string) => `/api/payment/${id}`,
-    addPayment: "/api/payment/ready",
+    updatePet: (name: string) => `/api/profile/dog/${name}`,
+    deletePet: (name: string) => `/api/profile/dog/delete/${name}`,
+    withdrawal: `/api/profile/withdraw`,
+    logout: "/api/profile/logout",
+    fetchPayment: `/api/payment`,
     fetchRefund: "/api/payment/refund",
+    updateRefund: "/api/payment/refund",
+    addRefund: "/api/payment/refund/insert",
+    deleteRefund: (orderId: Number) => `/api/payment/refund/cancel/${orderId}`,
   },
   friends: {
     fetchFriendList: (id: string) => `/api/friend/list/${id}`,
@@ -31,9 +33,10 @@ const URLs = {
     registUser: "/api/member/createMember",
     registPet: (id: string) => `/api/member/createDog/${id}`,
   },
-  matching:{
-    fetchCondition : "api/matching/condition",
-  }
+  matching: {
+    fetchCondition: "api/matching/condition",
+    updateCondition: "api/matching/condition",
+  },
 };
 
 export default URLs;
