@@ -1,74 +1,96 @@
-import InputDefault from "@components/Input";
 import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import useAddRefund from "@hooks/profile/useAddRefund";
 import useModal from "@hooks/common/useModal";
-import { AddRefund, defaultAddRefund } from "@models/profile";
+import { AddRefund, RefundListData, defaultAddRefund } from "@models/profile";
+import InputPayText from "./inputPayText";
+import useRefund from "@hooks/profile/useRefund";
 
 type Props = {
-  orderId: number;
+  orderId: Number;
+  setIsClick?: React.Dispatch<React.SetStateAction<string[]>>;
+  readonly: boolean;
+  fixReason?: string;
+  approve?: Number;
+  setData?: React.Dispatch<React.SetStateAction<RefundListData>>;
 };
 
-export default function RefundPop({ orderId }: Props) {
+export default function RefundPop({
+  orderId,
+  readonly,
+  fixReason,
+  approve,
+  setIsClick,
+}: Props) {
   const [refundInfo, setRefundInfo] = useState<AddRefund>(defaultAddRefund);
-  const { addRefund } = useAddRefund();
+  const { addRefund, data } = useAddRefund();
+  const { deleteRefund } = useRefund();
   const { removeCurrentModal } = useModal();
+
   const handleAddRefund = () => {
-    addRefund(refundInfo);
-    removeCurrentModal();
+    if (refundInfo.reason == "") return;
+    if (!readonly && setIsClick) {
+      addRefund(refundInfo);
+      removeCurrentModal();
+
+      //setIsClick(["#212121", "#A86efa"]);
+    }
   };
+
   useEffect(() => {
     setRefundInfo((prev) => ({
       ...prev,
       partnerOrderId: Number(orderId),
     }));
   }, []);
+
   return (
     <>
       <Container>
-        <InputDefault
-          title="환불사유를 입력하세요"
+        <InputPayText
+          title={
+            (readonly && approve !== 2) || (readonly && approve === 2)
+              ? "환불신청사유"
+              : "환불사유를 입력하세요"
+          }
           placeholder=""
           width="100%"
+          height="max-content"
           id="reason"
-          value={refundInfo.reason}
-          onChange={(e) =>
-            setRefundInfo((prev) => ({
-              ...prev,
-              reason: String(e.target.value),
-            }))
+          value={
+            readonly && approve !== 2
+              ? fixReason || ""
+              : approve === 2
+                ? fixReason || refundInfo.reason
+                : refundInfo.reason || ""
           }
-        />
-        <button
-          onClick={handleAddRefund}
-          style={{
-            borderTop: "1px solid rgba(60, 60, 67, 0.36)",
-            paddingTop: "20px",
-            width: "83%",
-            height: "30px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            position: "absolute",
-            zIndex: "5",
+          readOnly={(readonly && approve !== 2) || approve === 2}
+          onChange={
+            readonly && approve !== 2
+              ? () => {}
+              : (e) => {
+                  setRefundInfo((prev) => ({
+                    ...prev,
+                    reason: String(e.target.value),
+                  }));
+                }
+          }
+          btnTitle={approve !== 2 ? "확인" : "환불취소"}
+          onClick={() => {
+            if (approve == 2) {
+              deleteRefund(orderId);
+              removeCurrentModal();
+            } else if (!readonly && approve !== 2) {
+              handleAddRefund();
+            } else {
+              removeCurrentModal();
+            }
           }}
-        >
-          확인
-        </button>
+        />
       </Container>
     </>
   );
 }
 const Container = styled.div`
   padding: 0 20px;
-`;
-
-const CheckButton = styled.button`
-  border-top: "1px solid rgba(60, 60, 67, 0.36)";
-  padding-top: "20px";
-  width: "100%";
-  height: "30px";
-  display: "flex";
-  justify-content: "center";
-  align-items: "center";
 `;
