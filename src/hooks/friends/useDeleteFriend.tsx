@@ -4,7 +4,7 @@ import { useCallback } from "react";
 
 export default function useDeleteFriend(id: string) {
   const deleteFriend = useCallback(async (friendId: string) => {
-    const res = await API.get(URLs.friends.deleteFriend(id, friendId));
+    const res = await API.get(URLs.friends.deleteFriend(friendId));
     return res;
   }, []);
   return { deleteFriend };

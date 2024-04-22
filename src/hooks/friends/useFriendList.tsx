@@ -9,7 +9,7 @@ export default function useFriendList(id: string, enable: boolean) {
   const [data, setData] = useRecoilState(friendListState);
 
   const fetchFriendList = useCallback(async () => {
-    const res: Friend[] = await API.get(URLs.friends.fetchFriendList(id));
+    const res: Friend[] = await API.get(URLs.friends.fetchFriendList);
     setData(res);
   }, []);
 

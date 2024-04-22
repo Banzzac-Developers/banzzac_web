@@ -1,17 +1,13 @@
 
-import Navigator from "@layouts/Navigator";
-import MultiSlider from "@components/Slider/Slider";
-import Twinkle from "@components/Twinkle/Twinkle";
-import TemperatureBar from "@components/TemperatureBar/TemperatureBar";
+import Navigator from "@layouts/Navigator";import RoundHeader from "@layouts/RoundHeader";
+import useFetchCondition from "@hooks/mathcing/useFetchCondition";
 
 
 export default function Matching() {
-
+  const { data : conditionData, setData : setConditionData} = useFetchCondition();
   return (
     <>
-      <MultiSlider />
-      <Twinkle avg={30} isClick={true}/>
-      <TemperatureBar point={72.6}/>
+      <RoundHeader conditionData={conditionData} setConditionData={setConditionData} />
       <Navigator/>
     </>
   );

@@ -13,20 +13,29 @@ const URLs = {
     deletePet: (id: string, name: string) =>
       `/api/profile/dog/${id}/delete/${name}`,
     withdrawal: (id: string) => `/api/profile/${id}/withdraw`,
+    fetchPayment: (id: string) => `/api/payment/${id}`,
+    addPayment: "/api/payment/ready",
+    fetchRefund: "/api/payment/refund",
   },
   friends: {
-    fetchFriendList: (id: string) => `/api/friend/list/${id}`,
-    deleteFriend: (id: string, friendId: string) =>
-      `/api/friend/${id}/delete/${friendId}`,
-    fetchFavoriteFriendList: (id: string) => `/api/friend/favoriteList/${id}`,
-    addFavoriteFriend: (id: string, friendId: string) =>
-      `/api/friend/${id}/friendFavorite/${friendId}`,
-    deleteFavoriteFriend: (id: string, friendId: string) =>
-      `/api/friend/${id}/friendUnFavorite/${friendId}`,
+    fetchFriendList: `/api/friend/list`,
+    deleteFriend: (friendId: string) => `/api/friend/delete/${friendId}`,
+    fetchFavoriteFriendList: `/api/friend/favoriteList`,
+    addFavoriteFriend: (friendId: string) =>
+      `/api/friend/friendFavorite/${friendId}`,
+    deleteFavoriteFriend: (friendId: string) =>
+      `/api/friend/friendUnFavorite/${friendId}`,
+    fetchBlockFriendList: `/api/friend/blockList`,
+    addBlockFriend: (friendId: string) => `/api/friend/friendBlock/${friendId}`,
+    deleteBlockFriend: (friendId: string) =>
+      `/api/friend/friendUnBlock/${friendId}`,
   },
   signup: {
     registUser: "/api/member/createMember",
     registPet: (id: string) => `/api/member/createDog/${id}`,
+  },
+  matching: {
+    fetchCondition: "api/matching/condition",
   },
 };
 
