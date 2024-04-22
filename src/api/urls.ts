@@ -31,11 +31,14 @@ const URLs = {
   },
   signup: {
     registUser: "/api/member/createMember",
-    registPet: (id: string) => `/api/member/createDog/${id}`,
+    registPet: (id: string) => `/api/member/createDog`,
   },
   matching: {
     fetchCondition: "api/matching/condition",
     updateCondition: "api/matching/condition",
+  },
+  search:{
+    searchMember:'/api/search/members'
   },
 };
 
