@@ -7,6 +7,7 @@ import { SvgIcon } from "@models/index";
 import { FontStyle } from "@utils/StyleUtil";
 import EditFriendList from "./EditFriendList";
 import { Friend } from "@models/friends";
+import BlockFriendList from "./BlockFriendList";
 
 const MenuItem = ({ txt, icon }: { txt: string; icon: SvgIcon }) => {
   return (
@@ -40,6 +41,15 @@ export default function FriendMenu({ friendList }: Props) {
       },
     });
   };
+  const handleBlockList = () => {
+    addModal({
+      type: "fullscreen",
+      props: {
+        contents: <BlockFriendList />,
+        hasCloseButton: true,
+      },
+    });
+  };
 
   return (
     <MenuPopup
@@ -55,7 +65,7 @@ export default function FriendMenu({ friendList }: Props) {
         },
         {
           menu: <MenuItem txt="차단친구" icon="userClose" />,
-          handleClick: () => {},
+          handleClick: handleBlockList,
         },
       ]}
     />

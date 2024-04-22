@@ -7,9 +7,7 @@ export default function useFavoriteFriendList(id: string) {
   const [data, setData] = useState<Friend[]>();
 
   const fetchFavoriteFriendList = useCallback(async () => {
-    const res: Friend[] = await API.get(
-      URLs.friends.fetchFavoriteFriendList(id),
-    );
+    const res: Friend[] = await API.get(URLs.friends.fetchFavoriteFriendList);
     setData(res);
   }, []);
 
