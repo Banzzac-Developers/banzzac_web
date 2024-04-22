@@ -8,6 +8,7 @@ import useFavoriteFriend from "@hooks/friends/useFavoriteFriend";
 import { TEST_EMAIL } from "@constants/index";
 import RoundButton from "@components/Button/RoundButton";
 import useBlockFriend from "@hooks/friends/useBlockFriend";
+import useModal from "@hooks/common/useModal";
 
 export default function FriendCard({
   dogName,
@@ -18,6 +19,7 @@ export default function FriendCard({
 }: Friend) {
   const { addFavoriteFriend, deleteFavoriteFriend } =
     useFavoriteFriend(TEST_EMAIL);
+  const { clearModal } = useModal();
 
   const handleStarButton = (block: number, friendId: string) => {
     if (block === 2) {
@@ -28,6 +30,11 @@ export default function FriendCard({
   };
 
   const { deleteBlockfriend } = useBlockFriend(TEST_EMAIL);
+
+  const handleUnblockButton = (friendId: string) => {
+    deleteBlockfriend(friendId);
+    clearModal();
+  };
 
   return (
     <Container>
@@ -60,7 +67,7 @@ export default function FriendCard({
           backgroundColor="#212121"
           fill={false}
           title={"차단해제"}
-          onClick={() => deleteBlockfriend(friendId)}
+          onClick={() => handleUnblockButton(friendId)}
         />
       )}
     </Container>
