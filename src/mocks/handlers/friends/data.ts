@@ -83,3 +83,21 @@ export const favoriteFriendList = [
     mimg: "example9.jpg",
   },
 ];
+
+export const friendDetailData = {
+  no: 2,
+  gender: 2,
+  age: 30,
+  cnt: 20,
+  isGrant: 1,
+  id: "example2@example.com",
+  pwd: "1111",
+  img: "example2.jpg",
+  walkingStyleStr: "많이 걷는,대화를 하는",
+  nickName: "JaneDoe",
+  phone: "01066549393",
+  statusMessage: "행복하세요",
+  date: "2022-12-20T08:45:21.000+00:00",
+  walkingStyle: ["많이 걷는", "대화를 하는"],
+  temperature: 365,
+};

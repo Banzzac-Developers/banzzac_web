@@ -23,6 +23,8 @@ const URLs = {
       `/api/friend/${id}/friendFavorite/${friendId}`,
     deleteFavoriteFriend: (id: string, friendId: string) =>
       `/api/friend/${id}/friendUnFavorite/${friendId}`,
+    fetchFriendDetail: (friendId: string) =>
+      `/api/friend/friendProfile/${friendId}`,
   },
   signup: {
     registUser: "/api/member/createMember",

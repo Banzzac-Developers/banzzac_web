@@ -35,7 +35,7 @@ export default function FriendCard({
       props: {
         contents: (
           <ModalContainer>
-            <ProfileDetailModal.ProfileDetail />
+            <ProfileDetailModal.ProfileDetail friendId={friendId} />
             <Seperator height={25} />
             <ProfileDetailModal.BottomButton />
           </ModalContainer>

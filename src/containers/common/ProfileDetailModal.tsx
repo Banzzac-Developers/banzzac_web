@@ -1,58 +1,101 @@
 import Carousel from "@components/Carousel";
 import styled from "@emotion/styled";
-import { useState } from "react";
-import mangu from "@assets/images/mangu.jpg";
+import { useMemo, useState } from "react";
 import Seperator from "@components/Seperator";
 import Text from "@components/Text";
 import { FontStyle } from "@utils/StyleUtil";
 import { Badge } from "@components/Badge/Badge";
 import TemperatureBar from "@components/TemperatureBar/TemperatureBar";
+import useFriend from "@hooks/friends/useFriend";
+import usePets from "@hooks/profile/usePets";
+import mangu from "@assets/images/mangu.jpg";
+import petImg from "@assets/images/pet2.jpeg";
+import { defaultPet } from "@models/profile";
 
-const ProfileDetail = () => {
+type Props = {
+  friendId: string;
+};
+
+const ProfileDetail = ({ friendId }: Props) => {
   const [carouselIdx, setCarouselIdx] = useState(0);
-  const images = [mangu, mangu, mangu, mangu];
-  const walkingStyle = ["mbti", "1", "2"];
-  const { temperature, quantity, nickname } = {
-    quantity: 15,
-    nickname: "최성재",
-    temperature: 365,
-  };
+
+  const { data: friendDetail } = useFriend(friendId);
+  const { data: pets } = usePets(friendId);
+
+  const profileImages = useMemo(() => {
+    const petImages = pets?.data.map((_) => petImg) ?? [];
+    const images = [mangu].concat(petImages);
+    return images;
+  }, [pets, friendDetail]);
+
+  const friendCharacterArr = useMemo(() => {
+    const { walkingStyle, age } = friendDetail ?? { walkingStyle: [], age: 0 };
+    const arr = ["mbti", `${age}세`, ...walkingStyle];
+    return arr;
+  }, [friendDetail]);
+
+  const petCharacterArr = useMemo(() => {
+    const { size, kind, personalityArr } =
+      pets?.data?.[carouselIdx - 1] ?? defaultPet;
+    const arr = [size, kind, ...personalityArr];
+    return arr;
+  }, [pets, carouselIdx]);
+
+  if (!pets || !friendDetail) return <></>;
+
   return (
     <Container>
-      <div>
+      <ProfileContainer>
         <Carousel.Indicator
           currentIdx={carouselIdx}
           handleClick={setCarouselIdx}
-          srcs={images}
+          srcs={profileImages}
         />
         <Seperator height={30} />
         <Carousel.Carousel
           currentIdx={carouselIdx}
           handleClick={setCarouselIdx}
-          srcs={images}
+          srcs={profileImages}
         />
-      </div>
-      <Text {...FontStyle(24, 700, 24, "#000")}>name</Text>
-      <Seperator height={18} />
-      <Text {...FontStyle(16, 700, 20, "#000")}>{`nickname | age`}</Text>
+        <Seperator height={30} />
+        <Text {...FontStyle(24, 700, 24, "#000")}>
+          {carouselIdx === 0
+            ? friendDetail.nickName
+            : pets.data[carouselIdx - 1].name}
+        </Text>
+        <Seperator height={18} />
+        <Text
+          {...FontStyle(16, 700, 20, "#000")}
+        >{`${carouselIdx === 0 ? friendDetail.nickName : pets.data[carouselIdx - 1].name} | ${carouselIdx === 0 ? friendDetail.age : pets.data[carouselIdx - 1].age}`}</Text>
+      </ProfileContainer>
       <Seperator height={20} />
       <BadgeContainer oneSentence={false}>
-        {walkingStyle.map((v) => (
-          <Badge key={v} bold txt={v} />
-        ))}
+        {carouselIdx === 0 ? (
+          <>
+            {friendCharacterArr.map((v) => (
+              <Badge key={v} bold txt={v} />
+            ))}
+          </>
+        ) : (
+          <>
+            {petCharacterArr.map((character) => (
+              <Badge key={character} bold txt={character} />
+            ))}
+          </>
+        )}
       </BadgeContainer>
       <Seperator height={23} />
       <Box display={false} height={113}>
         <Text {...FontStyle(16, 600, 22, "#222")}>
-          {`지금 ${nickname}님의 반짝온도는?`}
+          {`지금 ${friendDetail.nickName}님의 반짝온도는?`}
         </Text>
         <Seperator height={14} />
-        <TemperatureBar point={temperature / 10} />
+        <TemperatureBar point={friendDetail.temperature / 10} />
       </Box>
       <Seperator height={18} />
       <Box display={true} height={80}>
         <IconBox>
-          <Text {...FontStyle(24, 600, 22, "#333")}>{quantity}</Text>
+          <Text {...FontStyle(24, 600, 22, "#333")}>{friendDetail.cnt}</Text>
           <Text {...FontStyle(12, 600, 22, "#333")}>주간 산책 횟수</Text>
         </IconBox>
         <IconBox>
@@ -70,12 +113,19 @@ const ProfileDetail = () => {
 
 const Container = styled.div``;
 
-const BadgeContainer = styled.ul<{ oneSentence: boolean }>`
+const ProfileContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+const BadgeContainer = styled.ul<{ oneSentence: boolean }>`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   gap: 18px;
-  width: 100%;
+  overflow-y: scroll;
 `;
 
 const Box = styled.div<{ height: number; display: boolean }>`
