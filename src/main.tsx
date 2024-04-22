@@ -8,6 +8,7 @@ import "@/assets/fonts/web/static/pretendard-subset.css";
 import "@/assets/fonts/web/variable/pretendardvariable.css";
 import App from "@/App.tsx";
 import { worker } from "@/mocks/browser.ts";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const enableMocking = async () => {
   if (import.meta.env.VITE_NODE_ENV === "mocking") {
@@ -15,10 +16,22 @@ const enableMocking = async () => {
   }
 };
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
+
 enableMocking().then(() =>
   ReactDOM.createRoot(document.getElementById("root")!).render(
-    <RecoilRoot>
-      <App />
-    </RecoilRoot>,
+    <QueryClientProvider client={queryClient}>
+      <RecoilRoot>
+        <App />
+      </RecoilRoot>
+    </QueryClientProvider>,
   ),
 );
