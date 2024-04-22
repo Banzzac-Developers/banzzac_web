@@ -27,4 +27,5 @@ export default defineConfig({
       { find: "@", replacement: "/src" },
     ],
   },
+  define: { global: {} },
 });

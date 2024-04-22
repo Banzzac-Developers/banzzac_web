@@ -6,11 +6,13 @@ import { useRecoilState } from "recoil";
 import { userInformationState } from "@recoil/signup";
 import ButtonSelect from "@components/Input/ButtonSelect";
 import SquareButton from "@components/Button/SquareButton";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import ImageInput from "@components/Input/ImageInput";
+import { useEffect } from "react";
 
 export default function UserInfo() {
   const [userInfo, setUserInfo] = useRecoilState(userInformationState);
+  const [searchParams] = useSearchParams();
 
   const handleWalkingStyle = (idxArr: number[]) => {
     setUserInfo((prev) => {
@@ -18,6 +20,18 @@ export default function UserInfo() {
       return { ...prev, user: { ...prev.user, walkingStyle } };
     });
   };
+
+  useEffect(() => {
+    const nickname = searchParams.get("nickname") ?? "";
+    const phone = searchParams.get("phone") ?? "";
+    const id = searchParams.get("id") ?? "";
+    const gender = Number(searchParams.get("gender")) ?? 1;
+
+    setUserInfo((prev) => ({
+      ...prev,
+      user: { ...prev.user, nickname, phone, id, gender },
+    }));
+  }, []);
 
   return (
     <Container>

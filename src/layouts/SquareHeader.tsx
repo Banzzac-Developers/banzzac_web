@@ -1,6 +1,6 @@
 import Header from "@components/Header";
 import styled from "@emotion/styled";
-import { HeaderIcon } from "@models/index";
+import { HeaderIcon, SvgIcon } from "@models/index";
 
 type Icon = {
   icon: HeaderIcon;

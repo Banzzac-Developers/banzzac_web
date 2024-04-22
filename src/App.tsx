@@ -8,6 +8,8 @@ import Profile from "@pages/Profile";
 import ProfileEditPage from "@pages/Profile/Edit";
 import Search from "@pages/Search";
 import UserInfoPage from "@pages/Signup/UserInfoPage";
+import PaymentPage from "@pages/Profile/Payment";
+import PaymentListPage from "@pages/Profile/PaymentList";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -26,14 +28,19 @@ const router = createBrowserRouter(
       <Route path="/signup/user" element={<UserInfoPage />} />
       <Route path="/signup/pet" element={<PetInfoPage />} />
       <Route path="/signup/complete" element={<SignupComplete />} />
+      <Route path="/signup/user" element={<UserInfoPage />} />
+      <Route path="/signup/pet" element={<PetInfoPage />} />
+      <Route path="/signup/complete" element={<SignupComplete />} />
       <Route path="/friends" element={<Friends />} />
-      <Route path="/chat" element={<Chat />} />
-      <Route path="/chat/:id" element={<ChatRoom />} />
+      <Route path="/chat/:id" element={<Chat />} />
+      <Route path="/chat/:oppId/:chatroomNo" element={<ChatRoom />} />
       <Route path="/search" element={<Search />} />
       <Route path="/matching" element={<Matching />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/profile/edit" element={<ProfileEditPage />} />
       <Route path="/profile/add-pet" element={<AddPetPage />} />
+      <Route path="/payment" element={<PaymentPage />} />
+      <Route path="/payment/list" element={<PaymentListPage />} />
     </Route>,
   ),
 );
