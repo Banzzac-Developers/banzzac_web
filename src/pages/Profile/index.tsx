@@ -5,12 +5,11 @@ import useProfile from "@hooks/profile/useProfile";
 import Seperator from "@components/Seperator";
 import UserCharacteristic from "@containers/Profile/UserCharacteristic";
 import usePets from "@hooks/profile/usePets";
-import { TEST_EMAIL } from "@constants/index";
 import DividerDefault from "@components/Divider/Divider";
 
 export default function Profile() {
-  const { data: profile } = useProfile(TEST_EMAIL);
-  const { data: pets } = usePets(TEST_EMAIL);
+  const { data: profile } = useProfile();
+  const { data: pets } = usePets();
 
   if (!profile?.data || !pets?.data) return <div />;
 

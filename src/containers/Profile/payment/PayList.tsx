@@ -5,6 +5,7 @@ import DividerDefault from "@components/Divider/Divider";
 import { PayButtonContainer, PayStyledDiv } from "./Payment";
 import useModal from "@hooks/common/useModal";
 import RefundPop from "@components/matchingTicket/refundPop";
+import { useEffect, useState } from "react";
 
 type Props = {
   payList: PaymentList[];
@@ -12,6 +13,11 @@ type Props = {
 
 export function PayList({ payList }: Props) {
   const { addModal } = useModal();
+  const today = new Date();
+  const [sevenDay, setSevenDay] = useState(new Date());
+
+  useEffect(() => {}, [payList]);
+
   const handleRefund = (orderId: number) => {
     addModal({
       type: "popup",

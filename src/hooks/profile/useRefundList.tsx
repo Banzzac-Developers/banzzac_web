@@ -13,6 +13,7 @@ export default function useRefundList() {
 
   useEffect(() => {
     fetchRefund();
+    console.log(data);
   }, []);
 
   return { data };

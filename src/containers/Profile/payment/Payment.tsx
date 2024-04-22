@@ -41,7 +41,9 @@ function Payment() {
                     totalAmount: v * price,
                   })
                   .then(({ data }) => {
-                    location.href = data.data.next_redirect_pc_url;
+                    data.data.next_redirect_pc_url != null
+                      ? (location.href = data.data.next_redirect_pc_url)
+                      : (location.href = data.data.nextRedirect_mobile_url);
                   });
               }}
             >

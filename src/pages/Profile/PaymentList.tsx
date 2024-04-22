@@ -1,16 +1,15 @@
-import { TEST_EMAIL } from "@constants/index";
 import usePaymentList from "@hooks/profile/usePaymentList";
 import { PayList, RefundStatusList } from "@containers/Profile/payment/PayList";
 import useRefundList from "@hooks/profile/useRefundList";
 import { useState } from "react";
 import styled from "@emotion/styled";
 import Seperator from "@components/Seperator";
+import { PayStyledDiv } from "@containers/Profile/payment/Payment";
 
 export default function PaymentListPage() {
-  const { data: payList } = usePaymentList(TEST_EMAIL);
+  const { data: payList } = usePaymentList();
   const { data: refundList } = useRefundList();
   const [isClick, setIsClick] = useState<string[]>(["#A86efa", "#222"]);
-  if (!payList || !refundList) return <></>;
 
   return (
     <>
@@ -35,10 +34,16 @@ export default function PaymentListPage() {
           </Text>
         </Tab>
         <Seperator height={46} />
-        {isClick[0] === "#A86efa" ? (
+        {isClick[0] === "#A86efa" && payList ? (
           <PayList payList={payList.data}></PayList>
-        ) : (
+        ) : isClick[1] === "#A86efa" && refundList ? (
           <RefundStatusList refundList={refundList.data}></RefundStatusList>
+        ) : isClick[0] === "#A86efa" && !payList ? (
+          <PayStyledDiv>구매내역이 없습니다</PayStyledDiv>
+        ) : isClick[1] === "#A86efa" && !refundList ? (
+          <PayStyledDiv>환불신청 내역이 없습니다</PayStyledDiv>
+        ) : (
+          isClick[0] === "#A86efa" && !payList && !refundList && <></>
         )}
       </div>
     </>
