@@ -7,10 +7,19 @@ import FullScreenModal from "./FullScreenModal";
 // import TailModal from "./TailModal";
 import Popup from "./Popup";
 import { isFullScreen, isPopup } from "@models/common";
+import { useEffect } from "react";
 
 export default function ModalRenderer() {
   const modals = useRecoilValue(modalState);
-  const { removeCurrentModal } = useModal();
+  const { removeCurrentModal, clearModal } = useModal();
+
+  useEffect(() => {
+    window.addEventListener("popstate", clearModal);
+
+    return () => {
+      window.removeEventListener("popstate", clearModal);
+    };
+  }, []);
 
   return (
     <Container>
