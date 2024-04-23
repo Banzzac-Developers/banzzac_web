@@ -8,7 +8,7 @@ export default function SignupComplete() {
   const navigator = useNavigate();
   useEffect(() => {
     setTimeout(() => {
-      navigator("/search");
+      navigator("/login");
     }, 3000);
   }, []);
 
