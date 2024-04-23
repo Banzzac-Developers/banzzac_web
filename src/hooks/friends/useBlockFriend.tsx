@@ -5,17 +5,29 @@ import { useCallback } from "react";
 import useFavoriteFriendList from "./useFavoriteFriendList";
 import useFriendList from "./useFriendList";
 
-export default function useDeleteFriend(id: string) {
+export default function useBlockFriend(id: string) {
   const { refetch: refetchFriendList } = useFriendList(TEST_EMAIL, false);
   const { refetch: refetchFavoriteFriendList } = useFavoriteFriendList(
     TEST_EMAIL,
     false,
   );
 
-  const deleteFriend = useCallback(async (friendId: string) => {
-    await API.get(URLs.friends.deleteFriend(friendId));
+  const addBlockfriend = useCallback(async (friendId: string) => {
+    await API.get(URLs.friends.addBlockFriend(friendId));
     await refetch();
   }, []);
+
+  const deleteBlockfriend = useCallback(async (friendId: string) => {
+    await API.get(URLs.friends.deleteBlockFriend(friendId));
+    await refetch();
+  }, []);
+
+  const refetch = async () => {
+    Promise.all([
+      fetchAfterMutate({ isSuccess: true, fetchFn: refetchFriendList }),
+      fetchAfterMutate({ isSuccess: true, fetchFn: refetchFavoriteFriendList }),
+    ]);
+  };
 
   const fetchAfterMutate = (params: {
     isSuccess: boolean;
@@ -28,12 +40,5 @@ export default function useDeleteFriend(id: string) {
     });
   };
 
-  const refetch = async () => {
-    Promise.all([
-      fetchAfterMutate({ isSuccess: true, fetchFn: refetchFriendList }),
-      fetchAfterMutate({ isSuccess: true, fetchFn: refetchFavoriteFriendList }),
-    ]);
-  };
-
-  return { deleteFriend };
+  return { addBlockfriend, deleteBlockfriend };
 }
