@@ -81,6 +81,7 @@ interface ChatDTO {
 }
 
 interface ChatMessageListProps {
+  myId: string;
   messagesEndRef: Ref<HTMLDivElement>;
   messages: ChatDTO[];
   fetchMessages: () => Promise<void>;
@@ -90,6 +91,7 @@ interface ChatMessageListProps {
 }
 
 const ChatMessageList: React.FC<ChatMessageListProps> = ({
+  myId,
   messagesEndRef,
   messages,
   fetchMessages,
@@ -111,7 +113,7 @@ const ChatMessageList: React.FC<ChatMessageListProps> = ({
           useWindow={false}
         >
           {messages.map((msg, idx) =>
-            msg.senderId === "zkdlwjsxm@example.com" ? (
+            msg.senderId === myId ? (
               <MyMsgContainer key={idx}>
                 <MyMsgbox>{msg.message}</MyMsgbox>
                 <Alert>
