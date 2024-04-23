@@ -1,13 +1,10 @@
 import MatchingTicket from "@components/matchingTicket";
 import styled from "@emotion/styled";
-
 import { Link, useLocation } from "react-router-dom";
-
 import axios from "axios";
 import Seperator from "@components/Seperator";
 import DividerDefault from "@components/Divider/Divider";
 import PayButton from "@components/matchingTicket/payButton";
-
 import SvgSelector from "@components/Svg/SvgSelector";
 
 
@@ -94,5 +91,4 @@ const TopWrap = styled.div`
   display: flex;
   align-items: center;
 `;
-
 export default Payment;

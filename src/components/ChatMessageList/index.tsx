@@ -113,7 +113,6 @@ const ChatMessageList: React.FC<ChatMessageListProps> = ({
           useWindow={false}
         >
           {messages.map((msg, idx) =>
-
             msg.senderId === myId ? (
               <YourMsgContainer key={idx}>
                 <Alert>

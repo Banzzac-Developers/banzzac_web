@@ -11,8 +11,8 @@ import { FontStyle } from "@utils/StyleUtil";
 import { Link } from "react-router-dom";
 
 export default function ProfileCard() {
-  const { data: profileData } = useProfile(TEST_EMAIL);
-  const { data: petData } = usePets(TEST_EMAIL);
+  const { data: profileData } = useProfile();
+  const { data: petData } = usePets();
 
   if (!profileData || !petData) return <></>;
 

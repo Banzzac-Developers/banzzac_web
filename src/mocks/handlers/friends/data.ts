@@ -82,6 +82,7 @@ export const favoriteFriendList = [
     mnickname: "Olivia",
     mimg: "example9.jpg",
   },
+
 ];
 
 export const friendDetailData = {

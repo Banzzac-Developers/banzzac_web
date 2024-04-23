@@ -181,11 +181,11 @@ const ChatMessagePage: React.FC = () => {
       );
       handleGoBack();
       location.href = `/chat/${id}`;
+
     } catch (error) {
       console.error("채팅방 나가기 실패", error);
     }
   };
-
 
   const memberNickname = "보호자닉네임";
   const dogName = "강아지 이름";

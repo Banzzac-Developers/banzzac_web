@@ -29,10 +29,12 @@ export default function RefundPop({
 
   const handleAddRefund = () => {
     if (refundInfo.reason == "") return;
+
     addRefund(refundInfo);
     removeCurrentModal();
     window.location.reload();
     //setIsClick(["#212121", "#A86efa"]);
+
   };
 
   useEffect(() => {
@@ -79,6 +81,7 @@ export default function RefundPop({
               deleteRefund(orderId);
               removeCurrentModal();
               window.location.reload();
+
             } else if (!readonly && approve !== 2) {
               handleAddRefund();
             } else {

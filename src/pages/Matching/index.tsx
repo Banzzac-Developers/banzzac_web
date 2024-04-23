@@ -1,4 +1,5 @@
 
+
 import API from "@api/api";
 import ProfileDetailModal, { BottomButton, ProfileDetail } from "@containers/common/ProfileDetailModal";
 import styled from "@emotion/styled";
@@ -31,6 +32,7 @@ export default function Matching() {
     </>
   );
 }
+
 
 
 const Container = styled.div`

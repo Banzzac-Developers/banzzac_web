@@ -6,6 +6,7 @@ import {
   blockedFriendList,
 } from "./data";
 
+
 const fetchFriendList = http.get("/api/friend/list", () => {
   const randIdx = Math.floor(Math.random() * friendList.length) + 1;
   return HttpResponse.json(friendList.slice(0, randIdx));
@@ -15,7 +16,7 @@ const deleteFriend = http.get("/api/friend/delete/:friendId", () => {
   return HttpResponse.json();
 });
 
-const fetchFavoriteFriendList = http.get("/api/friend/favoriteList", () => {
+  const fetchFavoriteFriendList = http.get("/api/friend/favoriteList", () => {
   const randIdx = Math.floor(Math.random() * favoriteFriendList.length) + 1;
   return HttpResponse.json(favoriteFriendList.slice(0, randIdx));
 });
