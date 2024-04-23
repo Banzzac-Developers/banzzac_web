@@ -45,6 +45,7 @@ const Label = styled.label`
   font-weight: 700;
   line-height: 24px;
   color: #212121;
+  padding-bottom: 10px;
 `;
 
 const InputItem = styled.input<{ width: string }>`

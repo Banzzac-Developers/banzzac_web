@@ -1,7 +1,11 @@
 export type User = {
   img: string;
-  mbti: string[];
   walkingStyle: string[];
+  id: string;
+  pwd: string;
+  gender: number;
+  nickname: string;
+  phone: string;
 };
 
 export type Pet = {
@@ -25,8 +29,12 @@ export type UserInformation = {
 
 export const defaultUser = {
   img: "",
-  mbti: [],
   walkingStyle: [],
+  id: "",
+  pwd: "",
+  gender: 1,
+  nickname: "",
+  phone: "",
 };
 
 export const defaultPet = {

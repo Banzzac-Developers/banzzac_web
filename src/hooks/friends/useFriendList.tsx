@@ -1,19 +1,25 @@
 import API from "@api/api";
 import URLs from "@api/urls";
 import { Friend } from "@models/friends";
-import { useCallback, useEffect, useState } from "react";
+import { friendListState } from "@recoil/friends";
+import { useCallback, useEffect } from "react";
+import { useRecoilState } from "recoil";
 
-export default function useFriendList(id: string) {
-  const [data, setData] = useState<Friend[]>();
+export default function useFriendList(id: string, enable: boolean) {
+  const [data, setData] = useRecoilState(friendListState);
 
   const fetchFriendList = useCallback(async () => {
     const res: Friend[] = await API.get(URLs.friends.fetchFriendList);
     setData(res);
   }, []);
 
-  useEffect(() => {
+  const refetch = useCallback(() => {
     fetchFriendList();
   }, []);
 
-  return { data };
+  useEffect(() => {
+    enable && fetchFriendList();
+  }, [enable]);
+
+  return { data, refetch };
 }
