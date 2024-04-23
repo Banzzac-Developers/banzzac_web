@@ -7,6 +7,7 @@ import { useState } from "react";
 import useDeleteFriend from "@hooks/friends/useDeleteFriend";
 import { TEST_EMAIL } from "@constants/index";
 import useModal from "@hooks/common/useModal";
+import useBlockFriend from "@hooks/friends/useBlockFriend";
 
 type Props = {
   friendList: Friend[];
@@ -15,6 +16,7 @@ type Props = {
 export default function EditFriendList({ friendList }: Props) {
   const [selectedFriends, setSelectedFriends] = useState<Friend[]>([]);
   const { deleteFriend } = useDeleteFriend(TEST_EMAIL);
+  const { addBlockfriend } = useBlockFriend(TEST_EMAIL);
   const { removeCurrentModal } = useModal();
 
   const handleChange = (selectedFriend: Friend) => {
@@ -48,7 +50,9 @@ export default function EditFriendList({ friendList }: Props) {
 
   const handleBlockFriend = () => {
     if (selectedFriends.length === 0) return;
-    alert("친구 차단하기 api 필요");
+    selectedFriends.map((selectedFriend) =>
+      addBlockfriend(selectedFriend.friendId),
+    );
     removeCurrentModal();
   };
 
