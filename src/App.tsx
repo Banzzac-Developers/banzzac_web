@@ -21,6 +21,7 @@ import MainLayout from "@layouts/MainLayout";
 import PetInfoPage from "@pages/Signup/PetInfoPage";
 import SignupComplete from "@pages/Signup/Complete";
 
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" errorElement={<NotFound />} element={<MainLayout />}>
@@ -33,9 +34,7 @@ const router = createBrowserRouter(
       <Route path="/signup/complete" element={<SignupComplete />} />
       <Route path="/friends" element={<Friends />} />
       <Route path="/chat/:id" element={<Chat />} />
-      <Route path="/chat/:oppId/:chatroomNo" element={<ChatRoom />} />
-      <Route path="/chat/:id" element={<Chat />} />
-      <Route path="/chat/:oppId/:chatroomNo" element={<ChatRoom />} />
+      <Route path="/chat/:id/:oppId/:chatroomNo" element={<ChatRoom />} />
       <Route path="/search" element={<Search />} />
       <Route path="/matching" element={<Matching />} />
       <Route path="/profile" element={<Profile />} />

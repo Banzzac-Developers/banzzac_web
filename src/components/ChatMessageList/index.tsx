@@ -81,6 +81,7 @@ interface ChatDTO {
 }
 
 interface ChatMessageListProps {
+  myId: string;
   messagesEndRef: Ref<HTMLDivElement>;
   messages: ChatDTO[];
   fetchMessages: () => Promise<void>;
@@ -90,6 +91,7 @@ interface ChatMessageListProps {
 }
 
 const ChatMessageList: React.FC<ChatMessageListProps> = ({
+  myId,
   messagesEndRef,
   messages,
   fetchMessages,
@@ -111,15 +113,7 @@ const ChatMessageList: React.FC<ChatMessageListProps> = ({
           useWindow={false}
         >
           {messages.map((msg, idx) =>
-            msg.senderId === "zkdlwjsxm@example.com" ? (
-              <MyMsgContainer key={idx}>
-                <MyMsgbox>{msg.message}</MyMsgbox>
-                <Alert>
-                  <Time>{msg.sendTimeStr}</Time>
-                  <AlertIsRead>{msg.isRead ? msg.isRead : ""}</AlertIsRead>
-                </Alert>
-              </MyMsgContainer>
-            ) : (
+            msg.senderId === myId ? (
               <YourMsgContainer key={idx}>
                 <Alert>
                   <AlertIsRead>{msg.isRead ? msg.isRead : ""}</AlertIsRead>
@@ -127,7 +121,16 @@ const ChatMessageList: React.FC<ChatMessageListProps> = ({
                 </Alert>
                 <YourMsgbox>{msg.message}</YourMsgbox>
               </YourMsgContainer>
-            ),
+            ) : (
+
+              <MyMsgContainer key={idx}>
+                <MyMsgbox>{msg.message}</MyMsgbox>
+                <Alert>
+                  <Time>{msg.sendTimeStr}</Time>
+                  <AlertIsRead>{msg.isRead ? msg.isRead : ""}</AlertIsRead>
+                </Alert>
+              </MyMsgContainer>
+            )
           )}
         </InfiniteScroll>
       </div>

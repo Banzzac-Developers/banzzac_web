@@ -10,3 +10,9 @@ export const favoriteFriendListState = atom<Friend[]>({
   key: "favoriteFriendListState",
   default: undefined,
 });
+
+export const blockedFriendListState = atom<Friend[]>({
+  key: "blockedFriendListState",
+  default: undefined,
+});
+
