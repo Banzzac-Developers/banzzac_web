@@ -1,10 +1,11 @@
 import MatchingTicket from "@components/matchingTicket";
 import styled from "@emotion/styled";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import Seperator from "@components/Seperator";
 import DividerDefault from "@components/Divider/Divider";
 import PayButton from "@components/matchingTicket/payButton";
+import SvgSelector from "@components/Svg/SvgSelector";
 
 function Payment() {
   const quantity: number[] = [1, 5, 10, 30, 50, 100];
@@ -14,9 +15,14 @@ function Payment() {
   const price: number = 1000;
   return (
     <>
-      <Text isTitle={true} color={"#212121"} size={13.5}>
-        매칭권 충전
-      </Text>
+      <TopWrap>
+        <Link to={"/profile"}>
+          <SvgSelector svg="close" width={23} height={23} stroke="#212121" />
+        </Link>
+        <Text isTitle={true} color={"#212121"} size={13.5}>
+          매칭권 충전
+        </Text>
+      </TopWrap>
       <Content>
         <Text color={"#333"} size={11}>
           현재 보유한 매칭권
@@ -77,6 +83,11 @@ const Text = styled.div<{ isTitle?: boolean; color: string; size: number }>`
   font-size: ${({ size }) => size + "px"};
   text-align: ${({ isTitle }) => isTitle && "center"};
   margin-bottom: ${({ color }) => (color = "333" && "7px")};
+`;
+
+const TopWrap = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 export default Payment;
