@@ -114,14 +114,6 @@ const ChatMessageList: React.FC<ChatMessageListProps> = ({
         >
           {messages.map((msg, idx) =>
             msg.senderId === myId ? (
-              <MyMsgContainer key={idx}>
-                <MyMsgbox>{msg.message}</MyMsgbox>
-                <Alert>
-                  <Time>{msg.sendTimeStr}</Time>
-                  <AlertIsRead>{msg.isRead ? msg.isRead : ""}</AlertIsRead>
-                </Alert>
-              </MyMsgContainer>
-            ) : (
               <YourMsgContainer key={idx}>
                 <Alert>
                   <AlertIsRead>{msg.isRead ? msg.isRead : ""}</AlertIsRead>
@@ -129,7 +121,15 @@ const ChatMessageList: React.FC<ChatMessageListProps> = ({
                 </Alert>
                 <YourMsgbox>{msg.message}</YourMsgbox>
               </YourMsgContainer>
-            ),
+            ) : (
+              <MyMsgContainer key={idx}>
+                <MyMsgbox>{msg.message}</MyMsgbox>
+                <Alert>
+                  <Time>{msg.sendTimeStr}</Time>
+                  <AlertIsRead>{msg.isRead ? msg.isRead : ""}</AlertIsRead>
+                </Alert>
+              </MyMsgContainer>
+            )
           )}
         </InfiniteScroll>
       </div>
