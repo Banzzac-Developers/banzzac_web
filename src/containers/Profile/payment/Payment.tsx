@@ -1,11 +1,15 @@
 import MatchingTicket from "@components/matchingTicket";
 import styled from "@emotion/styled";
+
 import { Link, useLocation } from "react-router-dom";
+
 import axios from "axios";
 import Seperator from "@components/Seperator";
 import DividerDefault from "@components/Divider/Divider";
 import PayButton from "@components/matchingTicket/payButton";
+
 import SvgSelector from "@components/Svg/SvgSelector";
+
 
 function Payment() {
   const quantity: number[] = [1, 5, 10, 30, 50, 100];
@@ -84,6 +88,7 @@ const Text = styled.div<{ isTitle?: boolean; color: string; size: number }>`
   text-align: ${({ isTitle }) => isTitle && "center"};
   margin-bottom: ${({ color }) => (color = "333" && "7px")};
 `;
+
 
 const TopWrap = styled.div`
   display: flex;

@@ -32,7 +32,11 @@ export default function ChatItem({
       </Profile>
       <Alert>
         <Time>{lastMessageSendtimeStr}</Time>
-        <NumberAlert color="#BF8BFC" filled number={unreadMessagesCount} />
+        {unreadMessagesCount ? (
+          <NumberAlert color="#BF8BFC" filled number={unreadMessagesCount} />
+        ) : (
+          ""
+        )}
       </Alert>
     </Container>
   );

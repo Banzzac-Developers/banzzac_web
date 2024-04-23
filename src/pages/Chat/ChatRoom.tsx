@@ -64,14 +64,7 @@ const ChatMessagePage: React.FC = () => {
       client.subscribe(`/topic/public`, (message: IMessage) => {
         const msg: ChatDTO = JSON.parse(message.body);
         setMessages((prevMessages) => [...prevMessages, msg]);
-        console.log(
-          "message",
-          message,
-          "oppId",
-          oppId,
-          "chatroomNo",
-          chatroomNo,
-        );
+        console.log("myId", id, "oppId", oppId, "chatroomNo", chatroomNo);
       });
     };
 
@@ -146,11 +139,12 @@ const ChatMessagePage: React.FC = () => {
           },
         );
         alert("신고가 접수되었습니다.");
-        location.href = "/chat/"+id;
+        location.href = `/chat/${id}`;
       }
     } catch (error) {
       console.error("신고하기 실패", error);
     }
+
   };
 
   const blockUser = async () => {
@@ -160,7 +154,7 @@ const ChatMessagePage: React.FC = () => {
           `http://localhost/api/chat/block/${oppId}/${chatroomNo}`, //zkdlwjsxm@example.com 부분은 session id 받아서
         );
         handleGoBack();
-        location.href = "/chat/"+id;
+        location.href = `/chat/${id}`;
       } catch (error) {
         console.error("친구 차단하기 실패", error);
       }
@@ -170,7 +164,8 @@ const ChatMessagePage: React.FC = () => {
   const makePromise = async () => {
     try {
       await axios.post(`http://localhost/api/chat/promise`, {
-        memberId: id, //zkdlwjsxm@example.com 부분은 session id 받아서
+        myId: id, //zkdlwjsxm@example.com 부분은 session id 받아서
+        yourId: oppId,
         startWalkTime: "", //oppId 부분은 신고 대상의 memberId로 변경
         endWalkTime: "",
       });
@@ -185,11 +180,12 @@ const ChatMessagePage: React.FC = () => {
         `http://localhost/api/chat/outChatroom/${id}/${chatroomNo}`,
       );
       handleGoBack();
-      location.href = "/chat/"+id;
+      location.href = `/chat/${id}`;
     } catch (error) {
       console.error("채팅방 나가기 실패", error);
     }
   };
+
 
   const memberNickname = "보호자닉네임";
   const dogName = "강아지 이름";
@@ -198,7 +194,8 @@ const ChatMessagePage: React.FC = () => {
     <div className="chat-container">
       <div className="chat-header">
         <Link
-          to={"/chat/"+id} //zkdlwjsxm@example.com 부분은 session id 받아서
+          to={`/chat/${id}`} //zkdlwjsxm@example.com 부분은 session id 받아서
+
           onClick={handleGoBack}
         >
           <SvgSelector
@@ -228,6 +225,7 @@ const ChatMessagePage: React.FC = () => {
         />
       </div>
       <ChatMessageList
+        myId={id || ""}
         messagesEndRef={messagesEndRef}
         messages={messages}
         fetchMessages={fetchMessages}

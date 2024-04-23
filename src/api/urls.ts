@@ -40,10 +40,9 @@ const URLs = {
   matching: {
     fetchCondition: "api/matching/condition",
     updateCondition: "api/matching/condition",
-    fetchMatchings : "api/matching/members"
   },
-  search:{
-    searchMember:'/api/search/members'
+  search: {
+    searchMember: "/api/search/members",
   },
 };
 

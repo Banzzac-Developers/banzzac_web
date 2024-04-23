@@ -26,6 +26,7 @@ export default function Matching() {
                 <BottomButton friendId={val}/>
               </>
             })  }
+
       <Navigator/>
     </>
   );
@@ -50,7 +51,6 @@ const Circle = styled.div`
     width: 300px;
     height: 300px;
 `
-
 
 
 
