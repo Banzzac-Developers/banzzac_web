@@ -23,18 +23,16 @@ export default function RefundPop({
   setIsClick,
 }: Props) {
   const [refundInfo, setRefundInfo] = useState<AddRefund>(defaultAddRefund);
-  const { addRefund, data } = useAddRefund();
+  const { addRefund } = useAddRefund();
   const { deleteRefund } = useRefund();
   const { removeCurrentModal } = useModal();
 
   const handleAddRefund = () => {
     if (refundInfo.reason == "") return;
-    if (!readonly && setIsClick) {
-      addRefund(refundInfo);
-      removeCurrentModal();
-
-      //setIsClick(["#212121", "#A86efa"]);
-    }
+    addRefund(refundInfo);
+    removeCurrentModal();
+    window.location.reload();
+    //setIsClick(["#212121", "#A86efa"]);
   };
 
   useEffect(() => {
@@ -80,6 +78,7 @@ export default function RefundPop({
             if (approve == 2) {
               deleteRefund(orderId);
               removeCurrentModal();
+              window.location.reload();
             } else if (!readonly && approve !== 2) {
               handleAddRefund();
             } else {

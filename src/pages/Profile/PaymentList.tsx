@@ -4,7 +4,8 @@ import useRefundList from "@hooks/profile/useRefundList";
 import { useState } from "react";
 import styled from "@emotion/styled";
 import Seperator from "@components/Seperator";
-import { PayStyledDiv } from "@containers/Profile/payment/Payment";
+import { Link } from "react-router-dom";
+import SvgSelector from "@components/Svg/SvgSelector";
 
 export default function PaymentListPage() {
   const { data: payList } = usePaymentList();
@@ -14,9 +15,19 @@ export default function PaymentListPage() {
   return (
     <>
       <div style={{ padding: "30px 24px 60px 24px" }}>
-        <Text color={"#222"} isTitle={true}>
-          매칭권 내역
-        </Text>
+        <TopWrap>
+          <Link to={"/profile"}>
+            <SvgSelector
+              svg="expandLeft"
+              height={23}
+              width={23}
+              stroke="#212121"
+            />
+          </Link>
+          <Text color={"#222"} isTitle={true}>
+            매칭권 내역
+          </Text>
+        </TopWrap>
         <Tab>
           <Text
             isTitle={false}
@@ -39,9 +50,9 @@ export default function PaymentListPage() {
         ) : isClick[1] === "#A86efa" && refundList ? (
           <RefundStatusList refundList={refundList.data}></RefundStatusList>
         ) : isClick[0] === "#A86efa" && !payList ? (
-          <PayStyledDiv>구매내역이 없습니다</PayStyledDiv>
+          <></>
         ) : isClick[1] === "#A86efa" && refundList?.data.length == 0 ? (
-          <PayStyledDiv>환불신청 내역이 없습니다</PayStyledDiv>
+          <></>
         ) : (
           isClick[0] === "#A86efa" && !payList && !refundList && <></>
         )}
@@ -52,16 +63,22 @@ export default function PaymentListPage() {
 
 const Tab = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  align-items: center;
 `;
 
 const Text = styled.div<{ color: String; isTitle: boolean }>`
   width: 100%;
-  padding-bottom: 5%;
+  padding-bottom: ${({ isTitle }) => !isTitle && "5%"};
   color: ${({ color }) => color};
   font-weight: 600;
   font-size: ${({ isTitle }) => (isTitle ? "13.5px" : "14.5px")};
   text-align: center;
   border-bottom: 0.5px solid
     ${({ isTitle, color }) => (isTitle ? "none" : color)};
+`;
+
+const TopWrap = styled.div`
+  display: flex;
+  align-items: center;
+  padding-bottom: 6%;
 `;
