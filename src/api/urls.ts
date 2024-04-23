@@ -31,6 +31,7 @@ const URLs = {
     addBlockFriend: (friendId: string) => `/api/friend/friendBlock/${friendId}`,
     deleteBlockFriend: (friendId: string) =>
       `/api/friend/friendUnBlock/${friendId}`,
+      fetchFriendDetail:(friendId: string) => `api/friend/friendProfile/${friendId}`,
   },
   signup: {
     registUser: "/api/member/createMember",
@@ -39,6 +40,7 @@ const URLs = {
   matching: {
     fetchCondition: "api/matching/condition",
     updateCondition: "api/matching/condition",
+    fetchMatchings : "api/matching/members"
   },
   search:{
     searchMember:'/api/search/members'

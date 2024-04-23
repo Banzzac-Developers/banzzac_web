@@ -26,7 +26,7 @@ interface ChatDTO {
 }
 
 const ChatMessagePage: React.FC = () => {
-  const { oppId, chatroomNo } = useParams();
+  const {id, oppId, chatroomNo } = useParams();
   const [loading, setLoading] = useState(true);
   const [stompClient, setStompClient] = useState<Client | null>(null);
   const [messages, setMessages] = useState<ChatDTO[]>([]);
@@ -40,7 +40,7 @@ const ChatMessagePage: React.FC = () => {
   const loadInitChatMessages = useCallback(async () => {
     try {
       const response = await axios.get(
-        `http://localhost/api/chat/zkdlwjsxm@example.com/${chatroomNo}`, //zkdlwjsxm@example.com 부분은 session id 받아서
+        `http://localhost/api/chat/${id}/${chatroomNo}`, //zkdlwjsxm@example.com 부분은 session id 받아서
       );
       const responseMessages = response.data as ChatDTO[];
       setMessages(responseMessages);
@@ -86,7 +86,7 @@ const ChatMessagePage: React.FC = () => {
   const fetchMessages = async () => {
     try {
       const response = await axios.get(
-        `http://localhost/api/chat/zkdlwjsxm@example.com/${chatroomNo}`, //zkdlwjsxm@example.com 부분은 session id 받아서
+        `http://localhost/api/chat/${id}/${chatroomNo}`, //zkdlwjsxm@example.com 부분은 session id 받아서
       );
 
       const responseMessages = response.data as ChatDTO[];
@@ -105,8 +105,8 @@ const ChatMessagePage: React.FC = () => {
     if (stompClient && newMessage) {
       const chatMessage: ChatDTO = {
         type: "chat",
-        senderId: "zkdlwjsxm@example.com", //zkdlwjsxm@example.com 부분은 session id 받아서
-        senderNickname: "최성재", //session nickname 받아서
+        senderId: id || "", //zkdlwjsxm@example.com 부분은 session id 받아서
+        //senderNickname: "최성재", //session nickname 받아서
         receiverId: oppId || "",
         isRead: 1,
         sendImg: "",
@@ -140,13 +140,13 @@ const ChatMessagePage: React.FC = () => {
         await axios.post(
           `http://localhost/api/chat/report/${chatroomNo}`, //oppId 부분은 신고 대상의 memberId로 변경
           {
-            memberId: "zkdlwjsxm@example.com", //zkdlwjsxm@example.com 부분은 session id 받아서
+            memberId:id, //zkdlwjsxm@example.com 부분은 session id 받아서
             reportedId: oppId, //oppId 부분은 신고 대상의 memberId로 변경
             reportReason: reportReason,
           },
         );
         alert("신고가 접수되었습니다.");
-        location.href = "/chat/zkdlwjsxm@example.com";
+        location.href = "/chat/"+id;
       }
     } catch (error) {
       console.error("신고하기 실패", error);
@@ -160,7 +160,7 @@ const ChatMessagePage: React.FC = () => {
           `http://localhost/api/chat/block/${oppId}/${chatroomNo}`, //zkdlwjsxm@example.com 부분은 session id 받아서
         );
         handleGoBack();
-        location.href = "/chat/zkdlwjsxm@example.com";
+        location.href = "/chat/"+id;
       } catch (error) {
         console.error("친구 차단하기 실패", error);
       }
@@ -170,7 +170,7 @@ const ChatMessagePage: React.FC = () => {
   const makePromise = async () => {
     try {
       await axios.post(`http://localhost/api/chat/promise`, {
-        memberId: "zkdlwjsxm@example.com", //zkdlwjsxm@example.com 부분은 session id 받아서
+        memberId: id, //zkdlwjsxm@example.com 부분은 session id 받아서
         startWalkTime: "", //oppId 부분은 신고 대상의 memberId로 변경
         endWalkTime: "",
       });
@@ -182,10 +182,10 @@ const ChatMessagePage: React.FC = () => {
   const leaveChatroom = async () => {
     try {
       await axios.get(
-        `http://localhost/api/chat/outChatroom/zkdlwjsxm@example.com/${chatroomNo}`,
+        `http://localhost/api/chat/outChatroom/${id}/${chatroomNo}`,
       );
       handleGoBack();
-      location.href = "/chat/zkdlwjsxm@example.com";
+      location.href = "/chat/"+id;
     } catch (error) {
       console.error("채팅방 나가기 실패", error);
     }
@@ -198,7 +198,7 @@ const ChatMessagePage: React.FC = () => {
     <div className="chat-container">
       <div className="chat-header">
         <Link
-          to={"/chat/zkdlwjsxm@example.com"} //zkdlwjsxm@example.com 부분은 session id 받아서
+          to={"/chat/"+id} //zkdlwjsxm@example.com 부분은 session id 받아서
           onClick={handleGoBack}
         >
           <SvgSelector
