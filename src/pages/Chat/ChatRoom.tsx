@@ -26,7 +26,7 @@ interface ChatDTO {
 }
 
 const ChatMessagePage: React.FC = () => {
-  const { id, oppId, chatroomNo } = useParams();
+  const {id, oppId, chatroomNo } = useParams();
   const [loading, setLoading] = useState(true);
   const [stompClient, setStompClient] = useState<Client | null>(null);
   const [messages, setMessages] = useState<ChatDTO[]>([]);
@@ -99,7 +99,7 @@ const ChatMessagePage: React.FC = () => {
       const chatMessage: ChatDTO = {
         type: "chat",
         senderId: id || "", //zkdlwjsxm@example.com 부분은 session id 받아서
-        senderNickname: "최성재", //session nickname 받아서
+        //senderNickname: "최성재", //session nickname 받아서
         receiverId: oppId || "",
         isRead: 1,
         sendImg: "",
@@ -133,7 +133,7 @@ const ChatMessagePage: React.FC = () => {
         await axios.post(
           `http://localhost/api/chat/report/${chatroomNo}`, //oppId 부분은 신고 대상의 memberId로 변경
           {
-            memberId: id, //zkdlwjsxm@example.com 부분은 session id 받아서
+            memberId:id, //zkdlwjsxm@example.com 부분은 session id 받아서
             reportedId: oppId, //oppId 부분은 신고 대상의 memberId로 변경
             reportReason: reportReason,
           },
@@ -144,6 +144,7 @@ const ChatMessagePage: React.FC = () => {
     } catch (error) {
       console.error("신고하기 실패", error);
     }
+
   };
 
   const blockUser = async () => {
@@ -185,6 +186,7 @@ const ChatMessagePage: React.FC = () => {
     }
   };
 
+
   const memberNickname = "보호자닉네임";
   const dogName = "강아지 이름";
 
@@ -193,6 +195,7 @@ const ChatMessagePage: React.FC = () => {
       <div className="chat-header">
         <Link
           to={`/chat/${id}`} //zkdlwjsxm@example.com 부분은 session id 받아서
+
           onClick={handleGoBack}
         >
           <SvgSelector

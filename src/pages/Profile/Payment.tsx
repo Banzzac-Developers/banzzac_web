@@ -7,10 +7,7 @@ export default function PaymentPage() {
   const [menuOpen, setMenuOpen] = useState(false);
   return (
     <>
-      <div style={{ padding: "30px 24px 60px 24px" }}>
-        <ExitButton onClick={() => setMenuOpen(!menuOpen)}>
-          <SvgSelector svg="close" width={22} height={20} stroke="" />
-        </ExitButton>
+      <div style={{ padding: "30px 24px" }}>
         <Payment></Payment>
       </div>
     </>

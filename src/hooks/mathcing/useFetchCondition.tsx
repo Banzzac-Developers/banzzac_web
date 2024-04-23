@@ -8,7 +8,8 @@ import { useRecoilState } from "recoil";
 
 
 export default function useFetchCondition(){
-    const [data, setData] = useRecoilState(conditionState);
+
+    const [data, setData] = useRecoilState<MatchingCondition>(conditionState);
     
     const fetchCondition = useCallback(async () =>{
         const res : MatchingCondition = await API.get(URLs.matching.fetchCondition);
