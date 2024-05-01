@@ -1,5 +1,5 @@
-import { SingleProfileImage } from "@components/ProfileImage/ProfileImage";
 import styled from "@emotion/styled";
+import { useMemo } from "react";
 
 type Props = {
   srcs: string[];
@@ -8,65 +8,96 @@ type Props = {
 };
 
 const Carousel = ({ srcs, currentIdx, handleClick }: Props) => {
-  const handleClickImage = (idx: number) => {
-    handleClick(idx);
-  };
+  const prevList = useMemo(() => {
+    return srcs.filter((_, idx) => idx < currentIdx);
+  }, [currentIdx]);
+
+  const followingList = useMemo(() => {
+    return srcs.filter((_, idx) => idx > currentIdx);
+  }, [currentIdx]);
 
   return (
-    <>
-      <CarouselContainer>
-        <Wrapper>
-          {srcs.map((src, idx) => (
-            <Circle
-              active={idx === currentIdx}
-              idx={idx}
-              currentIdx={currentIdx}
-              key={idx}
-              onClick={() => handleClickImage(idx)}
-            >
-              <SingleProfileImage
-                size={idx === currentIdx ? 204 : 80}
-                border={idx === currentIdx ? 4 : 3}
-                img={src}
-                borderColor="#fff"
-              />
-            </Circle>
-          ))}
-        </Wrapper>
-      </CarouselContainer>
-    </>
+    <CarouselContainer>
+      {prevList.map((prevImg, idx) => (
+        <Circle
+          onClick={() => handleClick(idx)}
+          size={80}
+          pos={{ left: (prevList.length - idx - 1) * 20 }}
+          idx={idx}
+          length={prevList.length}
+        >
+          <Image
+            size={"100%"}
+            src={prevImg}
+            alt="profile"
+            key={`${prevImg}-${idx}`}
+          />
+        </Circle>
+      ))}
+      <CenterImage src={srcs[currentIdx]} alt="profile" />
+      {followingList.map((followingImg, idx) => (
+        <Circle
+          length={followingList.length}
+          onClick={() => handleClick(idx + currentIdx + 1)}
+          size={80}
+          pos={{ right: idx * 20 }}
+          idx={-1 * idx}
+        >
+          <Image
+            size={"100%"}
+            src={followingImg}
+            alt="profile"
+            key={`${followingImg}-${idx}`}
+          />
+        </Circle>
+      ))}
+    </CarouselContainer>
   );
 };
 
 const CarouselContainer = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   position: relative;
-  height: 208px;
+  width: 100%;
 `;
 
-const Wrapper = styled.div`
-  position: absolute;
-  width: 324px;
-  height: 100%;
+const CenterImage = styled.img`
+  width: 208px;
+  height: 208px;
+  display: block;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  z-index: 10;
+  box-shadow: 0px 2px 6px 2px #00000026;
+  box-shadow: 0px 1px 2px 0px #0000004d;
+`;
+
+const Image = styled.img<{ size: number | string }>`
+  width: ${({ size }) => (typeof size === "number" ? `${size}px` : size)};
+  height: ${({ size }) => (typeof size === "number" ? `${size}px` : size)};
+  display: block;
+  border-radius: 50%;
+  border: 3px solid #fff;
 `;
 
 const Circle = styled.button<{
-  active: boolean;
+  size: number;
+  pos?: { left?: number; right?: number };
   idx: number;
-  currentIdx: number;
+  length: number;
 }>`
+  --width-height: calc(50% - 104px);
+  width: ${({ size }) => size}px;
+  height: ${({ size }) => size}px;
   border-radius: 50%;
-  width: ${({ active }) => (active ? "204px" : "80px")};
-  height: ${({ active }) => (active ? "204px" : "80px")};
   position: absolute;
-  bottom: 0;
-  left: ${({ idx, currentIdx }) =>
-    idx <= currentIdx ? `${idx * 40}px` : `${idx * 40 + 122}px`};
-  z-index: ${({ active, idx, currentIdx }) =>
-    active ? 5 : idx <= currentIdx ? 0 : -1 * idx + 5};
+  left: ${({ pos }) => `calc(50% - 104px - 40px - ${pos?.left}px)`};
+  right: ${({ pos }) => `calc(50% - 104px - 40px - ${pos?.right}px)`};
+  z-index: ${({ idx }) => idx};
   box-shadow: 0px 2px 6px 2px #00000026;
+  box-shadow: 0px 1px 2px 0px #0000004d;
 `;
 
 const Indicator = ({ srcs, currentIdx, handleClick }: Props) => {
