@@ -5,7 +5,6 @@ import { blockedFriendListState } from "@recoil/friends";
 import { useCallback, useEffect } from "react";
 import { useRecoilState } from "recoil";
 
-
 export default function useBlockFriendList(id: string) {
   const [data, setData] = useRecoilState(blockedFriendListState);
 

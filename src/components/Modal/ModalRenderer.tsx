@@ -60,7 +60,11 @@ const Container = styled.div`
 const Background = styled.div`
   background-color: rgba(0, 0, 0, 0.25);
   width: 100%;
+<<<<<<< HEAD
   height: 100vh;
+=======
+  height: 100%;
+>>>>>>> 94df7cdf9d5b61209098d6e108f9fc2f554545ca
   position: fixed;
   top: 0;
   left: 0;

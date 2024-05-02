@@ -11,6 +11,7 @@ import usePets from "@hooks/profile/usePets";
 import mangu from "@assets/images/mangu.jpg";
 import petImg from "@assets/images/pet2.jpeg";
 import { defaultPet } from "@models/profile";
+
 import { Link, useNavigate } from "react-router-dom";
 import useProfile from "@hooks/profile/useProfile";
 
@@ -32,7 +33,7 @@ export const ProfileDetail = ({ friendId }: Props) => {
 
   const friendCharacterArr = useMemo(() => {
     const { walkingStyle, age } = friendDetail ?? { walkingStyle: [], age: 0 };
-    const arr = ["mbti", `${age}세`];
+    const arr = ["mbti", `${age}세`, ...walkingStyle];
     return arr;
   }, [friendDetail]);
 
@@ -149,6 +150,7 @@ const IconBox = styled.div`
   font-weight: 600;
 `;
 
+
 export const BottomButton = ({friendId}:Props) => {
 
   const navigate = useNavigate()
@@ -167,10 +169,10 @@ export const BottomButton = ({friendId}:Props) => {
       <button>
         <Text {...FontStyle(16, 500, 24, "#E72B23")}>친구추가</Text>
       </button>
-        <button onClick={CheckTicket}>
-          <Text {...FontStyle(16, 500, 24, "#007AFF")}>대화하기</Text>
-        </button>
-      
+      <button onClick={CheckTicket}>
+        <Text {...FontStyle(16, 500, 24, "#007AFF")}>대화하기</Text>
+      </button>
+
     </ButtonContainer>
   );
 };
