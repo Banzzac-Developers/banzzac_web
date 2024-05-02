@@ -131,9 +131,9 @@ export type RefundList = {
   approve: number;
   reason: string;
   refundRequestDate: string;
-  approveTime: string | null;
+  approveTime: string;
   refundRequestDateStr: string;
-  approveTimeStr: string | null;
+  approveTimeStr: string;
   quantity: number;
   totalAmount: number;
   sessionId: null;

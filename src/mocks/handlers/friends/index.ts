@@ -15,7 +15,8 @@ const deleteFriend = http.get("/api/friend/delete/:friendId", () => {
   return HttpResponse.json();
 });
 
-const fetchFavoriteFriendList = http.get("/api/friend/favoriteList", () => {
+
+  const fetchFavoriteFriendList = http.get("/api/friend/favoriteList", () => {
   const randIdx = Math.floor(Math.random() * favoriteFriendList.length) + 1;
   return HttpResponse.json(favoriteFriendList.slice(0, randIdx));
 });

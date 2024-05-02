@@ -12,15 +12,18 @@ import mangu from "@assets/images/mangu.jpg";
 import petImg from "@assets/images/pet2.jpeg";
 import { defaultPet } from "@models/profile";
 
+import { Link, useNavigate } from "react-router-dom";
+import useProfile from "@hooks/profile/useProfile";
+
 type Props = {
   friendId: string;
 };
 
-const ProfileDetail = ({ friendId }: Props) => {
+export const ProfileDetail = ({ friendId }: Props) => {
   const [carouselIdx, setCarouselIdx] = useState(0);
 
   const { data: friendDetail } = useFriend(friendId);
-  const { data: pets } = usePets(friendId);
+  const { data: pets } = usePets();
 
   const profileImages = useMemo(() => {
     const petImages = pets?.data.map((_) => petImg) ?? [];
@@ -147,15 +150,29 @@ const IconBox = styled.div`
   font-weight: 600;
 `;
 
-const BottomButton = () => {
+
+export const BottomButton = ({friendId}:Props) => {
+
+  const navigate = useNavigate()
+  const {data : profile} = useProfile()
+  function CheckTicket(){
+    if(profile?.data[0].quantity == 0){
+      alert("매칭권이 없습니다. 구매 부탁쓰~")
+      navigate("/profile")
+    }else{
+      navigate("/chat/5l6l@naver.com/zkdlwjsxm@example.com/6")
+    }
+  }
+
   return (
     <ButtonContainer>
       <button>
         <Text {...FontStyle(16, 500, 24, "#E72B23")}>친구추가</Text>
       </button>
-      <button>
+      <button onClick={CheckTicket}>
         <Text {...FontStyle(16, 500, 24, "#007AFF")}>대화하기</Text>
       </button>
+
     </ButtonContainer>
   );
 };

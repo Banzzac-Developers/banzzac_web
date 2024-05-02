@@ -1,9 +1,12 @@
 import MatchingTicket from "@components/matchingTicket";
 import styled from "@emotion/styled";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import Seperator from "@components/Seperator";
 import DividerDefault from "@components/Divider/Divider";
+import PayButton from "@components/matchingTicket/payButton";
+import SvgSelector from "@components/Svg/SvgSelector";
+
 
 function Payment() {
   const quantity: number[] = [1, 5, 10, 30, 50, 100];
@@ -13,9 +16,14 @@ function Payment() {
   const price: number = 1000;
   return (
     <>
-      <Text isTitle={true} color={"#212121"} size={13.5}>
-        매칭권 충전
-      </Text>
+      <TopWrap>
+        <Link to={"/profile"}>
+          <SvgSelector svg="close" width={23} height={23} stroke="#212121" />
+        </Link>
+        <Text isTitle={true} color={"#212121"} size={13.5}>
+          매칭권 충전
+        </Text>
+      </TopWrap>
       <Content>
         <Text color={"#333"} size={11}>
           현재 보유한 매칭권
@@ -26,14 +34,14 @@ function Payment() {
       </Content>
       {quantity.map((v, i) => (
         <>
-          <PayStyledDiv>
+          <PayStyledDiv key={i}>
             <MatchingTicket
-              key={i}
               quantity={v}
               isClcik={true}
               semiTitle={`매칭권 ${v}개`}
             ></MatchingTicket>
-            <PayButtonContainer
+            <PayButton
+              text={`₩${v * price}`}
               onClick={() => {
                 axios
                   .post("http://localhost/api/payment/ready", {
@@ -41,12 +49,12 @@ function Payment() {
                     totalAmount: v * price,
                   })
                   .then(({ data }) => {
-                    location.href = data.data.next_redirect_pc_url;
+                    data.data.next_redirect_pc_url != null
+                      ? (location.href = data.data.next_redirect_pc_url)
+                      : (location.href = data.data.nextRedirect_mobile_url);
                   });
               }}
-            >
-              ₩{v * price}
-            </PayButtonContainer>
+            />
           </PayStyledDiv>
           <Seperator height={7} />
           <DividerDefault width={"100%"} />
@@ -64,7 +72,9 @@ export const PayStyledDiv = styled.div`
 `;
 
 const Content = styled.div`
-  margin: 5% 0 7%;
+  margin: 10% 0 10%;
+  padding: 2% 2%;
+  box-shadow: inset 0 0 6px rgba(105, 105, 105, 0.1);
 `;
 
 const Text = styled.div<{ isTitle?: boolean; color: string; size: number }>`
@@ -76,14 +86,9 @@ const Text = styled.div<{ isTitle?: boolean; color: string; size: number }>`
   margin-bottom: ${({ color }) => (color = "333" && "7px")};
 `;
 
-export const PayButtonContainer = styled.button`
-  width: 70px;
-  height: 25px;
-  font-size: 13px;
-  font-weight: 500;
+
+const TopWrap = styled.div`
+  display: flex;
   align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-  border: 0.8px solid;
 `;
 export default Payment;

@@ -15,11 +15,12 @@ import usePets from "@hooks/profile/usePets";
 import { Pet, Profile, defaultProfile } from "@models/profile";
 import ModalContents from "@containers/Profile/edit/WithDrawModal";
 import useModal from "@hooks/common/useModal";
-import { TEST_EMAIL } from "@constants/index";
+import useLogout from "@hooks/profile/useLogout";
 
 export default function ProfileEditPage() {
-  const { data: profile } = useProfile(TEST_EMAIL);
-  const { data: pets } = usePets(TEST_EMAIL);
+  const { data: profile } = useProfile();
+  const { data: pets } = usePets();
+  const logout = useLogout();
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [profileInfo, setProfileInfo] = useState<{
@@ -64,7 +65,9 @@ export default function ProfileEditPage() {
           menuList={[
             {
               menu: "로그아웃",
-              handleClick: () => {},
+              handleClick: () => {
+                logout();
+              },
             },
             {
               menu: "탈퇴하기",

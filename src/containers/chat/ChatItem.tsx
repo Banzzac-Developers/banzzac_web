@@ -32,7 +32,11 @@ export default function ChatItem({
       </Profile>
       <Alert>
         <Time>{lastMessageSendtimeStr}</Time>
-        <NumberAlert color="#BF8BFC" filled number={unreadMessagesCount} />
+        {unreadMessagesCount ? (
+          <NumberAlert color="#BF8BFC" filled number={unreadMessagesCount} />
+        ) : (
+          ""
+        )}
       </Alert>
     </Container>
   );
@@ -60,9 +64,13 @@ const Name = styled.div`
 
 const ChatMsg = styled.div`
   color: #757575;
+  max-width: 200px;
+  height: 16px;
   font-size: 12px;
   line-height: 16px;
   font-weight: 400;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const Alert = styled.div`

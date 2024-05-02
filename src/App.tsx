@@ -33,9 +33,7 @@ const router = createBrowserRouter(
       <Route path="/signup/complete" element={<SignupComplete />} />
       <Route path="/friends" element={<Friends />} />
       <Route path="/chat/:id" element={<Chat />} />
-      <Route path="/chat/:oppId/:chatroomNo" element={<ChatRoom />} />
-      <Route path="/chat/:id" element={<Chat />} />
-      <Route path="/chat/:oppId/:chatroomNo" element={<ChatRoom />} />
+      <Route path="/chat/:id/:oppId/:chatroomNo" element={<ChatRoom />} />
       <Route path="/search" element={<Search />} />
       <Route path="/matching" element={<Matching />} />
       <Route path="/profile" element={<Profile />} />

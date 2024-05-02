@@ -1,5 +1,4 @@
 import InputDefault from "@components/Input";
-import { TEST_EMAIL } from "@constants/index";
 import styled from "@emotion/styled";
 import useModal from "@hooks/common/useModal";
 import useWithdrawal from "@hooks/profile/useWithdrawal";
@@ -7,7 +6,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function ModalContents() {
-  const { withdrawal } = useWithdrawal(TEST_EMAIL);
+  const { withdrawal } = useWithdrawal();
   const { removeCurrentModal } = useModal();
   const [password, setPassword] = useState("");
   const navigator = useNavigate();

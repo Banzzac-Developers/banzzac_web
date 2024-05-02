@@ -6,7 +6,9 @@ import styled from "@emotion/styled";
 import { FontStyle } from "@utils/StyleUtil";
 
 export default function BlockFriendList() {
-  const { data: blockFriendList } = useBlockFriendList(TEST_EMAIL);
+
+  const { data: blockFriendList } = useBlockFriendList();
+
 
   if (!blockFriendList) return <></>;
   return (

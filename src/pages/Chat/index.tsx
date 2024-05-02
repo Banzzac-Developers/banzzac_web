@@ -3,6 +3,8 @@ import Navigator from "@layouts/Navigator";
 import SquareHeader from "@layouts/SquareHeader";
 
 export default function Chat() {
+
+
   return (
     <>
       <SquareHeader

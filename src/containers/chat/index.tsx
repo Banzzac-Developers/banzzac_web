@@ -16,7 +16,9 @@ export default function ChatContainer() {
       {chatList.map((chatRoom, idx) => (
         <React.Fragment key={chatRoom.chatroomNo}>
           <li>
-            <Link to={`/chat/${chatRoom.opponentId}/${chatRoom.chatroomNo}`}>
+            <Link
+              to={`/chat/${id}/${chatRoom.opponentId}/${chatRoom.chatroomNo}`}
+            >
               <ChatItem {...chatRoom} />
             </Link>
           </li>
