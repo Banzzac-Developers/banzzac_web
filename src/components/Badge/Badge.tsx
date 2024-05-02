@@ -39,4 +39,5 @@ const Text = styled.p<{ bold: boolean }>`
   font-weight: ${({ bold }) => (bold ? 700 : 600)};
   font-size: ${({ bold }) => (bold ? "16px" : "12px")};
   color: white;
+  white-space: nowrap;
 `;

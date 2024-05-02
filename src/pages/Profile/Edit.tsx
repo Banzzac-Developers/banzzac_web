@@ -52,7 +52,7 @@ export default function ProfileEditPage() {
     });
   };
 
-  if (!profile?.data || !pets?.data) return <>error</>;
+  if (!profile?.data || !pets?.data) return <></>;
 
   return (
     <Container>
