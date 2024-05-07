@@ -44,6 +44,9 @@ const URLs = {
   search: {
     searchMember: "/api/search/members",
   },
+  login : {
+    checkLogin : "/api/login"
+  }
 };
 
 export default URLs;
