@@ -4,6 +4,7 @@ import profileHandlers from "./profile";
 import friendsHandlers from "./friends";
 import signupHandlers from "./signup";
 import matchingHandlers from "./matching";
+import authHandlers from "./auth";
 
 export default [
   http.get("/todo", () => {
@@ -14,4 +15,5 @@ export default [
   ...friendsHandlers,
   ...signupHandlers,
   ...matchingHandlers,
+  ...authHandlers,
 ];

@@ -26,10 +26,7 @@ const SocialKakao = () => {
 
   const handleCustomLogin = ()=>{
     let res =checkLogin(id,pwd);
-    console.log("로그인 후 반환된 값 ")
-    console.log(res)
-
-    sessionStorage.setItem("d",res.accessToken);
+  
   }
 
 
