@@ -9,6 +9,7 @@ import "@/assets/fonts/web/variable/pretendardvariable.css";
 import App from "@/App.tsx";
 import { worker } from "@/mocks/browser.ts";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { CookiesProvider } from "react-cookie";
 
 const enableMocking = async () => {
   if (import.meta.env.VITE_NODE_ENV === "mocking") {
@@ -28,10 +29,12 @@ const queryClient = new QueryClient({
 
 enableMocking().then(() =>
   ReactDOM.createRoot(document.getElementById("root")!).render(
-    <QueryClientProvider client={queryClient}>
-      <RecoilRoot>
-        <App />
-      </RecoilRoot>
-    </QueryClientProvider>,
+    <CookiesProvider>
+      <QueryClientProvider client={queryClient}>
+        <RecoilRoot>
+          <App />
+        </RecoilRoot>
+      </QueryClientProvider>
+    </CookiesProvider>,
   ),
 );
