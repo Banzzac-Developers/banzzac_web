@@ -16,7 +16,7 @@ export default function TokenInitialize() {
   };
 
   useEffect(() => {
-    getToken();
+    // getToken();
   }, []);
 
   return <></>;
