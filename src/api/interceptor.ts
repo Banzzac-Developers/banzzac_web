@@ -25,7 +25,8 @@ const handleReqFulfilled = async (config: Config) => {
   };
 
   // authentication
-  const accessToken = Cookie.getCookie("access-token");
+  ///const accessToken = Cookie.getCookie("access-token");
+  const accessToken = localStorage.getItem("access-token");
   const Authorization = `Bearer ${accessToken}`;
 
   _config.headers["Authorization"] = Authorization;

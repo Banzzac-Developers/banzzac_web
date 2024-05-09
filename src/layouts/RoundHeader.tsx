@@ -2,7 +2,7 @@ import SvgSelector from "@components/Svg/SvgSelector";
 import TagDefault from "@components/Tag/TagDefault";
 import styled from "@emotion/styled";
 import useModal from "@hooks/common/useModal";
-import ConditionScreen from "@pages/Matching/ConditionScreen";
+import ConditionScreen from "@containers/matching/ConditionScreen";
 import { conditionState } from "@recoil/matching";
 import { useRecoilState, useRecoilValue } from "recoil";
 

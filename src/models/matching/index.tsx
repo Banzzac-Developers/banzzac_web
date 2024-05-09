@@ -1,5 +1,6 @@
-import { Pet, Profile } from "@models/profile"
+import { Pet, Profile, defaultPet, defaultProfile } from "@models/profile"
 import { Data } from ".."
+import { defaultMemberDTO } from "@models/search"
 
 export type MatchingCondition = {
     no:number,
@@ -36,6 +37,13 @@ export type Matching = {
     memberDTO : Profile,
     dogDTO : Pet[],
 }
+
+
+export const defaultMatching = {
+	memberDTO : defaultProfile,
+    dogDTO : [defaultPet],
+}
+
 
 export interface MatchingData extends Data {
     data : Matching[]
