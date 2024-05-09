@@ -1,6 +1,6 @@
 import Carousel from "@components/Carousel";
 import styled from "@emotion/styled";
-import { useMemo, useState } from "react";
+import { Dispatch, SetStateAction, useMemo, useState } from "react";
 import Seperator from "@components/Seperator";
 import Text from "@components/Text";
 import { FontStyle } from "@utils/StyleUtil";
@@ -151,7 +151,26 @@ const IconBox = styled.div`
 `;
 
 
-export const BottomButton = ({friendId}:Props) => {
+const BottomButton = () => {
+  return (
+    <ButtonContainer>
+      <button>
+        <Text {...FontStyle(16, 500, 24, "#E72B23")}>친구추가</Text>
+      </button>
+      <button>
+        <Text {...FontStyle(16, 500, 24, "#007AFF")}>대화하기</Text>
+      </button>
+    </ButtonContainer>
+  );
+};
+
+type MatchingButtonProps = {
+  friendId:string,
+  setIdx:Dispatch<SetStateAction<number>>,
+}
+
+
+export const MatchingBottomButton = ({friendId, setIdx}:MatchingButtonProps) => {
 
   const navigate = useNavigate()
   const {data : profile} = useProfile()
@@ -166,16 +185,18 @@ export const BottomButton = ({friendId}:Props) => {
 
   return (
     <ButtonContainer>
-      <button>
-        <Text {...FontStyle(16, 500, 24, "#E72B23")}>친구추가</Text>
-      </button>
       <button onClick={CheckTicket}>
         <Text {...FontStyle(16, 500, 24, "#007AFF")}>대화하기</Text>
       </button>
-
+      <button onClick={()=>{setIdx((prev)=>prev+1)}}>
+        <Text {...FontStyle(16, 500, 24, "#E72B23")}>PASS</Text>
+      </button>
     </ButtonContainer>
   );
 };
+
+
+
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -191,6 +212,6 @@ const ButtonContainer = styled.div`
   }
 `;
 
-const ProfileDetailModal = { ProfileDetail, BottomButton };
+const ProfileDetailModal = { ProfileDetail, BottomButton, MatchingBottomButton };
 
 export default ProfileDetailModal;
