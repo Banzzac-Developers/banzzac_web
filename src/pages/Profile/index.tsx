@@ -1,5 +1,5 @@
 import Navigator from "@layouts/Navigator";
-import WalkingHistory from "@containers/Profile/WalkingHistory";
+import WalkingHistory from "@containers/Profile/walk/WalkingHistory";
 import MyProfile from "@containers/Profile/Profile";
 import useProfile from "@hooks/profile/useProfile";
 import Seperator from "@components/Seperator";

@@ -155,3 +155,25 @@ export const defaultRefundList = {
   totalAmount: 0,
   sessionId: null,
 };
+
+export type WalkingHistory = {
+  no: number;
+  promiseStatus: number;
+  memberNo: number;
+  comment: string;
+  memberNickname: string;
+  memberImg: string;
+  memberId: string;
+  reviewScore: number;
+  reviewContent: string;
+  dogName: string;
+  dogImg: string;
+  startWalkTimeStr: string;
+  endWalkTimeStr: string;
+  startWalkTime: string;
+  endWalkTime: string;
+};
+
+export interface WalkingHistoryData extends Data {
+  data: WalkingHistory[];
+}
