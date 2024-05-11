@@ -26,7 +26,7 @@ const handleReqFulfilled = async (config: Config) => {
 
   // authentication
   const accessToken = Cookie.getCookie("access-token");
-  const Authorization = `Bearer ${accessToken}`;
+  const Authorization = `${accessToken}`;
 
   _config.headers["Authorization"] = Authorization;
 
@@ -50,6 +50,10 @@ const handleResFulfilled = (res: Response) => {
 };
 
 const handleResError = (err: any) => {
+  console.error(err.response);
+  // 401
+  if (err.response.status === 401) {
+  }
   return Promise.reject(err);
 };
 
