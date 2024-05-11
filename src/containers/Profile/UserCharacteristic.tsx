@@ -24,7 +24,7 @@ export default function UserCharacteristic({
       <Seperator height={18} />
       <Seperator height={18} />
       <Box display={true} height={80}>
-        <StyledLink to="/payment" state={{ quantity: quantity }}>
+        <StyledLink to="/payment">
           <SvgSelector
             svg="payment"
             height={30}

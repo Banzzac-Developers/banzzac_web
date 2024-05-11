@@ -13,6 +13,7 @@ const URLs = {
     deletePet: (name: string) => `/api/profile/dog/delete/${name}`,
     withdrawal: `/api/profile/withdraw`,
     logout: "/api/profile/logout",
+    fetchWalkingHistory: "/api/walk/diaries",
     fetchPayment: `/api/payment`,
     fetchRefund: "/api/payment/refund",
     updateRefund: "/api/payment/refund",
@@ -31,7 +32,8 @@ const URLs = {
     addBlockFriend: (friendId: string) => `/api/friend/friendBlock/${friendId}`,
     deleteBlockFriend: (friendId: string) =>
       `/api/friend/friendUnBlock/${friendId}`,
-      fetchFriendDetail:(friendId: string) => `api/friend/friendProfile/${friendId}`,
+    fetchFriendDetail: (friendId: string) =>
+      `api/friend/friendProfile/${friendId}`,
   },
   signup: {
     registUser: "/api/member/createMember",
@@ -45,9 +47,9 @@ const URLs = {
   search: {
     searchMember: "/api/search/members",
   },
-  login : {
-    checkLogin : "/api/login"
-  }
+  login: {
+    checkLogin: "/api/login",
+  },
 };
 
 export default URLs;

@@ -1,18 +1,17 @@
 import MatchingTicket from "@components/matchingTicket";
 import styled from "@emotion/styled";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import Seperator from "@components/Seperator";
 import DividerDefault from "@components/Divider/Divider";
 import PayButton from "@components/matchingTicket/payButton";
 import SvgSelector from "@components/Svg/SvgSelector";
-
+import useProfile from "@hooks/profile/useProfile";
 
 function Payment() {
   const quantity: number[] = [1, 5, 10, 30, 50, 100];
-  const uselocation = useLocation();
-  const myQuantity = uselocation.state.quantity;
   quantity.reverse();
+  const { data: profile } = useProfile();
   const price: number = 1000;
   return (
     <>
@@ -29,7 +28,7 @@ function Payment() {
           현재 보유한 매칭권
         </Text>
         <Text color={"#212121"} size={18}>
-          {myQuantity}
+          {profile?.data[0].quantity}
         </Text>
       </Content>
       {quantity.map((v, i) => (
@@ -85,7 +84,6 @@ const Text = styled.div<{ isTitle?: boolean; color: string; size: number }>`
   text-align: ${({ isTitle }) => isTitle && "center"};
   margin-bottom: ${({ color }) => (color = "333" && "7px")};
 `;
-
 
 const TopWrap = styled.div`
   display: flex;
