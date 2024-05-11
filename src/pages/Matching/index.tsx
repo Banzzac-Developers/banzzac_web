@@ -1,6 +1,7 @@
 
 
 
+import Seperator from "@components/Seperator";
 import MatchingDetails from "@containers/matching/MatchingDetails";
 import styled from "@emotion/styled";
 import useFetchCondition from "@hooks/mathcing/useFetchCondition";
@@ -17,6 +18,7 @@ export default function Matching() {
   return (
     <>
       <RoundHeader />
+      <Seperator height={20} />
             <MatchingDetails />
       <Navigator/>
     </>

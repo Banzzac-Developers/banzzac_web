@@ -35,7 +35,7 @@ const SocialKakao = () => {
       <button onClick={handleLogin}>
         <img src={KakaoLoginImg} alt="kakao-login" width={342} />
       </button>
-      <button
+      <button 
         onClick={handleLoginButton}
         style={{
           border: "1px solid",
