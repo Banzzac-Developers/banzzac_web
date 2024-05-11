@@ -28,10 +28,8 @@ const SocialKakao = () => {
 
       <img src={LogoImg} alt="logo" width={80} />
       <Seperator height={40} />
-      
-        <input type="text" onChange={(e)=>{handleId(e.target.value)}} value={id} name="id" />
-        <input type="password" onChange={(e)=>{handlePwd(e.target.value)}} value={pwd} name="pwd" />
-        <button onClick={handleCustomLogin}>로그인</button>
+
+        <button onClick={handleLoginButton}>로그인</button>
       
       <Seperator height={40} />
       <button onClick={handleLogin}>
