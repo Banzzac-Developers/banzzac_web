@@ -1,6 +1,7 @@
 import LogUtil from "@utils/LogUtil";
-import axios, { InternalAxiosRequestConfig } from "axios";
-import { Response } from "@models/api";
+import axios from "axios";
+import { Config, Response } from "@models/api";
+import { Cookie } from "@utils/Cookie";
 
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_SERVER_URL,
@@ -10,14 +11,25 @@ const axiosInstance = axios.create({
   withCredentials: true,
 });
 
-const handleReqFulfilled = async (config: InternalAxiosRequestConfig) => {
-  // authorize
+const handleReqFulfilled = async (config: Config) => {
+  // logging
   const randIdx = Math.floor(Math.random() * LogUtil.colors.length);
   if (import.meta.env.VITE_NODE_ENV === "mocking") {
     LogUtil.log(randIdx, `Started [${config.method}] : `, config.url);
     LogUtil.log(randIdx, `Parameters :`, config.data);
   }
-  const _config = { ...config, logColorIdx: randIdx };
+
+  const _config: Config = {
+    ...config,
+    logColorIdx: randIdx,
+  };
+
+  // authentication
+  const accessToken = Cookie.getCookie("access-token");
+  const Authorization = `${accessToken}`;
+
+  _config.headers["Authorization"] = Authorization;
+
   return _config;
 };
 
@@ -38,6 +50,10 @@ const handleResFulfilled = (res: Response) => {
 };
 
 const handleResError = (err: any) => {
+  console.error(err.response);
+  // 401
+  if (err.response.status === 401) {
+  }
   return Promise.reject(err);
 };
 

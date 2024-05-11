@@ -5,6 +5,7 @@ import { useRecoilValue } from "recoil";
 
 export default function MainLayout() {
   const modals = useRecoilValue(modalState);
+
   return (
     <>
       {modals.length !== 0 && <ModalRenderer />}
