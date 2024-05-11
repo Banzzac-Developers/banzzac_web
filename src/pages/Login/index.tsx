@@ -1,9 +1,9 @@
+import authInstance from "@api/authInterceptor";
 import KakaoLoginImg from "@assets/images/kakao_login@3x.png";
 import LogoImg from "@assets/images/Logo@3x.png";
 import Seperator from "@components/Seperator";
 import styled from "@emotion/styled";
-import useLogin from "@hooks/login/useLogin";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SocialKakao = () => {
   // oauth 요청 URL
@@ -12,23 +12,16 @@ const SocialKakao = () => {
     window.location.href = kakaoURL;
   };
 
+  const navigation = useNavigate();
 
-  const {checkLogin}=useLogin();
-  const [id,setId] = useState("");
-  const [pwd,setPwd] = useState("");
-
-  const handleId = (id:string)=>{
-    setId(id)
-  }
-  const handlePwd = (pwd:string) =>{
-    setPwd(pwd);
-  }
-
-  const handleCustomLogin = ()=>{
-    let res =checkLogin(id,pwd);
-  
-  }
-
+  const handleLoginButton = async () => {
+    const res = await authInstance.post("/api/login", {
+      id: "zkdlwjsxm@example.com",
+      pwd: "1111",
+    });
+    navigation("/friends");
+    return res;
+  };
 
   return (
     <Container>
@@ -43,6 +36,16 @@ const SocialKakao = () => {
       <Seperator height={40} />
       <button onClick={handleLogin}>
         <img src={KakaoLoginImg} alt="kakao-login" width={342} />
+      </button>
+      <button
+        onClick={handleLoginButton}
+        style={{
+          border: "1px solid",
+          padding: "10px 30px",
+          borderRadius: "10px",
+        }}
+      >
+        login
       </button>
     </Container>
   );
